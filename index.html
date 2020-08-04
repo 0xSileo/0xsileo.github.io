@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+<script>
+const UserLang = navigator.language.slice(0,2)
+if (["en","fr"].includes(UserLang)) {
+  console.log(UserLang)
+  window.location.href=UserLang+"/index.html"
+}
+</script>
   <head>
     <meta charset="utf-8">
     <title>Rphad's homepage</title>
