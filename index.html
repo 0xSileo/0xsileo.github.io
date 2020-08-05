@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <script>
+const SupportedLangs = ["fr","en"]
 const UserLanguage = navigator.language
 const UserLang = UserLanguage.slice(0,2)
-if (["en","fr"].includes(UserLang)) {
-  console.log(UserLang)
+if (SupportedLangs.includes(UserLang)) {
   window.location.href=UserLang
 } else {
-  console.log("Displaying choosing page")
+  window.location.href="en"
 }
 
 </script>
