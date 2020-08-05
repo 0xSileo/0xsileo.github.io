@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <script>
-const UserLang = navigator.language.slice(0,2)
+const UserLanguage = navigator.language
+const UserLang = UserLanguage.slice(0,2)
 if (["en","fr"].includes(UserLang)) {
   console.log(UserLang)
   window.location.href=UserLang
+} else {
+  console.log("Displaying choosing page")
 }
+
 </script>
   <head>
     <meta charset="utf-8">
-    <title>Rphad's homepage</title>
+    <title>Lanuague choice - Rphad</title>
   </head>
   <body>
-    <h2>Welcome to my homepage !</h2>
-    First post : <a href="/GANs_first_look">GANs : a first look</a>
-    <br> This site is <em>obviously</em> still under construction.
-    <br>If you want to have a laugh while waiting for it to be finished, check this paper : <a href="https://arxiv.org/pdf/1703.02528.pdf"> Stopping GAN violence: Generative Unadversarial Networks</a>
+    This site doesn't have a version in the language of your browser (<b><script>document.write(UserLanguage)</script></b>). Please choose a language.
+    <h3> <a href="./en">English version</a></h3>
+    <h3> <a href="./fr">Version française</a></h3>
   </body>
 </html>
