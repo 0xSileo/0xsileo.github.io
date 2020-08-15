@@ -1,1 +1,4 @@
+This is a Brave Rewards publisher verification file.
 
+Domain: rphad.github.io
+Token: 8d08605283cf99382c0840aa385d3dc35942a32791fbad557a853d56c90a70d3
