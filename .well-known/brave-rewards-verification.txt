@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: rphad.com
+Token: 3da7df924184cd441b581586a6418c2bdbb112f9171690350aca64b8af521149

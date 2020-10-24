@@ -1,14 +1,93 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Rphad_en</title>
-  </head>
-  <body>
-    <h2>Welcome to my homepage !</h2>
-    <h3>You are on the english version of the site.</h3>
-    First post : <a href="/GANs_first_look">GANs : a first look</a>
-    <br> This site is <em>obviously</em> still under construction.
-    <br>If you want to have a laugh while waiting for it to be finished, check this paper : <a href="https://arxiv.org/pdf/1703.02528.pdf"> Stopping GAN violence: Generative Unadversarial Networks</a>
-  </body>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#212b31">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="/css/hamburgers.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <title>Rphad</title>
+</head>
+<body>
+  <div id="mySidepanel" class="sidepanel">
+  <a href="blog">Blog</a>
+  <a href="about">About</a>
+  <a href="contact">Contact</a>
+  <a href="/fr">FR</a>
+</div>
+
+  <!-- Top navigation -->
+  <div class="topnav">
+
+    <!-- Left-aligned links (default) -->
+    <a href="/" class="active" id="logo" title="Home">
+       R<span id="logo_fn">aphaël </span>
+       D<span id="logo_ln">eknop </span>
+    </a>
+
+    <!-- Right-aligned links -->
+    <div class="topnav-right">
+      <a href="blog">Blog</a>
+      <a href="about">About</a>
+      <a href="contact">Contact</a>
+      <!--
+      <a href="/fr" class="icon">
+        <svg width="24" height="24" id="darkicon">
+          <path d="M10 7a7 7 0 0 0 12 4.9v.1c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2h.1A6.979 6.979 0 0 0 10 7zm-6 5a8 8 0 0 0 15.062 3.762A9 9 0 0 1 8.238 4.938 7.999 7.999 0 0 0 4 12z">
+          </path>
+        </svg>
+      </a>
+      <a href="/fr" class=icon>
+        <svg width="24" height="24" id="lighticon">
+          <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z">
+          </path>
+        </svg>
+      </a>
+    -->
+      <a href="/fr" class=icon title="Français">
+        <svg width="24" height="24" id="langicon">
+          <path d="M6.235 6.453a8 8 0 0 0 8.817 12.944c.115-.75-.137-1.47-.24-1.722-.23-.56-.988-1.517-2.253-2.844-.338-.355-.316-.628-.195-1.437l.013-.091c.082-.554.22-.882 2.085-1.178.948-.15 1.197.228 1.542.753l.116.172c.328.48.571.59.938.756.165.075.37.17.645.325.652.373.652.794.652 1.716v.105c0 .391-.038.735-.098 1.034a8.002 8.002 0 0 0-3.105-12.341c-.553.373-1.312.902-1.577 1.265-.135.185-.327 1.132-.95 1.21-.162.02-.381.006-.613-.009-.622-.04-1.472-.095-1.744.644-.173.468-.203 1.74.356 2.4.09.105.107.3.046.519-.08.287-.241.462-.292.498-.096-.056-.288-.279-.419-.43-.313-.365-.705-.82-1.211-.96-.184-.051-.386-.093-.583-.135-.549-.115-1.17-.246-1.315-.554-.106-.226-.105-.537-.105-.865 0-.417 0-.888-.204-1.345a1.276 1.276 0 0 0-.306-.43zM12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zz">
+          </path>
+        </svg>
+        &nbsp;fr
+      </a>
+      <div class="container" onclick="MobileMenu(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="homemsg">
+    I am <span id="introname">Raphaël</span>, a belgian autodidact, developer and physics student.
+    <img src="/images/portrait.jpg" width="300" id="profile">
+  </div>
+  <h2>I can give you a multidisciplinary insight on your ideas.</h2>
+  <br> This site is <em>obviously</em> still under construction.
+  <br>If you want to have a laugh while waiting for it to be finished, check this paper : <a href="https://arxiv.org/pdf/1703.02528.pdf"> Stopping GAN violence: Generative Unadversarial Networks</a>
+  <br> <span onclick="transitionToPage('index.html')">test to google</span>
+
+  <button onclick=LangChange(this) lang="fr">WER</button>
+</body>
+
+<script>
+function MobileMenu(x) {
+  x.classList.toggle("open");
+  var sidepanel = document.getElementById("mySidepanel");
+  var sidelist = sidepanel.classList;
+  if (! sidelist.contains("open")) {
+    sidepanel.style.width = innerWidth + "px";
+    sidepanel.style.height = innerHeight + "px";
+  } else {
+    sidepanel.style.width = 0 + "px";
+    sidepanel.style.height = 0 + "px";
+  }
+  sidelist.toggle("open")
+}
+</script>
+<script type="text/javascript" src="/js/main.js"></script>
 </html>

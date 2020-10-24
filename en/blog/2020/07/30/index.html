@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta name="theme-color" content="#212b31">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <script type="text/javascript">
+    window.transitionToPage = function(href) {
+      document.querySelector('body').style.opacity = 0
+      setTimeout(function() {
+        window.location.href = href
+        }, 500)
+      }
+
+    document.addEventListener('DOMContentLoaded', function(event) {
+      document.querySelector('body').style.opacity = 1
+    })
+    const versions = {"fr": "/fr"}
+  </script>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rphad_en</title>
+</head>
+<body>
+  <!-- Top navigation -->
+  <div class="topnav">
+
+    <!-- Left-aligned links (default) -->
+    <a href="/" id="logo">
+       R<span id="logo_fn">aphaël </span>
+       D<span id="logo_ln">eknop </span>
+    </a>
+
+    <!--
+    <div class="topnav-centered">
+      <a href="#news" id="logo">
+        R<span id="cas">aphaël</span>
+        D<span id="sty">eknop</span>
+      </a>
+    </div>
+    //-->
+
+    <!-- Right-aligned links -->
+    <div class="topnav-right">
+      <a class="active">Blog</a>
+      <a href="/en/about">About</a>
+      <a href="/en/contact">Contact</a>
+      <a href="/fr/blog/2020/07/30" class=icon title="Français">
+        <svg width="24" height="24" id="langicon">
+          <path d="M6.235 6.453a8 8 0 0 0 8.817 12.944c.115-.75-.137-1.47-.24-1.722-.23-.56-.988-1.517-2.253-2.844-.338-.355-.316-.628-.195-1.437l.013-.091c.082-.554.22-.882 2.085-1.178.948-.15 1.197.228 1.542.753l.116.172c.328.48.571.59.938.756.165.075.37.17.645.325.652.373.652.794.652 1.716v.105c0 .391-.038.735-.098 1.034a8.002 8.002 0 0 0-3.105-12.341c-.553.373-1.312.902-1.577 1.265-.135.185-.327 1.132-.95 1.21-.162.02-.381.006-.613-.009-.622-.04-1.472-.095-1.744.644-.173.468-.203 1.74.356 2.4.09.105.107.3.046.519-.08.287-.241.462-.292.498-.096-.056-.288-.279-.419-.43-.313-.365-.705-.82-1.211-.96-.184-.051-.386-.093-.583-.135-.549-.115-1.17-.246-1.315-.554-.106-.226-.105-.537-.105-.865 0-.417 0-.888-.204-1.345a1.276 1.276 0 0 0-.306-.43zM12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zz">
+          </path>
+        </svg>
+        &nbsp;fr
+      </a>
+    </div>
+
+  </div>
+
+  <article>
+    <h1>A first look at Generative Adversarial Networks</h1>
+
+      <h2>Introduction</h2>
+        <p>
+          In the last decade, machine learning and artificial intelligence have become increasingly ubiquitous. From autonomous vehicles to face recognition or even <a href="https://openai.com/projects/five/">beating world-class players in online games</a>, it is no wonder that this technology has an enormous potential and can be dangerously powerful. This document is aimed at the general public and intends to provide an intuitive -yet precise- understanding on what Generative Adversarial Networks are, what they are capable of, along with some further reflexions.
+        </p>
+
+      <h2>Discriminative and generative models</h2>
+        <p>
+          In machine learning, two main approaches can be followed. On the one hand, the <strong>discriminative</strong> method may be employed to tackle classifying problems such as assigning the correct label to an image, computing a highly probable output from a (previously unseen) complex input and much more. On the other hand, this model cannot <em>generate</em> similar data. An intuitive illustration of discriminative modelling in human behaviour is the capacity of distinguishing chinese characters while remaining unable to correctly draw one of them.
+          <br>
+          This is where the <strong>generative</strong> one differs. As its name suggests, a model using such an approach can generate data resembling what it has been fed. Here, as long as the input data is carefully selected, no label is required. Let's say that you want your model to generate a Shakespearean poem, it would be counterproductive to train it with some -unlabelled- Edgar Allan Poe or Oscar Wilde writings.
+        </p>
+
+      <h2>Generative Adversarial Networks</h2>
+        <p>
+          Although those two approaches were just presented separately, nothing is forbidding a network to follow both of them. This is where Generative Adversarial Networks come in. In a GAN, a generative network produces candidates while a discriminative one evaluates them. To put it simply, the goal of the generator is to fool the discriminator into thinking that the data provided is real.
+          <br>
+          This type of network, presented in 2014 by Ian Goodfellow and his collaborators \cite{goodfellow2014generative}, has been an enormous step in machine learning. To illustrate that statement, look at this series of generated human faces:
+
+          <figure style="text-align:center;">
+              <img src="GAN_ghf.png" width="75%">
+              <figcaption style="text-align:center;">
+                <span>Figure 1: </span>Progress of GANs on human face generation. Source: <a href="https://twitter.com/goodfellow_ian/status/1084973596236144640">Ian Goodfellow’s Twitter</a>
+              </figcaption>
+          </figure>
+
+          The evolution here is astonishing. Let's remember that before 2014, GANs simply didn't exist. There are a bunch of websites showing GAN-generated images of <a href="https://www.thispersondoesnotexist.com">people</a>, <a href="https://thisartworkdoesnotexist.com/">artworks</a>, <a href="https://thiscatdoesnotexist.com/">cats</a> or even <a href="https://thishorsedoesnotexist.com/">horses</a> produced by StyleGAN2 \cite{karras2019analyzing} for the curious out there. It is effortless -and an interesting exercise- to come up with potential applications and realise that there are plenty of them.
+        </p>
+
+      <h2>Going beyond GANs</h2>
+        <p>
+          There exists plenty of neural network types, generative adversarial networks are just one of them. The reason I presented them here is because I find them to be lying on the right spot between intuitive understanding and current state of the art in AI research. I haven't been technical here, as it is not the intention of this article.
+          <br>
+          Interestingly enough, GANs have their limitations. For example, it is impossible to tweak parameters on a generated human face picture in order to change, say, hair colour, face expression or nose shape. However, that is made possible by Adversarial Latent Autoencoders (ALAEs) \cite{pidhorskyi2020adversarial} which make use of <a href="https://towardsdatascience.com/understanding-latent-space-in-machine-learning-de5a7c687d8d">latent spaces</a>.
+          <br>
+          \Cref{ALAE_kzf} contains screenshots from a video made by \emph{Two Minute Papers} on ALAEs. Its creator, Karoly Zsolnai-Fehér, demonstrates the use of cursors on the right in order to tweak desired parameters. In the case of \cref{ALAE_kzf_1,ALAE_kzf_2} the cursor \emph{mouth-open} is set from low to high. Notice how smile lines appear not only near the mouth but also around the eyes.
+          <figure style="text-align:center;">
+              <img src="ALAE_kzf_1.png" width="75%">
+              <figcaption style="text-align:center;">
+                <span>Figure 2 (a): </span>Lower <em>mouth-open</em> cursor
+              </figcaption>
+          </figure>
+          <figure style="text-align:center;">
+              <img src="ALAE_kzf_2.png" width="75%">
+              <figcaption style="text-align:center;">
+                <span>Figure 2 (b): </span>Higher <em>mouth-open</em> cursor
+              </figcaption>
+          </figure>
+        </p>
+
+      <h2>Discussion</h2>
+        <p>
+          Considering the available information and considering the actual progress made in AI and ML research, what could be achievable in the next decade ? In order to answer such a question, several ways of reasoning can be employed. In this case, I will adopt the following:
+          <ol>
+            <li>Acknowledge the current advancements in the topic you are studying</li>
+            <li>Think about how (or if) they could be improved and polished individually</li>
+            <li>Try to come up with new ways in which they could be combined to produce innovative results</li>
+          </ol>
+          This last point can be eased by merging different topics together. Let’s try with machine learning and cinema.
+        </p>
+
+
+  </article>
+
+
+
+  <h1>You are on the english version of the site.</h1>
+  First post : <a href="/GANs_first_look">GANs : a first look</a>
+  <br> This site is <em>obviously</em> still under construction.
+  <br>If you want to have a laugh while waiting for it to be finished, check this paper : <a href="https://arxiv.org/pdf/1703.02528.pdf"> Stopping GAN violence: Generative Unadversarial Networks</a>
+  <br> <span onclick="transitionToPage('index.html')">test to google</span>
+
+  <button onclick=LangChange(this) lang="fr">fr</button>
+</body>
+
+<script>
+  function LangChange(element) {
+    window.location.href = versions[element.lang]
+  }
+
+</script>
+</html>

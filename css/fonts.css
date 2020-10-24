@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'znikomit';
+    src: url('/fonts/znikomit/Znikomit.otf');
+}
+
+@font-face {
+    font-family: 'newsreader';
+    src: url('/fonts/newsreader/fonts/variable/ttf/Newsreader[opsz,wght].ttf');
+}
