@@ -21,8 +21,11 @@ introname.addEventListener('mousemove', function(event) {
 /*document.addEventListener('DOMContentLoaded', function(event) {
   document.querySelector('body').style.opacity = 1
 })*/
+
+/*
 const versions = {"fr": "/fr"}
 
 function LangChange(element) {
   window.location.href = versions[element.lang]
 }
+*/
