@@ -6,8 +6,10 @@
  <link>https://www.rphad.com/en/index.html</link>
  <lastBuildDate>Thu, 29 Oct 2020 00:01:00 +0000 </lastBuildDate>
  <pubDate>Wed, 28 Oct 2020 16:20:00 +0000</pubDate>
+ <image href="https://www.rphad.com/images/portrait.jpg"/>
+ <author>Rapha</author>
  <ttl>1440</ttl>
-
+<managingEditor>blog.rphad@protonmail.com</managingEditor>
  <item>
   <title>My example entryy</title>
   <description>Here is some tecst containing an interestingg description.</description>
