@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+ <title>My title</title>
+ <description>This is an example of my RSS feed taken from wiki</description>
+ <link>https://www.rphad.com/en/index.html</link>
+ <lastBuildDate>Thu, 29 Oct 2020 00:01:00 +0000 </lastBuildDate>
+ <pubDate>Wed, 28 Oct 2020 16:20:00 +0000</pubDate>
+ <ttl>1440</ttl>
+
+ <item>
+  <title>My example entryy</title>
+  <description>Here is some tecst containing an interestingg description.</description>
+  <link>https://www.rphad.com/en/oofshaushort.mp3</link>
+ </item>
+
+</channel>
+</rss>
