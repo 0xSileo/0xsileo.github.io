@@ -1,9 +1,18 @@
+::selection {
+  /*#BAD0DE*/
+  background: rgba(186,208,222,0.75);
+  /*background: rgba(196, 218, 232,0.75);*/
+  color: #212b31
+}
+
+
 p {
     font-family: 'newspaper', serif;
     font-weight: 400;
-    font-size: 19px;
+    font-size: max(calc(10px + 0.75vw), 19px);
+    line-height: 1.6;
+    opacity: 0.8;
 }
-
 
 body {
   background-color: #212b31;
@@ -12,6 +21,9 @@ body {
   z-index: 1;
 }
 
+h1 {
+  font-size: calc(20px + 1.5vw);
+}
 
 h1,h2,h3 {
     font-family: 'Poppins', sans-serif;
@@ -247,6 +259,14 @@ svg {
   .container {
     display: inline-block;
   }
+  article figure {
+    width: 100%;
+    margin-left: 0px;
+    text-align:center;
+  }
+  article img {
+    width: 100% ;
+  }
 }
 
 @media screen and (min-width:900px) {
@@ -267,5 +287,16 @@ svg {
 
   a:hover #logo_ln {
     width: 57px;
+  }
+
+  article img:hover {
+    cursor:zoom-in;
+    /*filter: blur(1rem);*/
+    /*-webkit-filter: blur(1rem);*/
+    /*transform: scale(0.9);*/
+  }
+
+  article figure {
+    text-align:center;
   }
 }

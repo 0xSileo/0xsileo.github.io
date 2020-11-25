@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
 <channel>
- <title>My title</title>
- <description>This is an example of my RSS feed taken from wiki</description>
- <link>https://www.rphad.com/en/index.html</link>
- <lastBuildDate>Thu, 29 Oct 2020 00:01:00 +0000 </lastBuildDate>
- <pubDate>Wed, 28 Oct 2020 16:20:00 +0000</pubDate>
- <image href="https://www.rphad.com/images/portrait.jpg"/>
- <author>Rapha</author>
- <ttl>1440</ttl>
-<managingEditor>blog.rphad@protonmail.com</managingEditor>
- <item>
-  <title>My example entryy</title>
-  <description>Here is some tecst containing an interestingg description.</description>
-  <link>https://www.rphad.com/en/oofshaushort.mp3</link>
- </item>
-
+  <title>My title</title>
+  <description>This is an example of my RSS feed taken from wiki</description>
+  <link>https://www.rphad.com/en/index.html</link>
+  <managingEditor>blog.rphad@protonmail.com</managingEditor>
+  <image>
+    <url>https://www.rphad.com/images/portrait.jpg</url>
+    <link>https://www.rphad.com/en/index.html</link>
+    <title>Raphe</title>
+  </image>
+  <owner>
+    <name>Raphaa</name>
+    <email>blog.rphad@protonmail.com</email>
+  </owner>
+  <author>Rapha</author>
+  <item>
+    <title>My example entryy</title>
+    <description>Here is some tecst containing an interestingg description.</description>
+    <enclosure url="https://www.rphad.com/en/oofshaushort.mp3" type="audio/mpeg" length="65395147" />
+    <guid>https://www.rphad.com/en/oofshaushort.mp3</guid>
+  </item>
 </channel>
 </rss>
