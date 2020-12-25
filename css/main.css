@@ -1,8 +1,14 @@
+:root {
+  --main-light-color: #FFF7EB;
+  --main-dark-color: #202B30;
+}
+
 ::selection {
   /*#BAD0DE*/
-  background: rgba(186,208,222,0.75);
+  /*background: rgba(186,208,222,0.75);*/
+  background: var(--main-light-color);
   /*background: rgba(196, 218, 232,0.75);*/
-  color: #212b31
+  color: var(--main-dark-color)
 }
 
 td {
@@ -12,14 +18,15 @@ td {
 p {
     font-family: 'newspaper', serif;
     font-weight: 400;
-    font-size: max(calc(10px + 0.75vw), 19px);
+    font-size: max(calc(10px + 0.5vw), 16px);
+    /*font-size: calc(10px + 0.5vw);*/
     line-height: 1.6;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 body {
-  background-color: #212b31;
-  color: white;
+  background-color: var(--main-dark-color);
+  color: var(--main-light-color);
   margin: 10px 15%;
   z-index: 1;
 }
@@ -34,7 +41,7 @@ h1,h2,h3 {
 }
 
 a {
-  color: #BAD0DE;
+  color: #a63d40;
 }
 
 a span {
@@ -52,13 +59,13 @@ a span {
   overflow: hidden;
   background-color: #00000000;
   padding-bottom: 10px;
-  border-bottom-color: #fff;
+  border-bottom-color: var(--main-light-color);
   border-bottom-style: solid;
   border-bottom-width: 1px;
 }
 
 svg {
-  fill:white;
+  fill:var(--main-light-color);
 }
 
 
@@ -78,7 +85,7 @@ svg {
   font-family: 'Poppins', sans-serif;
   display: flex;
   float: left;
-  color: white;
+  color: var(--main-light-color);
   margin: 0px 5px;
   text-align: center;
   padding: 14px 16px;
@@ -88,7 +95,7 @@ svg {
 }
 
 .topnav a .icon {
-  color: white;
+  color: var(--main-light-color);
   text-align: center;
   padding: 14px 10px;
   text-decoration: none;
@@ -98,7 +105,7 @@ svg {
 
 .topnav .icon:hover {
   background-color: #0000;
-  color: white;
+  color: var(--main-light-color);
 }
 
 .topnav a span {
@@ -106,8 +113,8 @@ svg {
 }
 
 .topnav a.active {
-  background-color: white;
-  color: #212b31;
+  background-color: #FFF7EB;
+  color: var(--main-dark-color);
   font-weight: 600;
 }
 
@@ -145,7 +152,7 @@ svg {
 #introname {
   position:relative;
   color: #28293C00;
-  -webkit-text-stroke: 1px white;
+  -webkit-text-stroke: 1px var(--main-light-color);
   z-index: 1;
   text-decoration: none;
   transition: 0.4s;
@@ -153,8 +160,8 @@ svg {
 }
 
 #introname:hover {
-  color:white;
-  -webkit-text-stroke: 1px white;
+  color:var(--main-light-color);
+  -webkit-text-stroke: 1px var(--main-light-color);
   opacity: 0.5;
   cursor:none;
   transition: 0.4s;
@@ -180,7 +187,7 @@ svg {
 .bar1, .bar2, .bar3 {
   width: 35px;
   height: 5px;
-  background-color: #fff;
+  background-color: var(--main-light-color);
   margin: 8px 0;
   transition: 0.2s;
 }
@@ -208,12 +215,12 @@ svg {
 *::-webkit-scrollbar-track {
 	/*-webkit-box-shadow: inset 0 0 1px rgba(255,255,255,1);*/
 	border-radius: 10px;
-	background-color: #202B30;
+	background-color: var(--main-dark-color);
 }
 
 *::-webkit-scrollbar-thumb {
 	border-radius: 10px;
-	background-color: #f0f0f0;
+	background-color: var(--main-light-color);
 }
 
 *::-webkit-scrollbar-thumb:hover {
@@ -232,7 +239,7 @@ svg {
   height: 250px;
   top: 0;
   right: 0;
-  background-color: #202B30;
+  background-color: var(--main-dark-color);
   /*overflow-x: hidden;*/
   padding-top: 60px;
 }
@@ -252,7 +259,7 @@ svg {
   text-decoration: underline;
 }
 
-@media screen and (max-width:900px) {
+@media screen and (max-width:700px) {
   body {
     margin:10px;
   }
@@ -272,7 +279,7 @@ svg {
   }
 }
 
-@media screen and (min-width:900px) {
+@media screen and (min-width:700px) {
   #introname:hover ~ #profile {
     display: block;
   }
@@ -280,8 +287,8 @@ svg {
       display: none;
   }
   .topnav a:hover {
-    background-color: white;
-    color: #212b31;
+    background-color: var(--main-light-color);
+    color: var(--main-dark-color);
     opacity: 0.8;
   }
   a:hover #logo_fn {
