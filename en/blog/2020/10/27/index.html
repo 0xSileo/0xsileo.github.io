@@ -4,6 +4,7 @@
   <meta name="theme-color" content="#212b31">
   <!-- adding latex support-->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="/js/mathjax-config.js"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <link rel="stylesheet" type="text/css" href="/css/main.css">
@@ -64,18 +65,11 @@
       <h2>2. Relation between the theoretical V<sub>stop</sub> and raw experimental data</h2>
         <p>
           As discussed earlier, when plotted, the raw data follows a sigmoid relation of the form:
-          \begin{equation}
-          \label{eq:sigmoid_general}
+          \begin{equation} \label{eq:sigmoid_general}
               f(x) = \frac{L}{1+e^{-k(x-x_0)}}
           \end{equation}
 
-          where:
-
-          \begin{align}
-          L &= \text{The upper horizontal asymptote (the lower one is at }x=0\text{)}\\
-          k &= \text{A parameter influencing the slope of the tangeant at the inflection point}\\
-          x_0 &= \text{The }x\text{-value of the inflection point.}
-          \end{align}
+          where \(L\) is the upper horizontal asymptote (the lower one is at \(x=0\)), \(k\) is a parameter influencing the slope of the tangeant at the inflection point and \(x_0\) is the \(x\)-value of the inflection point.
 
           The slope of the tangeant at the inflection point is given by \(f^{\prime }(x_0)\). We have that:
 
@@ -95,24 +89,23 @@
           <p>
             For each dataset (one per frequency), the undermentioned stepswill be followed:
             <ol>
-              <li>Determining the parameters of \eqref{eq:sigmoid_general} by performing a non linear least squares regression.</li>
+		<li id="one">Determining the parameters of \eqref{eq:sigmoid_general} by performing a non linear least squares regression.</li>
               <li>Mapping the data from the \(y\)-interval \([0,L]\) to \([0, 1]\) by mutiplying the \(y\)-axis coordinates by \(1/y\).</li>
-              <li>Compute the 'reduced' equation of the tangeant to the inflection point by using the parameters found in \ref{itm:reg_params}.</li>
-              <li>\label{itm:real_val} Compute the theoretical value of \(V_{\text{stop}}\) using Planck's constant, the charge of the electron and the frequency that we are working with. </li>
+	      <li>Compute the 'reduced' equation of the tangeant to the inflection point by using the parameters found in <a href="#one" style="text-decoration: none;">1</a>.</li>
+	      <li>Compute the theoretical value of \(V_{\text{stop}}\) using Planck's constant, the charge of the electron and the frequency that we are working with. </li>
             </ol>
             Let's detail them a bit more.
           </p>
 
-          <h4>2.1.1. Sigmoid regression</h4>
+	  <h4 id="sig_reg">2.1.1. Sigmoid regression</h4>
           <p>
-            \label{sssec:sig}
-            In the case of a photoelectric setup, \(x_0 = 0\). This reflects the behaviour that if no voltage is applied, the current is the one produced by the PE effect, which is positive by convention. If an additional positive voltage is applied, the current will be greater, and thus will tend towards L. On the other hand, if a negative voltage is applied, the current will be slowed down, up to the point where it will be completely stopped, that is at \(V_{\textrm{stop}}\). However, when doing the regression, we won't force it through any point in order not to include any bias. In <span style="font-variant: small-caps;">R</span>, the <code>nls()</code> and <code>SSlogis()</code> functions can be used to determine the parameters. We should now have the values of \(L\), \(k\) and \(x_0\).
+            In the case of a photoelectric setup, \(x_0 = 0\). This reflects the behaviour that if no voltage is applied, the current is the one produced by the PE effect, which is positive by convention. If an additional positive voltage is applied, the current will be greater, and thus will tend towards \(L\). On the other hand, if a negative voltage is applied, the current will be slowed down, up to the point where it will be completely stopped, that is at \(V_{\textrm{stop}}\). However, when doing the regression, we won't force it through any point in order not to include any bias. In <span style="font-variant: small-caps;">R</span>, the <code>nls()</code> and <code>SSlogis()</code> functions can be used to determine the parameters. We should now have the values of \(L\), \(k\) and \(x_0\).
           </p>
           <h4>2.1.2. Mapping to [0,1]</h4>
             <p>Because we know \(L\), we can normalize our data. The reason this is done is to allow our different datasets to be compared. Also, to each frequency corresponds one and only one 'normalized' slope. That is because to each frequency corresponds one \(V_{stop}\) and that the error due to the setup is constant.</p>
           <h4>2.1.3. Equation of the tangeant to the IP</h4>
             <p>
-              Using the value of \(k\) obtained in \ref{sssec:sig}, the equation \eqref{eq:tan_PI} and by setting \(L=1\) because we are normalizing, we get the value of the slope
+	    Using the value of \(k\) obtained in <a href="#sig_reg" style="text-decoration: none;">2.1.1</a>, the equation \eqref{eq:tan_PI} and by setting \(L=1\) because we are normalizing, we get the value of the slope
               \begin{equation}
                 m=\frac{k}{4}
               \end{equation}
@@ -123,17 +116,17 @@
             </p>
           <h4>2.1.4. Theoretical value of V<sub>stop</sub></h4>
             <p>
-              The theoretical value of $V_{\textrm{stop}}$ is obtained with the following equation:
+              The theoretical value of \(V_{\textrm{stop}}\) is obtained with the following equation:
               \begin{equation}
                   eV = h\nu \iff V = \frac{h\nu}{e}
               \end{equation}
               where:
-              \begin{align}
+              \begin{align*}
                 v &= v_{\text{stop}}\\
                 e &= \text{electron charge}\\
                 h &= \text{Planck's constant}\\
                 \nu &= \text{frequency}
-              \end{align}
+              \end{align*}
             </p>
 
         <h3>3. Analysis</h3>
