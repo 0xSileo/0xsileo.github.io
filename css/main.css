@@ -1,17 +1,9 @@
-:root {
-  --main-light-color: #FFF7EB;
-  --main-dark-color: #202B30;
-  /*setting the accent as rgb */
-  --accent-color: #8CD4A4;
-  --selection-color : #8CD4A4AA;
-}
-
 ::selection {
   /*#BAD0DE*/
   /*background: rgba(186,208,222,0.75);*/
   background: var(--selection-color);
   /*background: rgba(196, 218, 232,0.75);*/
-  color: var(--main-dark-color);
+  color: var(--background-color);
   -webkit-text-stroke-width: 0;
 }
 
@@ -28,8 +20,8 @@ p {
 }
 
 body {
-  background-color: var(--main-dark-color);
-  color: var(--main-light-color);
+  background-color: var(--background-color);
+  color: var(--content-color);
   margin: 10px 15%;
   z-index: 1;
 }
@@ -62,13 +54,13 @@ a span {
   overflow: hidden;
   background-color: #00000000;
   padding-bottom: 10px;
-  border-bottom-color: var(--main-light-color);
+  border-bottom-color: var(--content-color);
   border-bottom-style: solid;
   border-bottom-width: 1px;
 }
 
 svg {
-  fill:var(--main-light-color);
+  fill:var(--content-color);
 }
 
 
@@ -88,7 +80,7 @@ svg {
   font-family: 'Poppins', sans-serif;
   display: flex;
   float: left;
-  color: var(--main-light-color);
+  color: var(--content-color);
   margin: 0px 5px;
   text-align: center;
   padding: 14px 16px;
@@ -98,7 +90,7 @@ svg {
 }
 
 .topnav a .icon {
-  color: var(--main-light-color);
+  color: var(--content-color);
   text-align: center;
   padding: 14px 10px;
   text-decoration: none;
@@ -108,7 +100,7 @@ svg {
 
 .topnav .icon:hover {
   background-color: #0000;
-  color: var(--main-light-color);
+  color: var(--content-color);
 }
 
 .topnav a span {
@@ -116,8 +108,8 @@ svg {
 }
 
 .topnav a.active {
-  background-color: var(--main-light-color);
-  color: var(--main-dark-color);
+  background-color: var(--content-color);
+  color: var(--background-color);
   font-weight: 600;
 }
 
@@ -154,8 +146,8 @@ svg {
 
 #introname {
   position:relative;
-  color: var(--main-dark-color);
-  -webkit-text-stroke: 1px var(--main-light-color);
+  color: var(--background-color);
+  -webkit-text-stroke: 1px var(--content-color);
   z-index: 1;
   text-decoration: none;
   transition: 0.4s;
@@ -163,8 +155,8 @@ svg {
 }
 
 #introname:hover {
-  color:var(--main-light-color);
-  -webkit-text-stroke: 1px var(--main-light-color);
+  color:var(--content-color);
+  -webkit-text-stroke: 1px var(--content-color);
   opacity: 0.5;
   cursor:none;
   transition: 0.4s;
@@ -190,7 +182,7 @@ svg {
 .bar1, .bar2, .bar3 {
   width: 35px;
   height: 5px;
-  background-color: var(--main-light-color);
+  background-color: var(--content-color);
   margin: 8px 0;
   transition: 0.2s;
 }
@@ -218,12 +210,12 @@ svg {
 *::-webkit-scrollbar-track {
 	/*-webkit-box-shadow: inset 0 0 1px rgba(255,255,255,1);*/
 	border-radius: 10px;
-	background-color: var(--main-dark-color);
+	background-color: var(--background-color);
 }
 
 *::-webkit-scrollbar-thumb {
 	border-radius: 10px;
-	background-color: var(--main-light-color);
+	background-color: var(--content-color);
 }
 
 *::-webkit-scrollbar-thumb:hover {
@@ -242,7 +234,7 @@ svg {
   height: 250px;
   top: 0;
   right: 0;
-  background-color: var(--main-dark-color);
+  background-color: var(--background-color);
   /*overflow-x: hidden;*/
   padding-top: 60px;
 }
@@ -253,7 +245,7 @@ svg {
   text-decoration: none;
   text-align: center;
   font-size: 25px;
-  color: var(--main-light-color);
+  color: var(--content-color);
   display: block;
 }
 
@@ -290,8 +282,8 @@ svg {
       display: none;
   }
   .topnav a:hover {
-    background-color: var(--main-light-color);
-    color: var(--main-dark-color);
+    background-color: var(--content-color);
+    color: var(--background-color);
     opacity: 0.8;
   }
   a:hover #logo_fn {
