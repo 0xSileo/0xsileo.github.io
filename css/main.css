@@ -6,7 +6,13 @@
   color: var(--background-color);
   -webkit-text-stroke-width: 0;
 }
-
+/*the following removes a blue box 
+ * that appears when a link is clicked 
+ * on some mobile browsers 
+ * such as chrome (as of v.87.0.4280.101)*/
+* {
+  -webkit-tap-highlight-color: transparent;
+}
 td {
   vertical-align:top;
 }
@@ -52,7 +58,7 @@ a span {
 .topnav {
   position: relative;
   overflow: hidden;
-  background-color: #00000000;
+  background-color: transparent;
   padding-bottom: 10px;
   border-bottom-color: var(--content-color);
   border-bottom-style: solid;
@@ -99,7 +105,7 @@ svg {
 }
 
 .topnav .icon:hover {
-  background-color: #0000;
+  background-color: transparent;
   color: var(--content-color);
 }
 
