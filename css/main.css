@@ -1,14 +1,18 @@
 :root {
   --main-light-color: #FFF7EB;
   --main-dark-color: #202B30;
+  /*setting the accent as rgb */
+  --accent-color: #8CD4A4;
+  --selection-color : #8CD4A4AA;
 }
 
 ::selection {
   /*#BAD0DE*/
   /*background: rgba(186,208,222,0.75);*/
-  background: var(--main-light-color);
+  background: var(--selection-color);
   /*background: rgba(196, 218, 232,0.75);*/
-  color: var(--main-dark-color)
+  color: var(--main-dark-color);
+  -webkit-text-stroke-width: 0;
 }
 
 td {
@@ -21,7 +25,6 @@ p {
     font-size: max(calc(10px + 0.5vw), 16px);
     /*font-size: calc(10px + 0.5vw);*/
     line-height: 1.6;
-    opacity: 0.9;
 }
 
 body {
@@ -41,7 +44,7 @@ h1,h2,h3 {
 }
 
 a {
-  color: #a63d40;
+  color: var(--accent-color);
 }
 
 a span {
@@ -113,7 +116,7 @@ svg {
 }
 
 .topnav a.active {
-  background-color: #FFF7EB;
+  background-color: var(--main-light-color);
   color: var(--main-dark-color);
   font-weight: 600;
 }
@@ -151,7 +154,7 @@ svg {
 
 #introname {
   position:relative;
-  color: #28293C00;
+  color: var(--main-dark-color);
   -webkit-text-stroke: 1px var(--main-light-color);
   z-index: 1;
   text-decoration: none;
@@ -250,7 +253,7 @@ svg {
   text-decoration: none;
   text-align: center;
   font-size: 25px;
-  color: #f1f1f1;
+  color: var(--main-light-color);
   display: block;
 }
 
