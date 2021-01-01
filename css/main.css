@@ -143,7 +143,7 @@ svg {
   */
 }
 
-#homemsg, #homemsg > * {
+#homemsg, #homemsg > *:not(#profile) {
     font-family: 'Cormorant Garamond', serif;
     font-size: calc(50px + 2vw);
     font-weight: 300;
@@ -172,8 +172,9 @@ svg {
 #profile {
   display: none;
   position: absolute;
-  left: 100px;
-  top:100px;
+  border-style: solid;
+  border-color: var(--content-color);
+  border-width: 1px;
 }
 
 
