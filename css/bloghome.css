@@ -16,9 +16,9 @@
 	transform: rotate(-90deg);
 	cursor: pointer;
 	margin-bottom: -50px;
-	border-radius: 50px 0 0 50px;
+	border-radius: 10px 0 0 10px;
 	font-family: 'Poppins', sans-serif;
-	font-weight: 400;
+	font-weight: 600;
 }
 
 .blogyear:hover {
@@ -32,18 +32,20 @@
 	padding: 8px;
 	margin-left: 55px;
 	font-family: 'Poppins', sans-serif;
-	font-weight: 300;
+	font-weight: 500;
+	margin-block-start: 1.33em;
+        margin-block-end: 0em;
+	text-decoration: underline;
 }
 
 .blogyear.is-pinned {
 	background-color:var(--content-color);
-	transition: color 0.3s, transform 0.3s, margin-top 0.4s, border-radius 0.3s, background-color 0s;
+	transition: padding 0.3s, color 0.3s, transform 0.3s, margin-top 0.4s, border-radius 0.3s, background-color 0s;
+	padding: 8px;
 	/*z-index:3;*/
 	transform: rotate(0deg);
-	padding: 8px;
 	z-index:2;
 	color: var(--background-color);
-	border-radius:0;
 	height: 30px;
 	line-height:30px;
 }
@@ -57,6 +59,8 @@
 	height: 26px;
 	line-height: 26px;
 	padding: 10px;
+	text-decoration: none;
+	border-radius: 0 10px 10px 0;
 }
 
 /*for the lists of blog entries.*/
@@ -67,12 +71,13 @@
 
 .bloglist li {
 	margin: 10px 25%;
+	font-family: 'Poppins', 'sans-serif';
 }
 
 .bloglist li a{
 	color: var(--content-color);
 	text-decoration: none;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	background: linear-gradient(to bottom, var(--accent-color) 0%,var(--accent-color) 100%);
 	background-position: 0 100%;
 	background-repeat: repeat-x;
