@@ -267,8 +267,11 @@ svg {
 }
 
 .sidepanel a:hover {
-  text-decoration: underline;
   color: var(--accent-color)
+}
+
+.container:hover > * {
+  background-color: var(--accent-color)
 }
 
 @media screen and (max-width:700px) {
