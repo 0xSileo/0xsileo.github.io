@@ -74,20 +74,6 @@
   </h3>
 </body>
 
-<script>
-function MobileMenu(x) {
-  x.classList.toggle("open");
-  var sidepanel = document.getElementById("mySidepanel");
-  var sidelist = sidepanel.classList;
-  if (! sidelist.contains("open")) {
-    sidepanel.style.width = innerWidth + "px";
-    sidepanel.style.height = innerHeight + "px";
-  } else {
-    sidepanel.style.width = 0 + "px";
-    sidepanel.style.height = 0 + "px";
-  }
-  sidelist.toggle("open")
-}
-</script>
+<script type="text/javascript" src="/js/mobile.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
 </html>

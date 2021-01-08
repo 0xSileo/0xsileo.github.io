@@ -56,7 +56,6 @@ a span {
 }
 
 .topnav {
-  position: relative;
   overflow: hidden;
   background-color: transparent;
   padding-bottom: 10px;
@@ -64,6 +63,7 @@ a span {
   border-bottom-style: solid;
   border-bottom-width: 1px;
 }
+
 
 svg {
   fill:var(--content-color);
@@ -119,16 +119,10 @@ svg {
   font-weight: 600;
 }
 
-.topnav-centered a {
-  float: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 
 .topnav-right {
   float: right;
+  height: 100%;
 }
 
 #okur, #okur > * {
@@ -184,19 +178,35 @@ svg {
   cursor: pointer;
   z-index: 3;
   position: relative;
+  height: 100%;
 }
+
+.container.open {
+	overflow: hidden;
+}
+
+
+/*The height and margin properties are used in a js file.
+ * Make sure to change them there too */
 
 .bar1, .bar2, .bar3 {
   width: 35px;
-  height: 5px;
+  height: 2px;
   background-color: var(--content-color);
-  margin: 8px 0;
+  margin: 10px 0;
   transition: 0.2s;
+  border-radius: 5px;
 }
 
+/* In the following, the order of transformations is 
+ * important. First the bars are translated to the one in the middle.
+ * Then they make an angle of 90deg
+ * When moving them, it is by 12px i.e. the sum of the margin and 
+ * the width of a bar*/
+
 .open .bar1 {
-  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-  transform: rotate(-45deg) translate(-9px, 6px);
+  -webkit-transform: translateY(12px) rotate(-45deg);
+  transform: translateY(12px) rotate(-45deg);
 }
 
 .open .bar2 {
@@ -204,8 +214,8 @@ svg {
 }
 
 .open .bar3 {
-  -webkit-transform: rotate(45deg) translate(-8px, -8px);
-  transform: rotate(45deg) translate(-8px, -8px);
+  -webkit-transform: translateY(-12px) rotate(45deg);
+  transform: translateY(-12px) rotate(45deg);
 }
 
 /* Custom scrollbar */
@@ -248,7 +258,7 @@ svg {
 
 
 .sidepanel a {
-  padding: 8px 8px 8px 32px;
+  padding: 8px 0px;
   text-decoration: none;
   text-align: center;
   font-size: 25px;
