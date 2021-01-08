@@ -5,10 +5,13 @@
 	--selection-color: #8CD4A4AA;
 }
 
+
+
 @media (prefers-color-scheme: light) {
 	:root{
 		--background-color: #FFF7EB;
 		--content-color: #202B30;
-		--selection-color: var(--accent-color);
+		--accent-color: #A63D40;
+		--selection-color: #A63D40;
 	}
 }
