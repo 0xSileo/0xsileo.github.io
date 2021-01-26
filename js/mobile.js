@@ -1,6 +1,7 @@
 /*Assigning the height of the hamburger in javascript
 because it is easier and because the height of the topnav
 is determined by the height of the logotext + its padding*/
+
 let logo = document.getElementsByClassName('topnav')[0]
 let logoheightval = parseFloat(getComputedStyle(logo).height)
 

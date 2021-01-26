@@ -5,13 +5,11 @@ const SupportedLangs = ["fr","en"];
 var UserLangCookie = localStorage.getItem("UserLang");
 const UserLanguage = navigator.language
 const UserLang = UserLanguage.slice(0,2)
-console.log(UserLangCookie === null)
 
 if (UserLangCookie) {
   window.location.href = UserLangCookie
 } else if (SupportedLangs.includes(UserLang)) {
     window.location.href=UserLang
-    console.log(UserLang)
     localStorage.setItem("UserLang", UserLang)
   } else {
     window.location.href="en"
