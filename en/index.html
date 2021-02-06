@@ -3,18 +3,6 @@
 <head>
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#212b31">
-  <style>
-  #themebtn {
-    background: none!important;
-    border: none;
-    padding: 14px 5px 14px 0;
-    cursor: pointer;
-  }
-
-  #themebtn:focus {
-    outline: none;
-  }
-  </style>
   <link rel="stylesheet" type="text/css" href="/css/variables.css">
   <link rel="stylesheet" type="text/css" href="/css/main.css">
   <link rel="stylesheet" type="text/css" href="/css/fonts.css">
@@ -24,10 +12,17 @@
 </head>
 <body>
   <div id="mySidepanel" class="sidepanel">
-  <a href="blog">Blog</a>
-  <a id ="fontest" href="about">About</a>
-  <a href="contact">Contact</a>
-  <a href="/fr">FR</a>
+    <a href="blog">Blog</a>
+    <a href="about">About</a>
+    <a href="contact">Contact</a>
+    <a href="/fr" class=icon title="Français" id="langlink">
+      <svg width="24" height="24" id="langicon" />
+      &nbsp;fr
+    </a>
+    <button onclick="changeTheme()" class="themebtn">
+      <svg width="24" height="24" class="themeSvg" />
+    </button>
+
 </div>
 
   <!-- Top navigation -->
@@ -51,7 +46,7 @@
       </a>
 
       <button onclick="changeTheme()" id="themebtn">
-        <svg width="24" height="24" id="themeSvg" />
+        <svg width="24" height="24" id="themeSvg" class="themeSvg"/>
       </button>
 
       <div class="container" onclick="MobileMenu(this)">

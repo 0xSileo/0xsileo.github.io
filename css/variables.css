@@ -24,7 +24,7 @@
 	a:hover #langicon {
   	background-image: var(--earthfilled_dark_theme);
   }
-	#themebtn:hover #themeSvg {
+	#themebtn:hover #themeSvg, .themebtn:hover .themeSvg  {
 		background-image: var(--sunfilledaccent);
 	}
 
@@ -33,14 +33,14 @@
 	:root.light #langlink:hover #langicon {
 		background-image: var(--earthfilled_light_theme);
 	}
-	:root.light #themebtn:hover #themeSvg {
+	:root.light #themebtn:hover #themeSvg, :root.light .themebtn:hover .themeSvg {
 		background-image: var(--moonfilledaccent);
 	}
   /*dark*/
 	:root.dark #langlink:hover #langicon {
 		background-image: var(--earthfilled_dark_theme);
 	}
-	:root.dark #themebtn:hover #themeSvg {
+	:root.dark #themebtn:hover #themeSvg, :root.dark .themebtn:hover .themeSvg {
 		background-image: var(--sunfilledaccent);
 	}
 
@@ -60,13 +60,14 @@
  	background-image: var(--earthfilled_dark_theme);
  }
  /*-Theme Icon*/
-#themeSvg {
+#themeSvg, .themeSvg {
 	background-image: var(--sun);
 }
 
-#themebtn:focus-visible #themeSvg, #themebtn:active #themeSvg {
+#themebtn:focus-visible #themeSvg, #themebtn:active #themeSvg, .themebtn:focus-visible .themeSvg, .themebtn:active .themeSvg {
 	background-image: var(--sunfilledaccent);
 }
+
 
 /*============Automatic matching light themed browser=========*/
 @media (prefers-color-scheme: light) {
@@ -85,7 +86,7 @@
 		a:hover #langicon {
 	  	background-image: var(--earthfilled_light_theme);
 	  }
-		#themebtn:hover #themeSvg {
+		#themebtn:hover #themeSvg, .themebtn:hover .themeSvg {
 			background-image: var(--moonfilledaccent);
 		}
   }
@@ -94,10 +95,11 @@
   	background-image: var(--earthfilled_light_theme);
   }
 
-	#themeSvg {
+	#themeSvg, .themeSvg {
 		background-image: var(--moon);
 	}
-	#themebtn:focus-visible #themeSvg {
+
+	#themebtn:focus-visible #themeSvg, .themebtn:focus-visible .themeSvg {
 		background-image: var(--moonfilledaccent);
 	}
 }
@@ -119,11 +121,11 @@
 	background-image: var(--earthfilled_light_theme);
 }
 
-:root.light #themeSvg{
+:root.light #themeSvg, :root.light .themeSvg {
 	background-image: var(--moon);
 }
 
-:root.light #themebtn:focus-visible #themeSvg, :root.light #themebtn:active #themeSvg {
+:root.light #themebtn:focus-visible #themeSvg, :root.light #themebtn:active #themeSvg, :root.light .themebtn:focus-visible .themeSvg, :root.light .themebtn:active .themeSvg {
 	background-image: var(--moonfilledaccent);
 }
 
@@ -149,6 +151,6 @@
 	background-image: var(--sun);
 }
 
-:root.dark #themebtn:focus-visible #themeSvg, :root.dark #themebtn:active #themeSvg {
+:root.dark #themebtn:focus-visible #themeSvg, :root.dark #themebtn:active #themeSvg, :root.dark .themebtn:focus-visible .themeSvg, :root.dark .themebtn:active .themeSvg {
 	background-image: var(--sunfilledaccent);
 }

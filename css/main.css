@@ -69,19 +69,6 @@ svg {
 }
 
 
-#langicon path {
-	d: path(var(--earthpath))
-}
-
-.icon:hover #langicon path {
-  d: path(var(--earthpathfilled));
-}
-
-.icon:hover #langicon {
-	fill: var(--accent-color);
-}
-
-
 
 .topnav a {
   font-family: 'Poppins', sans-serif;
@@ -244,6 +231,40 @@ svg {
   background-color: #606060;
 }
 
+#themebtn {
+  background: none !important;
+  border: none;
+  padding: 14px 5px 14px 0;
+  cursor: pointer;
+}
+
+.themebtn {
+  background: none !important;
+  border: none;
+  padding: 14px 5px 14px 0;
+  cursor: pointer;
+}
+
+.testbtn {
+  background: none !important;
+  border: none;
+  padding: 14px 5px 14px 0;
+  cursor: pointer;
+}
+
+
+#themebtn:focus {
+  outline: none;
+}
+
+.themebtn:focus {
+  outline: none;
+}
+
+.testbtn:focus {
+  outline: none;
+}
+
 
 .sidepanel  {
   width: 0;
@@ -266,6 +287,10 @@ svg {
   color: var(--content-color);
   display: block;
   font-family: newsreader;
+}
+
+.sidepanel button {
+  margin-left: 25%;
 }
 
 @media (hover: hover) and (pointer: fine) {
