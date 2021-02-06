@@ -173,6 +173,7 @@ svg {
 }
 
 
+
 /* HAMBURGER MENU */
 .container {
   display: none;
@@ -265,14 +266,17 @@ svg {
   font-size: 25px;
   color: var(--content-color);
   display: block;
+  font-family: newsreader;
 }
 
-.sidepanel a:hover {
-  color: var(--accent-color)
-}
+@media (hover: hover) and (pointer: fine) {
+  .sidepanel a:hover {
+    color: var(--accent-color)
+  }
 
-.container:hover > * {
-  background-color: var(--accent-color)
+  .container:hover > * {
+    background-color: var(--accent-color)
+  }
 }
 
 @media screen and (max-width:700px) {
