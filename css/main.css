@@ -151,7 +151,6 @@ svg {
   -webkit-text-stroke: 1px var(--content-color);
   z-index: 1;
   text-decoration: none;
-  transition: 0.4s;
   font-family: 'Cormorant Garamond', serif;
 }
 
