@@ -99,7 +99,7 @@
 		background-image: var(--moon);
 	}
 
-	#themebtn:focus-visible #themeSvg, .themebtn:focus-visible .themeSvg {
+	#themebtn:focus-visible #themeSvg, #themebtn:active #themeSvg,  .themebtn:focus-visible .themeSvg, .themebtn:active .themeSvg {
 		background-image: var(--moonfilledaccent);
 	}
 }
@@ -147,7 +147,7 @@
 	background-image: var(--earthfilled_dark_theme);
 }
 
-:root.dark #themeSvg{
+:root.dark #themeSvg, :root.dark .themeSvg {
 	background-image: var(--sun);
 }
 

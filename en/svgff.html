@@ -25,6 +25,14 @@
   </button>
 <a href="#"> some link ycgy  boyyyfdcvhyy </a>
 <a href="#"> prout</a>
+
+<a href="#" id="a"> a <a href="#" id="a1"> 1.1 a </a> </a>
+<br>
+<a href="#" id="b">b </a>
+<br>
+<a href="#" id="c"> c </a>
+<br>
+<a href="#" id="d">d</a>
 </body>
 
 <style>
@@ -39,6 +47,10 @@
   --triangle:"M 0 0 V 50 H 50 Z";
   --test: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0 0 H 50 V 50 Z'/%3E%3C/svg%3E");
   --test-hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0 0 H 50 V 50 Z' fill='yellow'/%3E%3C/svg%3E");
+}
+
+:is(#a):hover #a1 {
+  color: orange;
 }
 
 .demo--bg {
