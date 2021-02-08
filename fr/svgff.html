@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+</head>
+<body>
+  <button id="btn1">
+    <svg>
+        <path id="path1" />
+    </svg>
+  </button>
+  <button id="btn2">
+    <svg>
+      <path id="path2" />
+    </svg>
+  </button>
+  <button id="btn3">
+    <svg>
+	    <path d="M 0 0 H 50 V 50 Z"/>
+    </svg>
+  </button>
+  <button class="demo--bg">hey</button>
+  <button id="btn4">
+    <svg class="demo--bg">
+      <path></path>
+    </svg>
+  </button>
+<a href="#"> some link ycgy  boyyyfdcvhyy </a>
+<a href="#"> prout</a>
+
+<a href="#" id="a"> a <a href="#" id="a1"> 1.1 a </a> </a>
+<br>
+<a href="#" id="b">b </a>
+<br>
+<a href="#" id="c"> c </a>
+<br>
+<a href="#" id="d">d</a>
+</body>
+
+<style>
+
+@media (pointer: fine) {
+  a:hover { color: green;}
+}
+
+/*I thought setting variables would work*/
+:root {
+  --square:"M 0 0 H 50 V 50 H 0 Z";
+  --triangle:"M 0 0 V 50 H 50 Z";
+  --test: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0 0 H 50 V 50 Z'/%3E%3C/svg%3E");
+  --test-hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0 0 H 50 V 50 Z' fill='yellow'/%3E%3C/svg%3E");
+}
+
+:is(#a):hover #a1 {
+  color: orange;
+}
+
+.demo--bg {
+  background-image: var(--test);
+}
+
+#btn4:hover .demo--bg {
+  background-image: var(--test-hover);
+}
+
+#testb {
+  background-image: url(var(--test));
+}
+
+
+#btn1:hover path {
+  d: path(var(--triangle));
+  fill: red;
+}
+
+#btn2:hover path {
+  d: path(var(--triangle));
+  fill: green;
+}
+
+#btn3:hover path {
+  d: path(var(--triangle));
+  fill: blue;
+}
+
+#btn4:hover path {
+  fill: blue;
+}
+
+/*Some (off-topic) styling*/
+
+button:hover {
+  cursor: pointer;
+}
+
+svg {
+  width: 25;
+  height: 25;
+  /*sets viewbox*/
+  max-width: 50px;
+  max-height: 50px;
+}
+</style>
+</html>

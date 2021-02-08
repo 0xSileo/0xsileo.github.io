@@ -5,6 +5,7 @@
   <link rel="stylesheet" type="text/css" href="/css/variables.css">
   <link rel="stylesheet" type="text/css" href="/css/main.css">
   <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="/css/mobile.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <script type="text/javascript">
@@ -21,124 +22,175 @@
     const versions = {"fr": "/fr"}
   </script>
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rphad_en</title>
+  <title>Rphad</title>
 </head>
 <body>
-  <!-- Top navigation -->
-  <div class="topnav">
-
-    <!-- Left-aligned links (default) -->
-    <a href="/fr" id="logo">
-       R<span id="logo_fn">aphaël </span>
-       D<span id="logo_ln">eknop </span>
+  <div id="mySidepanel" class="sidepanel">
+    <a href="../../.." class="active">Blog</a>
+    <a href="../../../../about">About</a>
+    <a href="../../../../contact" >Contact</a>
+    <a href="/en/blog/2020/07/30" class=icon title="English" id="langlink">
+      <svg width="24" height="24" id="langicon" />
+      &nbsp;en
     </a>
-
-    <!--
-    <div class="topnav-centered">
-      <a href="#news" id="logo">
-        R<span id="cas">aphaël</span>
-        D<span id="sty">eknop</span>
-      </a>
-    </div>
-    //-->
-
-    <!-- Right-aligned links -->
-    <div class="topnav-right">
-      <a class="active">Blog</a>
-      <a href="/fr/about">À propos</a>
-      <a href="/fr/contact">Contact</a>
-      <a href="/en/blog/2020/07/30" class=icon title="English">
-        <svg width="24" height="24" id="langicon">
-          <path d="M6.235 6.453a8 8 0 0 0 8.817 12.944c.115-.75-.137-1.47-.24-1.722-.23-.56-.988-1.517-2.253-2.844-.338-.355-.316-.628-.195-1.437l.013-.091c.082-.554.22-.882 2.085-1.178.948-.15 1.197.228 1.542.753l.116.172c.328.48.571.59.938.756.165.075.37.17.645.325.652.373.652.794.652 1.716v.105c0 .391-.038.735-.098 1.034a8.002 8.002 0 0 0-3.105-12.341c-.553.373-1.312.902-1.577 1.265-.135.185-.327 1.132-.95 1.21-.162.02-.381.006-.613-.009-.622-.04-1.472-.095-1.744.644-.173.468-.203 1.74.356 2.4.09.105.107.3.046.519-.08.287-.241.462-.292.498-.096-.056-.288-.279-.419-.43-.313-.365-.705-.82-1.211-.96-.184-.051-.386-.093-.583-.135-.549-.115-1.17-.246-1.315-.554-.106-.226-.105-.537-.105-.865 0-.417 0-.888-.204-1.345a1.276 1.276 0 0 0-.306-.43zM12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zz">
-          </path>
-        </svg>
-        &nbsp;en
-      </a>
-    </div>
-
+    <button onclick="changeTheme()" class="themebtn">
+      <svg width="24" height="24" class="themeSvg" />
+    </button>
   </div>
 
+<!-- Top navigation -->
+<div class="topnav">
+
+  <!-- Left-aligned links (default) -->
+  <a href="/fr" id="logo" title="Home">
+     R<span id="logo_fn">aphaël </span>
+     D<span id="logo_ln">eknop </span>
+  </a>
+
+  <!-- Right-aligned links -->
+  <div class="topnav-right">
+    <a href="../../.." class="active">Blog</a>
+    <a href="../../../../about">About</a>
+    <a href="../../../../contact" >Contact</a>
+    <a href="/en/blog/2020/07/30" class=icon title="English" id="langlink">
+      <svg width="24" height="24" id="langicon" />
+      &nbsp;en
+    </a>
+
+    <button onclick="changeTheme()" id="themebtn">
+      <svg width="24" height="24" id="themeSvg" class="themeSvg"/>
+    </button>
+
+    <div class="container" onclick="MobileMenu(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+  </div>
+</div>
+
   <article>
-    <h1>Un premier coup d’œil aux Réseaux Antagonistes Génératifs</h1>
+    <h1>Un premier coup d'œil aux Réseaux Antagonistes Génératifs</h1>
 
       <h2>Introduction</h2>
         <p>
-          In the last decade, machine learning and artificial intelligence have become increasingly ubiquitous. From autonomous vehicles to face recognition or even <a href="https://openai.com/projects/five/">beating world-class players in online games</a>, it is no wonder that this technology has an enormous potential and can be dangerously powerful. This document is aimed at the general public and intends to provide an intuitive -yet precise- understanding on what Generative Adversarial Networks are, what they are capable of, along with some further reflexions.
+          Dans la dernière décennie, l'apprentissage automatique (<em>Machine learning</em>) et l'intelligence artificielle ont pris de plus en plus de place dans nos vies. Des véhicules autonomes à la reconnaissance faciale, en passant par la <a href="https://openai.com/projects/five/" target="_blank">victoire contre des joueurs de classe mondiale dans des jeux en ligne</a>, il n'est pas étonnant que cette technologie possède un énorme potentiel et puisse être dangereusement puissante. Ce document vise le grand public et a pour intention de fournir une compréhension intuitive -et toutefois précise- de ce que sont des Réseaux Antagonistes Génératifs (GANs) et de ce dont ils sont capables, accompagnée de réflexions plus élaborées. <strong>N.B.</strong> Bien que leur acronyme soit <em>RAG</em>, nous utiliserons l'abbréviation anglaise <em>GAN</em> pour <em>General Adversarial Network</em>, cette dernière étant bien plus courante.
         </p>
 
-      <h2>Discriminative and generative models</h2>
+      <h2>1. Les modèles discriminatifs et génératifs</h2>
         <p>
-          In machine learning, two main approaches can be followed. On the one hand, the <strong>discriminative</strong> method may be employed to tackle classifying problems such as assigning the correct label to an image, computing a highly probable output from a (previously unseen) complex input and much more. On the other hand, this model cannot <em>generate</em> similar data. An intuitive illustration of discriminative modelling in human behaviour is the capacity of distinguishing chinese characters while remaining unable to correctly draw one of them.
+
+
+          Dans le machine learning, deux méthodes principales peuvent être suivies. D'un côté, la méthode <strong>discriminative</strong> peut s'atteler à des problèmes\footnote{dans le sens épistémologique du terme} de classification tels qu'assigner l'étiquette (<em>label</em>) correcte à une image, calculer une valeur de sortie (<em>output</em>) hautement probable à partir de données d'entrée (<em>input</em>) complexes et jamais vues auparavant, et bien plus encore. De l'autre, ce modèle ne peut pas <em>générer</em> des données similaires. Une illustration intuitive d'un modèle discriminatif dans le comportement humain est la capacité à distinguer des signes chinois tout en étant incapable d'en écrire un seul correctement.
           <br>
-          This is where the <strong>generative</strong> one differs. As its name suggests, a model using such an approach can generate data resembling what it has been fed. Here, as long as the input data is carefully selected, no label is required. Let's say that you want your model to generate a Shakespearean poem, it would be counterproductive to train it with some -unlabelled- Edgar Allan Poe or Oscar Wilde writings.
+          C'est là que la méthode <strong>générative</strong> diffère. Comme son nom le suggère, un modèle utilisant une telle approche peut générer des données qui ressemblent à ce qui lui a été fourni. Ici, pour autant que les données d'entrée soient sélectionées consciencieusement, aucun <em>label</em> n'est nécessaire. Supposons que vous vouliez générer un poème Baudelairien, il serait contreproductif de l'entraîner avec des écrits -non labellisés- venant de Victor Hugo ou Paul Verlaine.
         </p>
 
-      <h2>Generative Adversarial Networks</h2>
+      <h2>2. Les Réseaux Antagonistes Génératifs</h2>
         <p>
-          Although those two approaches were just presented separately, nothing is forbidding a network to follow both of them. This is where Generative Adversarial Networks come in. In a GAN, a generative network produces candidates while a discriminative one evaluates them. To put it simply, the goal of the generator is to fool the discriminator into thinking that the data provided is real.
+          Bien que ces deux approches viennent d'être présentées séparément, rien n'empêche un réseau de les suivre toutes deux. C'est ici que les Réseaux Antagonistes Généraux entrent en jeu. Dans un GAN, un réseau génératif produits des candidats qu'un réseau discriminatif évaluera. En d'autres mots, l'objectif du générateur est de faire croire au discriminateur que les données fournies sont réelles.
           <br>
-          This type of network, presented in 2014 by Ian Goodfellow and his collaborators \cite{goodfellow2014generative}, has been an enormous step in machine learning. To illustrate that statement, look at this series of generated human faces:
+          Ce type de réseau, présenté en 2014 par Ian Goodfellow et ses collaborateurs [<a href="#goodfellow2014generative">Goo+14</a>], fut une étape énorme en machine learning. Pour illustrer ce propos, regardez cette suite de visages humains générés :
+        </p>
+        <figure id="GAN_ghf">
+            <img src="GAN_ghf.png" onmouseover="this.src='GAN_ghf_dt.png'" onmouseout="this.src='GAN_ghf.png'" width="75%">
+            <figcaption style="text-align:center;">
+              <span>Figure 1: </span>Progrès des GANs en génération de visages humains. Source: <a href="https://twitter.com/goodfellow_ian/status/1084973596236144640" target="_blank">Ian Goodfellow sur Twitter</a>
+            </figcaption>
+        </figure>
+        <p>
+          L'évolution ici est stupéfiante. Souvenons-nous qu'avant 2014, les GANs n'existaient tout simplement pas. Il y a une poignée de sites web qui montrent des images GAN-générées de <a href="https://www.thispersondoesnotexist.com" target="_blank">personnes</a>, d'<a href="https://thisartworkdoesnotexist.com/" target="_blank">œuvres d'art</a>, de<a href="https://thiscatdoesnotexist.com/" target="_blank">chats</a> or même <a href="https://thishorsedoesnotexist.com/" target="_blank">chevaux</a> produites par StyleGAN2 [<a href="#karras2019analyzing"> Kar+19</a>] pour les curieux d'entre vous. C'est sans effort -et un exercice intéressant- que l'on peut trouver des applications potentielles et réaliser qu'il en existe une pléthore.
+        </p>
 
-          <figure style="text-align:center;">
-              <img src="GAN_ghf.png" width="75%">
+      <h2>3. Au-delà des GANs</h2>
+        <p>
+          Il existe plein de types de réseaux neuronaux, les réseaux antagonistes génératifs sont juste l'un d'entre eux. La raison pour laquelle je les ai présentés ici est que je les trouve parfaitement placés entre une compréhension intuitive et l'état de la recherche en IA. Je n'ai pas été fort technique ici, car ce n'est pas l'intention de cet article.
+          <br>
+          De manière assez intéressante, les GANs possèdent leurs limitations. Par exemple, il est impossible de configurer les paramètres d'une image de visage humain en vue de changer, disons, la couleur des cheveux, l'expression du visage ou la forme du nez. Par contre, cela est rendu possible par des Auto-encodeurs Latents Antagonistes (ALAEs, pour <em>Adversarial Latent Autoencoders</em>) [<a href="#pidhorskyi2020adversarial">PAD20</a>] qui font usage des <a href="https://towardsdatascience.com/understanding-latent-space-in-machine-learning-de5a7c687d8d" target="_blank">espaces latents</a>.
+          <br>
+          La <a href="#ALAE_kzf">Figure 2</a> contient des screenshots d'une vidéo produite par <em>Two Minute Papers</em> sur les ALAEs. Son créateur, Karoly Zsolnai-Fehér, démontre l'usage des curseurs de droite afin de changer les paramètres désirés. Dans le cas des figures <a href="ALAE_kzf_1">2a</a> et <a href="ALAE_kzf_2">2b</a>, le curseur <em>mouth-open</em> est changé vers une valeur plus haute. Nous remarquons que les changements des plis du visages sont non seulement présents près de la bouche, mais aussi autour des yeux.
+        </p>
+        <figure id="ALAE_kzf">
+          <figure id="ALAE_kzf_1">
+              <img src="ALAE_kzf_1.png" onmouseover="this.src='ALAE_kzf_1_dt.png'" onmouseout="this.src='ALAE_kzf_1.png'" width="75%">
               <figcaption style="text-align:center;">
-                <span>Figure 1: </span>Progress of GANs on human face generation. Source: <a href="https://twitter.com/goodfellow_ian/status/1084973596236144640">Ian Goodfellow’s Twitter</a>
+                <span>(a): </span>Curseur <em>mouth-open</em> bas
               </figcaption>
           </figure>
-
-          The evolution here is astonishing. Let's remember that before 2014, GANs simply didn't exist. There are a bunch of websites showing GAN-generated images of <a href="https://www.thispersondoesnotexist.com">people</a>, <a href="https://thisartworkdoesnotexist.com/">artworks</a>, <a href="https://thiscatdoesnotexist.com/">cats</a> or even <a href="https://thishorsedoesnotexist.com/">horses</a> produced by StyleGAN2 \cite{karras2019analyzing} for the curious out there. It is effortless -and an interesting exercise- to come up with potential applications and realise that there are plenty of them.
-        </p>
-
-      <h2>Going beyond GANs</h2>
-        <p>
-          There exists plenty of neural network types, generative adversarial networks are just one of them. The reason I presented them here is because I find them to be lying on the right spot between intuitive understanding and current state of the art in AI research. I haven't been technical here, as it is not the intention of this article.
-          <br>
-          Interestingly enough, GANs have their limitations. For example, it is impossible to tweak parameters on a generated human face picture in order to change, say, hair colour, face expression or nose shape. However, that is made possible by Adversarial Latent Autoencoders (ALAEs) \cite{pidhorskyi2020adversarial} which make use of <a href="https://towardsdatascience.com/understanding-latent-space-in-machine-learning-de5a7c687d8d">latent spaces</a>.
-          <br>
-          \Cref{ALAE_kzf} contains screenshots from a video made by \emph{Two Minute Papers} on ALAEs. Its creator, Karoly Zsolnai-Fehér, demonstrates the use of cursors on the right in order to tweak desired parameters. In the case of \cref{ALAE_kzf_1,ALAE_kzf_2} the cursor \emph{mouth-open} is set from low to high. Notice how smile lines appear not only near the mouth but also around the eyes.
-          <figure style="text-align:center;">
-              <img src="ALAE_kzf_1.png" width="75%">
+          <figure id="ALAE_kzf_2">
+              <img src="ALAE_kzf_2.png" onmouseover="this.src='ALAE_kzf_2_dt.png'" onmouseout="this.src='ALAE_kzf_2.png'" width="75%">
               <figcaption style="text-align:center;">
-                <span>Figure 2 (a): </span>Lower <em>mouth-open</em> cursor
+                <span>(b): </span>Curseur <em>mouth-open</em> haut
               </figcaption>
           </figure>
-          <figure style="text-align:center;">
-              <img src="ALAE_kzf_2.png" width="75%">
-              <figcaption style="text-align:center;">
-                <span>Figure 2 (b): </span>Higher <em>mouth-open</em> cursor
-              </figcaption>
-          </figure>
-        </p>
-
-      <h2>Discussion</h2>
+            <figcaption style="text-align:center;"> Figure 2: Visages générés paramétrisables produits par un ALAE. Screenshots d'une <a href="https://youtu.be/BQQxNa6U6X4?t=159" target="_blank">vidéo de TMP</a> sur le sujet.</figcaption>
+        </figure>
+      <h2>4. Discussion</h2>
         <p>
-          Considering the available information and considering the actual progress made in AI and ML research, what could be achievable in the next decade ? In order to answer such a question, several ways of reasoning can be employed. In this case, I will adopt the following:
+          En considérant les informations disponibles et le progrès actuel fait dans la recherche en IA et machine learning, que serait-il réalisable dans la prochaine décennie ? Afin de répondre à une telle question, plusieurs manières de raisonner peuvent être employées. Dans ce cas-ci, j'utiliserai la suivante :
           <ol>
-            <li>Acknowledge the current advancements in the topic you are studying</li>
-            <li>Think about how (or if) they could be improved and polished individually</li>
-            <li>Try to come up with new ways in which they could be combined to produce innovative results</li>
+            <li>Prendre connaissance des avancements actuels dans le domaines que l'on étudie</li>
+            <li>Réfléchir à comment (et <em>si</em>) il peuvent être améliorés ou perfectionnés individuellement</li>
+            <li>Trouver des nouvelles façons de les combiner pour produire des résultats novateurs</li>
           </ol>
-          This last point can be eased by merging different topics together. Let’s try with machine learning and cinema.
+          Ce dernier point peut être facilité en fusionnant différents sujets ensemble. Essayons avec le machine learning et le cinéma.
         </p>
 
+        <p>
+          <strong>Créer un film pourrait-il devenir un travail fait par une seule personne, qui ne requiérerait aucun acteur ni aucun équipement autre qu'un ordinateur ?</strong> Nous ne parlons pas d'animation ici mais plutôt de donner un script comme donnée d'entrée à un programme et obtenir un film complet en sortie. Nous avons vu que c'est une tâche sans effort que de générer des images de visages humains et, comme illustré sur la <a href="#ALAE_kzf">figure 2</a>, de les faire sourire. Pourrions-nous créer un espace latent d'expressions faciales ? Il semblerait que nous puissions le faire [<a href="#zhou2017photorealistic"> ZS17</a>]. Un peu plus de recherche et d'entraînement et ce sera bon. Qu'en est-il des mouvements corporels ? Eh bien, en considérant les papiers actuels, cela a l'air prometteur [<a href="#aliaks2020order">Sia+20</a>; <a href="#Park:2019">Par+19a</a>]. Cela pourrait continuer avec du design d'intérieur [<a href="#mao2016squares">Mao+16</a>], des paysages [<a href="#park2019semantic">Par+19b</a>] (Nvidia a mis en ligne un site où l'on peut <a href="http://nvidia-research-mingyuliu.com/gaugan"> expérimenter avec leur GAN</a>), la synthèse texte-vers-image [<a href="#reed2016generative">Ree+16</a>], le traitement du langage naturel [<a href="#brown2020language">Bro+20</a>] et bien plus encore.
+        </p>
 
+        <p>
+          Bien que chacun des articles cités aient leurs failles, je conseillerais de regarder la <a href="#GAN_ghf">figure 1</a> à nouveau. Cela devrait donner un indication de la place à l'amélioration qu'il existe pour ces applications. Combiner les technologies évoquées et les laisser suffisamment mûrir créerait les conditions idéales dans lesquelles notre film sans acteur pourrait devenir réalité. Les impacts d'une telle réalisation pourraient être immenses. Par exemple, si cette façon de créer des films devient la norme, c'est toute une industrie qui s'effondrerait. Cela reste bien sûr encore proche de la science-fiction mais les voitures autonomes n'étaient-elles pas de la science-fiction il y a 10 ou 20 ans?
+        </p>
+      <h2>5. Conclusion </h2>
+        <p>
+          La recherche sur l'IA progresse à un rythme considérable et transforme notre société, les exemples que nous avons vus ne sont que la partie émergée d'un iceberg dont nous ignorons la taille. Les possibilités semblent infinies et, tant que des données et une puissance de calcul suffisantes sont fournies, le seul facteur limitant semble être notre imagination (et nos valeurs). Comme pour tout outil puissant, nous devons être vigilants en l'employant, mais l'avenir semble fascinant.
+        </p>
+      <h2>Références</h2>
+      <table>
+        <tr id="brown2020language">
+          <td>[Bro+20]</td>
+          <td>Tom <span style="font-variant: small-caps;">B. Brown</span> et al. <cite>Language Models are Few-Shot Learners.</cite> 2020. arXiv: <a href="https://arxiv.org/abs/2005.14165" target="_blank">2005.14165 [cs.CL]</a>.</td>
+        </tr>
+        <tr id="goodfellow2014generative">
+          <td>[Goo+14]</td>
+          <td>Ian <span style="font-variant: small-caps;">J. Goodfellow</span> et al. <cite>Generative Adversarial Networks.</cite> 2014. arXiv: <a href="https://arxiv.org/abs/1406.2661" target="_blank">1406.2661 [stat.ML]</a>.</td>
+        </tr>
+        <tr id="karras2019analyzing">
+          <td>[Kar+19] </td>
+          <td>Tero <span style="font-variant: small-caps;">Karras</span> et al. <cite>Analyzing and Improving the Image Quality of StyleGAN.</cite> 2019. arXiv: <a href="https://arxiv.org/abs/1912.04958" target="_blank">1912.04958 [cs.CV]</a>.</td> </tr>
+        <tr id="mao2016squares">
+          <td>[Mao+16]</td>
+          <td>Xudong <span style="font-variant: small-caps;">Mao</span> et al. <cite>Least Squares Generative Adversarial Networks.</cite> 2016. arXiv: <a href="https://arxiv.org/abs/1611.04076" target="_blank">1611.04076 [cs.CV]</a>.</td> </tr>
+        <tr id="pidhorskyi2020adversarial">
+          <td>[PAD20] </td>
+          <td>Stanislav <span style="font-variant: small-caps;">Pidhorskyi</span>, Donald <span style="font-variant: small-caps;">Adjeroh</span>, and Gianfranco <span style="font-variant: small-caps;">Doretto</span>. <cite>Adversarial Latent Autoencoders.</cite> [preprint]. 2020. arXiv: <a href="https://arxiv.org/abs/2004.04467" target="_blank">2004.04467 [cs.LG]</a>.</td> </tr>
+        <tr id="Park:2019">
+          <td>[Par+19a]</td>
+          <td>Soohwan <span style="font-variant: small-caps;">Park</span> et al. <cite>Learning Predict-and-Simulate Policies From Unorganized Human Motion Data.</cite> 2019. URL: <a href="https://mrl.snu.ac.kr/publications/ProjectICC/ICC.pdf" target="_blank">mrl.snu.ac.kr/publications/ProjectICC/ICC.pdf</a>.</td> </tr>
+        <tr id="park2019semantic">
+          <td>[Par+19b] </td>
+          <td>Taesung <span style="font-variant: small-caps;">Park</span> et al. <cite>Semantic Image Synthesis with Spatially-Adaptive Normalization.</cite> 2019. arXiv:<a href="https://arxiv.org/abs/1903.07291" target="_blank">1903.07291 [cs.CV]</a>.</tr>
+        <tr id="reed2016generative">
+          <td>[Ree+16]</td>
+          <td>Scott <span style="font-variant: small-caps;">Reed</span> et al. <cite>Generative Adversarial Text to Image Synthesis.</cite> 2016. arXiv: <a href="https://arxiv.org/abs/1605.05396" target="_blank">1605.05396 [cs.NE]</a>.</td> </tr>
+        <tr id="aliaks2020order">
+          <td>[Sia+20]</td>
+          <td> Aliaksandr <span style="font-variant: small-caps;">Siarohin</span> et al. <cite>First Order Motion Model for Image Animation.</cite> 2020. arXiv: <a href="https://arxiv.org/abs/2003.00196" target="_blank">2003.00196 [cs.CV]</a>.</td> </tr>
+        <tr id="zhou2017photorealistic">
+          <td>[ZS17]</td>
+          <td>Yuqian <span style="font-variant: small-caps;">Zhou</span> and Bertram Emil <span style="font-variant: small-caps;">Shi</span>. <cite>Photorealistic Facial Expression Synthesis by the Conditional Difference Adversarial Autoencoder.</cite> 2017. arXiv: <a href="https://arxiv.org/abs/1708.09126" target="_blank">1708.09126 [cs.CV]</a>.</td> </tr>
+      </table>
   </article>
-
-
-
-  <h1>You are on the english version of the site.</h1>
-  First post : <a href="/GANs_first_look">GANs : a first look</a>
-  <br> This site is <em>obviously</em> still under construction.
-  <br>If you want to have a laugh while waiting for it to be finished, check this paper : <a href="https://arxiv.org/pdf/1703.02528.pdf"> Stopping GAN violence: Generative Unadversarial Networks</a>
-  <br> <span onclick="transitionToPage('index.html')">test to google</span>
-
-  <button onclick=LangChange(this) lang="fr">fr</button>
 </body>
 
+<script type="text/javascript" src="/js/mobile.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/cleantheme.js"></script>
 <script>
   function LangChange(element) {
     window.location.href = versions[element.lang]
   }
-
 </script>
 </html>

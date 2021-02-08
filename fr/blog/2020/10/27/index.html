@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta name="theme-color" content="#212b31">
+  <link rel="stylesheet" type="text/css" href="/css/variables.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="/css/mobile.css">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="/js/mathjax-config.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <script type="text/javascript">
+    window.transitionToPage = function(href) {
+      document.querySelector('body').style.opacity = 0
+      setTimeout(function() {
+        window.location.href = href
+        }, 500)
+      }
+
+    document.addEventListener('DOMContentLoaded', function(event) {
+      document.querySelector('body').style.opacity = 1
+    })
+    const versions = {"fr": "/fr"}
+  </script>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rphad_en</title>
+</head>
+<body>
+  <div id="mySidepanel" class="sidepanel">
+    <a href="../../.." class="active">Blog</a>
+    <a href="../../../../about">About</a>
+    <a href="../../../../contact" >Contact</a>
+    <a href="/fr/blog/2020/10/27" class=icon title="Français" id="langlink">
+      <svg width="24" height="24" id="langicon" />
+      &nbsp;fr
+    </a>
+    <button onclick="changeTheme()" class="themebtn">
+      <svg width="24" height="24" class="themeSvg" />
+    </button>
+  </div>
+
+<!-- Top navigation -->
+<div class="topnav">
+
+  <!-- Left-aligned links (default) -->
+  <a href="/en" id="logo" title="Home">
+     R<span id="logo_fn">aphaël </span>
+     D<span id="logo_ln">eknop </span>
+  </a>
+
+  <!-- Right-aligned links -->
+  <div class="topnav-right">
+    <a href="../../.." class="active">Blog</a>
+    <a href="../../../../about">About</a>
+    <a href="../../../../contact" >Contact</a>
+    <a href="/fr/blog/2020/10/27" class=icon title="Français" id="langlink">
+      <svg width="24" height="24" id="langicon" />
+      &nbsp;fr
+    </a>
+
+    <button onclick="changeTheme()" id="themebtn">
+      <svg width="24" height="24" id="themeSvg" class="themeSvg"/>
+    </button>
+
+    <div class="container" onclick="MobileMenu(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+  </div>
+</div>
+
+  <article>
+    <h1>A proposal to cancel systematical errors in an experimental setup on the photoelectric effect</h1>
+
+      <h2>Abstract</h2>
+        <p>
+          This paper proposes a method of calibration for experimental setups designed to study the photoelectric effect. It is aimed at university professors, assistant professors, or lab technicians who wish to improve the accuracy of the results obtained by their students. Particularly, it will be of great help in determining the value of Planck's constant with improved accuracy.
+        </p>
+
+      <h2>1. Introduction</h2>
+        <p>
+          In a typical photoelectric setup [<a href="#LeyboldMan">P61</a>], besides the usual errors tied to the measurements, there exists a set of systematic errors unique to the setup that cannot be corrected. This is what is preventing us to obtain a step-function when measuring the current while changing the voltage. Instead, a sigmoid relation is obtained. In the following, the link between that sigmoid and the theoretical step function will be studied and a model aiming to cancel those systematical errors will be constructed.
+        </p>
+
+      <h2>2. Relation between the theoretical V<sub>stop</sub> and raw experimental data</h2>
+        <p>
+          As discussed earlier, when plotted, the raw data follows a sigmoid relation of the form:
+          \begin{equation} \label{eq:sigmoid_general}
+              f(x) = \frac{L}{1+e^{-k(x-x_0)}}
+          \end{equation}
+
+          where \(L\) is the upper horizontal asymptote (the lower one is at \(x=0\)), \(k\) is a parameter influencing the slope of the tangeant at the inflection point and \(x_0\) is the \(x\)-value of the inflection point.
+
+          The slope of the tangeant at the inflection point is given by \(f^{\prime }(x_0)\). We have that:
+
+          \begin{equation*}
+          \frac{\text{d}f}{\text{d}x} = \frac{Lke^{-k(x-x_0)}}{\left(1+e^{-k(x-x_0)}\right)^2}
+          \end{equation*}
+
+          thus
+
+          \begin{equation}
+          \label{eq:tan_PI}
+              f^{\prime}(x_0) = \frac{kL}{4}
+          \end{equation}
+        </p>
+
+        <h3>2.1. Steps</h3>
+          <p>
+            For each dataset (one per frequency), the undermentioned stepswill be followed:
+            <ol>
+		<li id="one">Determining the parameters of \eqref{eq:sigmoid_general} by performing a non linear least squares regression.</li>
+              <li>Mapping the data from the \(y\)-interval \([0,L]\) to \([0, 1]\) by mutiplying the \(y\)-axis coordinates by \(1/y\).</li>
+	      <li>Compute the 'reduced' equation of the tangeant to the inflection point by using the parameters found in <a href="#one" style="text-decoration: none;">1</a>.</li>
+	      <li>Compute the theoretical value of \(V_{\text{stop}}\) using Planck's constant, the charge of the electron and the frequency that we are working with. </li>
+            </ol>
+            Let's detail them a bit more.
+          </p>
+
+	  <h4 id="sig_reg">2.1.1. Sigmoid regression</h4>
+          <p>
+            In the case of a photoelectric setup, \(x_0 = 0\). This reflects the behaviour that if no voltage is applied, the current is the one produced by the PE effect, which is positive by convention. If an additional positive voltage is applied, the current will be greater, and thus will tend towards \(L\). On the other hand, if a negative voltage is applied, the current will be slowed down, up to the point where it will be completely stopped, that is at \(V_{\textrm{stop}}\). However, when doing the regression, we won't force it through any point in order not to include any bias. In <span style="font-variant: small-caps;">R</span>, the <code>nls()</code> and <code>SSlogis()</code> functions can be used to determine the parameters. We should now have the values of \(L\), \(k\) and \(x_0\).
+          </p>
+          <h4>2.1.2. Mapping to [0,1]</h4>
+            <p>Because we know \(L\), we can normalize our data. The reason this is done is to allow our different datasets to be compared. Also, to each frequency corresponds one and only one 'normalized' slope. That is because to each frequency corresponds one \(V_{stop}\) and that the error due to the setup is constant.</p>
+          <h4>2.1.3. Equation of the tangeant to the IP</h4>
+            <p>
+	    Using the value of \(k\) obtained in <a href="#sig_reg" style="text-decoration: none;">2.1.1</a>, the equation \eqref{eq:tan_PI} and by setting \(L=1\) because we are normalizing, we get the value of the slope
+              \begin{equation}
+                m=\frac{k}{4}
+              \end{equation}
+              For plotting purposes, we can get the intercept with the following formula:
+              \begin{equation*}
+                p = \frac{2-kx_0}{4}
+              \end{equation*}
+            </p>
+          <h4>2.1.4. Theoretical value of V<sub>stop</sub></h4>
+            <p>
+              The theoretical value of \(V_{\textrm{stop}}\) is obtained with the following equation:
+              \begin{equation}
+                  eV = h\nu \iff V = \frac{h\nu}{e}
+              \end{equation}
+              where:
+              \begin{align*}
+                v &= v_{\text{stop}}\\
+                e &= \text{electron charge}\\
+                h &= \text{Planck's constant}\\
+                \nu &= \text{frequency}
+              \end{align*}
+            </p>
+
+        <h3>3. Analysis</h3>
+          <p>
+            Once several frequencies have been studied, the relation between the slope \(m\) and the expected stop voltage \(V_{\textrm{stop}}\) can be analysed. The hope here is to observe a clear relation between the values, be it linear, polynomial or otherwise. Observing such a relation would allow us to model it and using the constructed model to calibrate the setup.
+          </p>
+
+          <h4>3.1. The ULB case</h4>
+            <p>
+              As one might reckon, this method has been used and tested before publication. Here, it is applied to a PE setup at the Free University of Brussels (Belgium). Satisfyingly, a linear relation has been observed.
+            </p>
+
+            <figure id="Lab_Calibration_se">
+              <img src="Lab_Calibration_se.jpg" width="65%">
+              <figcaption style="text-align:center;">
+                <span>Figure 1: </span> Linear relation between the slope and the real value of V<sub>stop</sub>. The three red dots are considered outliers since they have a huge uncertainty assigned to them, coming from a poor dataset.
+              </figcaption>
+          </figure>
+
+
+      <h2>References</h2>
+      <table>
+        <tr id="LeyboldMan">
+          <td>[P61]</td>
+          <td>Leybold   instruction   sheets   P6.1.4.3. <cite>DeterminingPlanck’s constant.</cite> Leybold  Didactic  GmbH. <span style="font-variant: small-caps;">url :</span> <a href="https://www.ld-didactic.de/literatur/hb/e/p6/p6143_e.pdf" target="_blank">https://www.ld-didactic.de/literatur/hb/e/p6/p6143_e.pdf</a></td>
+        </tr>
+      </table>
+  </article>
+</body>
+<script type="text/javascript" src="/js/mobile.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/cleantheme.js"></script>
+<script>
+  function LangChange(element) {
+    window.location.href = versions[element.lang]
+  }
+
+</script>
+</html>
