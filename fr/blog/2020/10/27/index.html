@@ -30,7 +30,7 @@
 <body>
   <div id="mySidepanel" class="sidepanel">
     <a href="../../.." class="active">Blog</a>
-    <a href="../../../../about">About</a>
+    <a href="../../../../about">À propos</a>
     <a href="../../../../contact" >Contact</a>
     <a href="/fr/blog/2020/10/27" class=icon title="Français" id="langlink">
       <svg width="24" height="24" id="langicon" />
@@ -53,7 +53,7 @@
   <!-- Right-aligned links -->
   <div class="topnav-right">
     <a href="../../.." class="active">Blog</a>
-    <a href="../../../../about">About</a>
+    <a href="../../../../about">À propos</a>
     <a href="../../../../contact" >Contact</a>
     <a href="/fr/blog/2020/10/27" class=icon title="Français" id="langlink">
       <svg width="24" height="24" id="langicon" />
@@ -73,34 +73,34 @@
 </div>
 
   <article>
-    <h1>A proposal to cancel systematical errors in an experimental setup on the photoelectric effect</h1>
+    <h1>Proposition pour annuler les erreurs systématiques dans un dispositif expérimental sur l'effet photoélectrique</h1>
 
       <h2>Abstract</h2>
         <p>
-          This paper proposes a method of calibration for experimental setups designed to study the photoelectric effect. It is aimed at university professors, assistant professors, or lab technicians who wish to improve the accuracy of the results obtained by their students. Particularly, it will be of great help in determining the value of Planck's constant with improved accuracy.
+          Cet article propose une méthode de calibration des montages expérimentaux destinés à étudier l'effet photoélectrique.  Il s'adresse aux professeurs d'université, aux professeurs assistants ou aux techniciens de laboratoire qui souhaitent améliorer la précision des résultats obtenus par leurs étudiants.  En particulier, il sera d'une grande aide pour déterminer la valeur de la constante de Planck avec une précision améliorée.
         </p>
 
       <h2>1. Introduction</h2>
         <p>
-          In a typical photoelectric setup [<a href="#LeyboldMan">P61</a>], besides the usual errors tied to the measurements, there exists a set of systematic errors unique to the setup that cannot be corrected. This is what is preventing us to obtain a step-function when measuring the current while changing the voltage. Instead, a sigmoid relation is obtained. In the following, the link between that sigmoid and the theoretical step function will be studied and a model aiming to cancel those systematical errors will be constructed.
+          Dans une configuration photoélectrique typique [<a href="#LeyboldMan">P61</a>], outre les erreurs habituelles liées aux mesures, il existe un ensemble d'erreurs systématiques propres au dispositif qui ne peuvent être corrigées.  C'est ce qui nous empêche d'obtenir une fonction échelon (step-function) lors de la mesure du courant en changeant la tension.  Au lieu de cela, une relation sigmoïde est obtenue.  Dans ce qui suit, le lien entre cette sigmoïde et la fonction échelon théorique sera étudié et un modèle visant à annuler ces erreurs systématiques sera construit.
         </p>
 
-      <h2>2. Relation between the theoretical V<sub>stop</sub> and raw experimental data</h2>
+      <h2>2.  Relation entre la tension d'arrêtV<sub>stop</sub> théorique et les données expérimentales brutes</h2>
         <p>
-          As discussed earlier, when plotted, the raw data follows a sigmoid relation of the form:
+          Comme discuté précédemment, lorsqu'elles sont tracées, les données brutes suivent une relation sigmoïde de la forme:
           \begin{equation} \label{eq:sigmoid_general}
               f(x) = \frac{L}{1+e^{-k(x-x_0)}}
           \end{equation}
 
-          where \(L\) is the upper horizontal asymptote (the lower one is at \(x=0\)), \(k\) is a parameter influencing the slope of the tangeant at the inflection point and \(x_0\) is the \(x\)-value of the inflection point.
+          où \(L\) est l'asymptote horizontale supérieure (celle du bas est à \(x=0\)), \(k\) est un paramètre influençant la pente de la tangente au point d'inflexion et \(x_0\) est la valeur \(x\)du point d'inflexion.
 
-          The slope of the tangeant at the inflection point is given by \(f^{\prime }(x_0)\). We have that:
+          La pente de la tangente au point d'inflexion est donnée par \(f^{\prime }(x_0)\). On a que:
 
           \begin{equation*}
           \frac{\text{d}f}{\text{d}x} = \frac{Lke^{-k(x-x_0)}}{\left(1+e^{-k(x-x_0)}\right)^2}
           \end{equation*}
 
-          thus
+          donc
 
           \begin{equation}
           \label{eq:tan_PI}
@@ -108,73 +108,73 @@
           \end{equation}
         </p>
 
-        <h3>2.1. Steps</h3>
+        <h3>2.1. Étapes</h3>
           <p>
-            For each dataset (one per frequency), the undermentioned stepswill be followed:
+            Pour chaque ensemble de données (un par fréquence), les étapes ci-dessous seront suivies:
             <ol>
-		<li id="one">Determining the parameters of \eqref{eq:sigmoid_general} by performing a non linear least squares regression.</li>
-              <li>Mapping the data from the \(y\)-interval \([0,L]\) to \([0, 1]\) by mutiplying the \(y\)-axis coordinates by \(1/y\).</li>
-	      <li>Compute the 'reduced' equation of the tangeant to the inflection point by using the parameters found in <a href="#one" style="text-decoration: none;">1</a>.</li>
-	      <li>Compute the theoretical value of \(V_{\text{stop}}\) using Planck's constant, the charge of the electron and the frequency that we are working with. </li>
+		<li id="one">Détermination des paramètres de \eqref{eq:sigmoid_general} en effectuant une régression des moindres carrés non linéaire.</li>
+              <li>Mappage des données de l'intervalle \(y\) \([0,L]\) à \([0, 1]\) by en multipliant les coordonnées de l'axe \(y\) par \(1/y\).</li>
+	      <li>Calculez l'équation 'réduite' de la tangente au point d'inflexion en utilisant les paramètres trouvés en <a href="#one" style="text-decoration: none;">1</a>.</li>
+	      <li>Calculez la valeur théorique de \(V_{\text{stop}}\)en utilisant la constante de Planck, la charge de l'électron et la fréquence avec laquelle nous travaillons.</li>
             </ol>
-            Let's detail them a bit more.
+            Détaillons-les un peu plus.
           </p>
 
-	  <h4 id="sig_reg">2.1.1. Sigmoid regression</h4>
+	  <h4 id="sig_reg">2.1.1. Régression sigmoïde</h4>
           <p>
-            In the case of a photoelectric setup, \(x_0 = 0\). This reflects the behaviour that if no voltage is applied, the current is the one produced by the PE effect, which is positive by convention. If an additional positive voltage is applied, the current will be greater, and thus will tend towards \(L\). On the other hand, if a negative voltage is applied, the current will be slowed down, up to the point where it will be completely stopped, that is at \(V_{\textrm{stop}}\). However, when doing the regression, we won't force it through any point in order not to include any bias. In <span style="font-variant: small-caps;">R</span>, the <code>nls()</code> and <code>SSlogis()</code> functions can be used to determine the parameters. We should now have the values of \(L\), \(k\) and \(x_0\).
+            Dans le cas d'une configuration photoélectrique, \(x_0 = 0\). Cela reflète le comportement selon lequel si aucune tension n'est appliquée, le courant est celui produit par l'effet PE, qui est positif par convention.  Si une tension positive supplémentaire est appliquée, le courant sera plus grand, et donc tendra vers (\L\). Par contre, si une tension négative est appliquée, le courant sera ralenti, jusqu'au point où il sera complètement arrêté, c'est à dire en \(V_{\textrm{stop}}\). Cependant, lors de la régression, nous ne la forcerons à passer à aucun moment afin de ne pas inclure de biais.  Dans <span style="font-variant: small-caps;">R</span>, les fonctions <code>nls()</code> et <code>SSlogis()</code> peuvent être utilisées pour déterminer les paramètres.  Nous devrions maintenant avoir les valeurs de \(L\), \(k\) et \(x_0\).
           </p>
-          <h4>2.1.2. Mapping to [0,1]</h4>
-            <p>Because we know \(L\), we can normalize our data. The reason this is done is to allow our different datasets to be compared. Also, to each frequency corresponds one and only one 'normalized' slope. That is because to each frequency corresponds one \(V_{stop}\) and that the error due to the setup is constant.</p>
-          <h4>2.1.3. Equation of the tangeant to the IP</h4>
+          <h4>2.1.2. Mappage sur [0,1]</h4>
+            <p>Parce que nous connaissons \(L\), nous pouvons normaliser nos données.  La raison pour laquelle cela est fait est de permettre à nos différents ensembles de données d'être comparés.  Aussi, à chaque fréquence correspond une et une seule pente 'normalisée'.  En effet, à chaque fréquence correspond un \(V_{stop}\) et que l'erreur due à la configuration est constante.</p>
+          <h4>2.1.3. Équation de la tangente au PI</h4>
             <p>
-	    Using the value of \(k\) obtained in <a href="#sig_reg" style="text-decoration: none;">2.1.1</a>, the equation \eqref{eq:tan_PI} and by setting \(L=1\) because we are normalizing, we get the value of the slope
+	    En utilisant la valeur de \(k\) obtenue en <a href="#sig_reg" style="text-decoration: none;">2.1.1</a>, l'équation \eqref{eq:tan_PI} et en fixant \(L=1\) parce que nous normalisons, nous obtenons la valeur de la pente
               \begin{equation}
                 m=\frac{k}{4}
               \end{equation}
-              For plotting purposes, we can get the intercept with the following formula:
+              Pour les besoins du tracé, nous pouvons obtenir l'interception avec le  formule suivante:
               \begin{equation*}
                 p = \frac{2-kx_0}{4}
               \end{equation*}
             </p>
-          <h4>2.1.4. Theoretical value of V<sub>stop</sub></h4>
+          <h4>2.1.4. Valeur théorique de V<sub>stop</sub></h4>
             <p>
-              The theoretical value of \(V_{\textrm{stop}}\) is obtained with the following equation:
+              La valeur théorique de \(V_{\textrm{stop}}\) est obtenue avec l'équation suivante:
               \begin{equation}
                   eV = h\nu \iff V = \frac{h\nu}{e}
               \end{equation}
-              where:
+              où:
               \begin{align*}
                 v &= v_{\text{stop}}\\
-                e &= \text{electron charge}\\
-                h &= \text{Planck's constant}\\
-                \nu &= \text{frequency}
+                e &= \text{la charge de l'électron}\\
+                h &= \text{la constante de Planck}\\
+                \nu &= \text{la fréquence}
               \end{align*}
             </p>
 
-        <h3>3. Analysis</h3>
+        <h3>3. Analyse</h3>
           <p>
-            Once several frequencies have been studied, the relation between the slope \(m\) and the expected stop voltage \(V_{\textrm{stop}}\) can be analysed. The hope here is to observe a clear relation between the values, be it linear, polynomial or otherwise. Observing such a relation would allow us to model it and using the constructed model to calibrate the setup.
+            Une fois que plusieurs fréquences ont été étudiées, la relation entre la pente \(m\) et la tension d'arrêt attendue \(V_{stop}\) peut être analysée. L'espoir ici est d'observer une relation claire entre les valeurs, qu'elle soit linéaire, polynomiale ou autre. L'observation d'une telle relation nous permettrait de la modéliser et d'utiliser le modèle construit pour calibrer la configuration.
           </p>
 
-          <h4>3.1. The ULB case</h4>
+          <h4>3.1. Le cas de l'ULB</h4>
             <p>
-              As one might reckon, this method has been used and tested before publication. Here, it is applied to a PE setup at the Free University of Brussels (Belgium). Satisfyingly, a linear relation has been observed.
+              Comme on peut le croire, cette méthode a été utilisée et testée avant sa publication.  Ici, il est appliqué à une configuration PE à l'Université Libre de Bruxelles.  De manière satisfaisante, une relation linéaire a été observée.
             </p>
 
             <figure id="Lab_Calibration_se">
               <img src="Lab_Calibration_se.jpg" width="65%">
               <figcaption style="text-align:center;">
-                <span>Figure 1: </span> Linear relation between the slope and the real value of V<sub>stop</sub>. The three red dots are considered outliers since they have a huge uncertainty assigned to them, coming from a poor dataset.
+                <span>Figure 1: </span> Relation linéaire entre la pente et la valeur réelle de V<sub>stop</sub>.  Les trois points rouges sont considérés comme des valeurs aberrantes car ils ont une énorme incertitude qui leur est assignée, provenant d'un jeu de données médiocre.
               </figcaption>
           </figure>
 
 
-      <h2>References</h2>
+      <h2>Références</h2>
       <table>
         <tr id="LeyboldMan">
           <td>[P61]</td>
-          <td>Leybold   instruction   sheets   P6.1.4.3. <cite>DeterminingPlanck’s constant.</cite> Leybold  Didactic  GmbH. <span style="font-variant: small-caps;">url :</span> <a href="https://www.ld-didactic.de/literatur/hb/e/p6/p6143_e.pdf" target="_blank">https://www.ld-didactic.de/literatur/hb/e/p6/p6143_e.pdf</a></td>
+          <td>Feuilles d'instruction de Leybold P6.1.4.3. <cite>Détermination de la constante de Planck.</cite> Leybold  Didactic  GmbH. <span style="font-variant: small-caps;">url :</span> <a href="https://www.ld-didactic.de/literatur/hb/e/p6/p6143_e.pdf" target="_blank">https://www.ld-didactic.de/literatur/hb/e/p6/p6143_e.pdf</a></td>
         </tr>
       </table>
   </article>
