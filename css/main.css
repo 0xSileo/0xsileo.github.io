@@ -12,6 +12,11 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+html {
+  font-size: max(calc(10px + 0.5vw), 16px);
+  /*font-size: calc(10px + 0.5vw);*/
+}
+
 td {
   vertical-align:top;
 }
@@ -19,8 +24,6 @@ td {
 p {
     font-family: 'newspaper', serif;
     font-weight: 400;
-    font-size: max(calc(10px + 0.5vw), 16px);
-    /*font-size: calc(10px + 0.5vw);*/
     line-height: 1.6;
 }
 
@@ -42,6 +45,10 @@ h1,h2,h3 {
 
 a {
   color: var(--accent-color);
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 a span {
