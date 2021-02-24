@@ -16,7 +16,6 @@ function changeTheme() {
     /*This handles the case where there is a UI theme change while having
     an overridden theme */
     match = "(prefers-color-scheme: "+ themePref + ")"
-    console.log(match)
     if (window.matchMedia(match).matches) {
       root.classList.toggle(themePref);
       if (themePref == "dark") {

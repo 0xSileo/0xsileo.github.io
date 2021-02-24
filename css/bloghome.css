@@ -5,7 +5,7 @@
  * */
 .blogyear, .blogmonth {
 	position: -webkit-sticky;
-	transition: 0.3s;
+	/*transition: 0.3s;*/
 	position:sticky;
 	top:-1px;
 	background-color: var(--background-color);
