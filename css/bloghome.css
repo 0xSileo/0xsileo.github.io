@@ -9,6 +9,7 @@
 	position:sticky;
 	top:-1px;
 	background-color: var(--background-color);
+	transition: transform 0.3s;
 }
 
 .blogyear {
@@ -24,6 +25,7 @@
 .blogyear:hover {
 	transform: rotate(0deg);
 	display: table;
+	transition: transform 0.3s;
 }
 
 .blogmonth {
