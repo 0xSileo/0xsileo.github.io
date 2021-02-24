@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta name="theme-color" content="#212b31">
+  <script type="text/javascript" src="/js/cleantheme.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/variables.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="/css/mobile.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rphad</title>
+</head>
+<body>
+  <div id="mySidepanel" class="sidepanel">
+    <a href="../../.." class="active">Blog</a>
+    <a href="../../../../about">À propos</a>
+    <a href="../../../../contact" >Contact</a>
+    <a href="/en/blog/2021/02/24" class=icon title="Switch to English" id="langlink">
+      <svg width="24" height="24" id="langicon" />
+      &nbsp;fr
+    </a>
+    <button onclick="changeTheme()" class="themebtn">
+      <svg width="24" height="24" class="themeSvg" />
+    </button>
+  </div>
+
+<!-- Top navigation -->
+<div class="topnav">
+
+  <!-- Left-aligned links (default) -->
+  <a href="/fr" id="logo" title="Home">
+     R<span id="logo_fn">aphaël </span>
+     D<span id="logo_ln">eknop </span>
+  </a>
+
+  <!-- Right-aligned links -->
+  <div class="topnav-right">
+    <a href="../../.." class="active">Blog</a>
+    <a href="../../../../about">À propos</a>
+    <a href="../../../../contact" >Contact</a>
+    <a href="/en/blog/2021/02/24" class=icon title="Switch to English" id="langlink">
+      <svg width="24" height="24" id="langicon" />
+      &nbsp;fr
+    </a>
+
+    <button onclick="changeTheme()" id="themebtn">
+      <svg width="24" height="24" id="themeSvg" class="themeSvg"/>
+    </button>
+
+    <div class="container" onclick="MobileMenu(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+  </div>
+</div>
+
+<article>
+  <h1>The first version of my website is live !</h1>
+    <h2>Context</h2>
+      <p>
+        When I wrote my <a href="../../../2020/07/30"> post about GANs </a> at the end of July 2020, I didn't even have a platform on which host my work. I then quickly set up a Github Page, uploaded the PDF files to it and voilà, I could show them to anyone. The idea of being able to share my thoughts and analysis to the world was appealing to me. It came naturally to my mind that starting "some kind of blog or website" would fulfill several of my needs, as I would learn, build and share. Next thing I know, I had my text editor opened right in front of me.
+      </p>
+    <h2>Choices</h2>
+      <p>
+        While I could've gone with existing platforms (such as <a href="https://medium.com/" target="_blank">Medium</a>), builders (such as <a href="https://www.wix.com/" target="_blank">Wix</a> or <a href="https://wordpress.com/" target="_blank">WordPress</a>) or templates (such as <a href="https://github.com/luizdepra/hugo-coder" target="_blank">Hugo-Coder</a>) and obtain very satisfying results, there are a bunch of reasons that led me to go another way.
+      </p>
+      <p>
+        First, resilience. Before elaborating on this, it must be noted that while I do rely on Github, a third party, to host the site, I have full control on my work. Furthermore, moving to a self hosted solution is as simple as a few commands on a terminal and is in the plans anyway. That being said, I try to rely on myself as much as possible. A site coming down might not be the most common threat nowadays but it all comes down to a personal preference. Plus, I'm not taking the risk of being censored or of my content being used for monetization (looking at you, Medium).
+      </p>
+      <p>
+        The creative freedom I get is also worth it imo. By not using any template or prebuilt site, my only limitations are my skills and my imagination. As you can see, I have built something quite sober, which was intentional. As this is my first website, I maily focused on developing my webdev skills, and I'm quite satisfied on how it turned out tbh. You may notice details that could be improved but be aware that I probably noticed them before you. On the contrary, you might not realise how much work went into some features and what lies under the hood.
+      </p>
+    <h2>Future goals</h2>
+</article>
+</body>
+
+<script type="text/javascript" src="/js/mobile.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+</html>

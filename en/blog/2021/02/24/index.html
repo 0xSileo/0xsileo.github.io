@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta name="theme-color" content="#212b31">
+  <script type="text/javascript" src="/js/cleantheme.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/variables.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="/css/mobile.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rphad</title>
+</head>
+<body>
+  <div id="mySidepanel" class="sidepanel">
+    <a href="../../.." class="active">Blog</a>
+    <a href="../../../../about">About</a>
+    <a href="../../../../contact" >Contact</a>
+    <a href="/fr/blog/2021/02/24" class=icon title="Passer en Français" id="langlink">
+      <svg width="24" height="24" id="langicon" />
+      &nbsp;en
+    </a>
+    <button onclick="changeTheme()" class="themebtn">
+      <svg width="24" height="24" class="themeSvg" />
+    </button>
+  </div>
+
+<!-- Top navigation -->
+<div class="topnav">
+
+  <!-- Left-aligned links (default) -->
+  <a href="/en" id="logo" title="Home">
+     R<span id="logo_fn">aphaël </span>
+     D<span id="logo_ln">eknop </span>
+  </a>
+
+  <!-- Right-aligned links -->
+  <div class="topnav-right">
+    <a href="../../.." class="active">Blog</a>
+    <a href="../../../../about">About</a>
+    <a href="../../../../contact" >Contact</a>
+    <a href="/fr/blog/2021/02/24" class=icon title="Passer en Français" id="langlink">
+      <svg width="24" height="24" id="langicon" />
+      &nbsp;en
+    </a>
+
+    <button onclick="changeTheme()" id="themebtn">
+      <svg width="24" height="24" id="themeSvg" class="themeSvg"/>
+    </button>
+
+    <div class="container" onclick="MobileMenu(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+  </div>
+</div>
+  <article>
+    <h1>The first version of my website is live !</h1>
+      <h2>Context</h2>
+        <p>
+          When I wrote my <a href="../../../2020/07/30"> post about GANs </a> at the end of July 2020, I didn't even have a platform on which host my work. I then quickly set up a Github Page, uploaded the PDF files to it and voilà, I could show them to anyone. The idea of being able to share my thoughts and analysis to the world was appealing to me. It came naturally to my mind that starting "some kind of blog or website" would fulfill several of my needs, as I would learn, build and share. Next thing I know, I had my text editor opened right in front of me.
+        </p>
+      <h2>Choices</h2>
+        <p>
+          While I could've gone with existing platforms (such as <a href="https://medium.com/" target="_blank">Medium</a>), builders (such as <a href="https://www.wix.com/" target="_blank">Wix</a> or <a href="https://wordpress.com/" target="_blank">WordPress</a>) or templates (such as <a href="https://github.com/luizdepra/hugo-coder" target="_blank">Hugo-Coder</a>) and obtain very satisfying results, there are a bunch of reasons that led me to go another way.
+        </p>
+        <p>
+          First, resilience. Before elaborating on this, it must be noted that while I do rely on Github, a third party, to host the site, I have full control on my work. Furthermore, moving to a self hosted solution is as simple as a few commands on a terminal and is in the plans anyway. That being said, I try to rely on myself as much as possible. A site coming down might not be the most common threat nowadays but it all comes down to a personal preference. Plus, I'm not taking the risk of being censored or of my content being used for monetization (looking at you, Medium).
+        </p>
+        <p>
+          The creative freedom I get is also worth it imo. By not using any template or prebuilt site, my only limitations are my skills and my imagination. As you can see, I have built something quite sober, which was intentional. As this is my first website, I maily focused on developing my webdev skills, and I'm quite satisfied on how it turned out tbh. You may notice details that could be improved but be aware that I probably noticed them before you. On the contrary, you might not realise how much work went into some features and what lies under the hood.
+        </p>
+        <p>
+          While this is still a static site, I learned what I consider to be useful skills. First, I can now deploy a self-hosted HTML website <em>in no time</em>. I indeed learned how to setup a webserver along the way. With a bit more time, I can add CSS styles and basic JavaScript behaviours.
+        </p>
+
+        <p>
+          I am kind of proud about the nice little features I was able to add such as automatic dection of user language, a dark and a light theme, mobile responsiveness (which is currently not perfect), in addition with some animations and styling. I may give detail on how I implemented the language and theme support later on but it turns out that there are neat features embedded in the browser.
+      <h2>Future goals</h2>
+        <p>
+          There are two main steps I can take next in my webdev learning process. One is deploying a styled static site (CSS & JS) faster, so that if I ever need one, I can start it right away. The other is to be able to deploy and host a dynamic website. That is, in summary, a website that interacts with a database and that renders pages on the server. I'm of course thinking about SQL and PHP. I can already see usefulness in learning the latter language, as I could automate the process of creating pages that feature the same elements (header, footer, navigation bar, article structure etc.).
+        </p>
+        <p>
+          As for the content, I now have more time to focus on it. I hope to cover a wide range of topics, inspire people, and maybe teach you a thing or two. I am delighted to have built myself a nice little platform on which I can share my thoughts and work.
+        </p>
+  </article>
+</body>
+
+<script type="text/javascript" src="/js/mobile.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+</html>
