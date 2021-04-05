@@ -6,7 +6,6 @@
   <link rel="stylesheet" type="text/css" href="/css/main.css">
   <link rel="stylesheet" type="text/css" href="/css/fonts.css">
   <link rel="stylesheet" type="text/css" href="/css/mobile.css">
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="/js/mathjax-config.js"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -122,7 +121,7 @@
 
 	  <h4 id="sig_reg">2.1.1. Sigmoid regression</h4>
           <p>
-            In the case of a photoelectric setup, \(x_0 = 0\). This reflects the behaviour that if no voltage is applied, the current is the one produced by the PE effect, which is positive by convention. If an additional positive voltage is applied, the current will be greater, and thus will tend towards \(L\). On the other hand, if a negative voltage is applied, the current will be slowed down, up to the point where it will be completely stopped, that is at \(V_{\textrm{stop}}\). However, when doing the regression, we won't force it through any point in order not to include any bias. In <span style="font-variant: small-caps;">R</span>, the <code>nls()</code> and <code>SSlogis()</code> functions can be used to determine the parameters. We should now have the values of \(L\), \(k\) and \(x_0\).
+            In the case of a photoelectric setup, \(x_0 = 0\). This reflects the behaviour that if no voltage is applied, the current is the one produced by the PE effect, which is positive by convention. If an additional positive voltage is applied, the current will be greater, and thus will tend towards \(L\). On the other hand, if a negative voltage is applied, the current will be slowed down, up to the point where it will be completely stopped, that is at \(V_{\textrm{stop}}\). However, when doing the regression, we won't force it through any point in order not to include any bias. In <span style="font-variant: small-caps;">R</span>, the <code class="inline">nls()</code> and <code class="inline">SSlogis()</code> functions can be used to determine the parameters. We should now have the values of \(L\), \(k\) and \(x_0\).
           </p>
           <h4>2.1.2. Mapping to [0,1]</h4>
             <p>Because we know \(L\), we can normalize our data. The reason this is done is to allow our different datasets to be compared. Also, to each frequency corresponds one and only one 'normalized' slope. That is because to each frequency corresponds one \(V_{stop}\) and that the error due to the setup is constant.</p>
@@ -174,7 +173,7 @@
       <table>
         <tr id="LeyboldMan">
           <td>[P61]</td>
-          <td>Leybold   instruction   sheets   P6.1.4.3. <cite>DeterminingPlanck’s constant.</cite> Leybold  Didactic  GmbH. <span style="font-variant: small-caps;">url :</span> <a href="https://www.ld-didactic.de/literatur/hb/e/p6/p6143_e.pdf" target="_blank">https://www.ld-didactic.de/literatur/hb/e/p6/p6143_e.pdf</a></td>
+          <td>Leybold   instruction   sheets   P6.1.4.3. <cite>Determining Planck’s constant.</cite> Leybold  Didactic  GmbH. <span style="font-variant: small-caps;">url :</span> <a href="https://www.ld-didactic.de/literatur/hb/e/p6/p6143_e.pdf" target="_blank">https://www.ld-didactic.de/literatur/hb/e/p6/p6143_e.pdf</a></td>
         </tr>
       </table>
   </article>

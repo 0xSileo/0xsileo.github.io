@@ -1,3 +1,7 @@
+:root {
+  --textsize: max(calc(10px + 0.5vw), 16px);
+}
+
 ::selection {
   background: var(--selection-color);
   color: var(--background-color);
@@ -13,7 +17,7 @@
 }
 
 html {
-  font-size: max(calc(10px + 0.5vw), 16px);
+  font-size: var(--textsize);
   /*font-size: calc(10px + 0.5vw);*/
 }
 
@@ -21,7 +25,7 @@ td {
   vertical-align:top;
 }
 
-p {
+p, ol, ul {
     font-family: 'newspaper', serif;
     font-weight: 400;
     line-height: 1.6;
@@ -39,7 +43,7 @@ h1 {
   font-size: calc(20px + 1.5vw);
 }
 
-h1,h2,h3 {
+h1,h2,h3,h4 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
 }
@@ -56,7 +60,28 @@ a span {
     width:0px;
     overflow:hidden;
     transition: all 0.25s, color 0s ease-in;
-  }
+}
+
+a[rel~="external"]:after {
+	content: " " url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIpJREFUeNqEkIEJwCAMBGPpEs7hHK6hY+gauoZr6Bo6RtqEWkxb6EMQnuM/USEirIoxSmOKwDkhBEwp4VPkb4801Xun9xW4e+9FldYarLUvkBPPOp4JGWOgtSaSt6VWQKUU9nPOEiSIgAmNMdadFTjn7utqrXwh6fLvH9nXhamW5ksMnpfDnw4BBgBfunO056MmqAAAAABJRU5ErkJggg==");
+}
+
+code.inline {
+  border-radius: 5px;
+  padding: 1px;
+  background-color: var(--content-color);
+  color: var(--background-color);
+  font-size: calc(var(--textsize) - 2px);
+}
+
+.wiki-quote {
+  font-style: italic;
+  border: 1px solid var(--content-color);
+  border-left: 10px solid var(--content-color);
+  border-radius: 10px;
+  padding: 10px;
+}
+
 
 #logo, #logo_fn, #logo_ln {
     font-family: 'Poppins', sans-serif;

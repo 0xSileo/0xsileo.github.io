@@ -1,0 +1,47 @@
+.Solidity .comment {
+  font-style: italic;
+  color: gray;
+}
+
+.Solidity .keyword {
+  color: darkorange;
+}
+
+.Solidity :is(.type, .version) {
+  color: lightblue;
+}
+
+.Solidity .identifier {
+  color: silver;
+}
+
+.Solidity .function {
+  color: limegreen;
+}
+
+.Solidity .statemutability {
+  color: gold;
+}
+
+.Solidity :is(.visibility, .savelocation) {
+  color:yellow;
+}
+
+.Solidity :is(.parameter, .blockdata) {
+  color:#E3BB89;
+}
+
+.Solidity .blockdata {
+  font-style: italic;
+}
+
+
+.Solidity {
+  overflow:auto;
+  padding: 0px 15px;
+  border: 1px solid #FFF7EC;
+  border-radius: 10px;
+  background-color:#1F2B30;
+  color: #FFF7EC;
+  font-size: 15px;
+}

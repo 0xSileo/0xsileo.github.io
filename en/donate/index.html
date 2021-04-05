@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta name="theme-color" content="#212b31">
+  <link rel="stylesheet" type="text/css" href="/css/variables.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="/css/bloghome.css">
+  <link rel="stylesheet" type="text/css" href="/css/mobile.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rphad | Donate</title>
+</head>
+<body>
+  <div id="mySidepanel" class="sidepanel">
+    <a href="../blog">Blog</a>
+    <a href="../about">About</a>
+    <a href="../contact">Contact</a>
+    <a href="/fr/donata" class=icon title="Passer en Français" id="langlink">
+      <svg width="24" height="24" id="langicon" />
+      &nbsp;en
+    </a>
+    <button onclick="changeTheme()" class="themebtn">
+      <svg width="24" height="24" class="themeSvg" />
+    </button>
+  </div>
+
+  <!-- Top navigation -->
+  <div class="topnav">
+
+    <!-- Left-aligned links (default) -->
+    <a href="/en" id="logo" title="Home">
+       R<span id="logo_fn">aphaël </span>
+       D<span id="logo_ln">eknop </span>
+    </a>
+
+    <!-- Right-aligned links -->
+    <div class="topnav-right">
+        <a href="../blog">Blog</a>
+        <a href="../about">About</a>
+        <a href="../contact">Contact</a>
+
+      <a href="/fr/donate" class=icon title="Passer en Français" id="langlink">
+        <svg width="24" height="24" id="langicon" />
+        &nbsp;en
+      </a>
+
+      <button onclick="changeTheme()" id="themebtn">
+        <svg width="24" height="24" id="themeSvg" class="themeSvg"/>
+      </button>
+
+      <div class="container" onclick="MobileMenu(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+    </div>
+  </div>
+  <div id="okur">
+    Donate
+  </div>
+  <h3>Thank you. Your financial support helps me in becoming a full-time autodidact.</h3>
+  <p>As you may have understood by now, one of the things that fulfills me the most is to be able to learn whatever I want, whenever I want. Additionnaly, I am much more efficient when I have the motivation. With donations, I seek to cover the costs of everyday life, so that I can focus on what I do best.
+  </p>
+  <p>
+  For now I'll only accept cryptos, but other methods might come later. <a href="../contact">Let me know</a> if there's an unsupported payment method that you'd like to use. Also, if you are a user of the Brave browser and have earned some BAT, you can make a tip directly in the browser! 
+  </p>
+  <select onchange="document.getElementById('preview').src = JSON.parse(this.value).imageurl; document.getElementById('CoinDescription').innerHTML = JSON.parse(this.value).description;document.getElementById('address').innerHTML = JSON.parse(this.value).address;">
+    <option selected value='{"imageurl":"../../images/donations/crypto/eth_light.png","description":"You can send Ether to this address, as well as any ERC20 (USDT, BAT, LINK &hellip;) token. If you want, you can also transfer ownership of an ERC721 token.", "address":"0xA8f089E2f29822b9B3726Dc7AD38a4C942418083"}'>Ether</option>
+    <option value='{"imageurl":"../../images/donations/crypto/btc_light.png","description":"Bitcoin is the OG of crypto. I like to hodl some because the idea behind it has drastically changed the game. ","address":"1RphadsEwBEhW1F1oCfV8Nm5o8NFaXhKq"}'>Bitcoin</option>
+    <option value='{"imageurl":"../../images/donations/crypto/nano_light.png","description":"Nano is a feeless, instant and environmentally friendly cryptocurrency. Some people qualify it as <em>crypto as it should be</em>", "address":"nano_19xthqcquasmxy78so4rof99qjjycpgisz1iijmdr469j8eg8hdcz783q965"}'>Nano</option>
+    <option value='{"imageurl":"../../images/donations/crypto/xmr_light.png","description":"Monero is a more private cryptocurrency. Also, the transaction fees are often lower than Ether or Bitcoin.", "address":"45rFsVsJjKVDboW8U9EshpVFAngoL7sBZU8fdFjGWmy76B3E64UEzbThr9bsZ7rn1BRuXDMFbeUdFcQENyeh7QHf3LjLWcK"}'>Monero</option>
+  </select>
+  <br>
+  <br>
+  <img src="../../images/donations/crypto/eth_light.png" id="preview" height="200px" style="display:block; margin-left: auto; margin-right: auto;"></p>
+
+  <p id="CoinDescription">You can send Ether to this address, as well as any ERC20 (USDT, BAT, LINK &hellip;) token. If you want, you can also transfer ownership of an ERC721 token.</p>
+
+  <p>Here is the address : <pre style="overflow:auto;"><code id="address">0xA8f089E2f29822b9B3726Dc7AD38a4C942418083</code></pre></p>
+</body>
+
+<script type="text/javascript" src="/js/mobile.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/cleantheme.js"></script>
+</html>

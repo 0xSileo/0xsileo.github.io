@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="theme-color" content="#212b31">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/js/cleantheme.js"></script>
+    <script src="/js/mathjax-config.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/variables.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/highlight/solidity.css">
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/css/mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <title>Fun with Ethereum smart contracts | Rphad</title>
+  </head>
+  <body>
+    <div id="mySidepanel" class="sidepanel">
+      <a href="../../.." class="active">Blog</a>
+      <a href="../../../../about">About</a>
+      <a href="../../../../contact" >Contact</a>
+      <a href="/fr/blog/2021/04/05" class=icon title="Passer en Français" id="langlink">
+        <svg width="24" height="24" id="langicon" />
+        &nbsp;en
+      </a>
+      <button onclick="changeTheme()" class="themebtn">
+        <svg width="24" height="24" class="themeSvg" />
+      </button>
+    </div>
+
+  <!-- Top navigation -->
+  <div class="topnav">
+    <!-- Left-aligned links (default) -->
+    <a href="/en" id="logo" title="Home">
+       R<span id="logo_fn">aphaël </span>
+       D<span id="logo_ln">eknop </span>
+    </a>
+    <!-- Right-aligned links -->
+    <div class="topnav-right">
+      <a href="../../.." class="active">Blog</a>
+      <a href="../../../../about">About</a>
+      <a href="../../../../contact" >Contact</a>
+      <a href="/fr/blog/2021/04/05" class=icon title="Passer en Français" id="langlink">
+        <svg width="24" height="24" id="langicon" />
+        &nbsp;en
+      </a>
+
+      <button onclick="changeTheme()" id="themebtn">
+        <svg width="24" height="24" id="themeSvg" class="themeSvg"/>
+      </button>
+
+      <div class="container" onclick="MobileMenu(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+    </div>
+  </div>
+  <article>
+    <h1>Fun with Ethereum smart contracts</h1>
+      <h2>1. Prerequisites and foreword</h2>
+        <p>
+	        This post will go through topics that are related to the blockchain such as zero-knowledge proofs (PoW, PoS etc.) or assymetric cryptography. I will also write some smart contracts in Solidity; hence programming-related jargon might appear. There are, however, several levels of difficulty at which this post can be read, which makes it a good resource to refer to if you later gain knowledge in this area. And don't worry, I'll make a brief introduction in layman's terms for each concept that might require one. I am delighted to share my experience and knowledge in such a domain, as it is quite unique and at the intersection of several niche interests. To illustrate that, let me simply state that I do not personally know someone who codes smart contracts. If you do though, don't hesitate to reach out !
+        </p>
+      <h2>2. The heck is a smart contract ?</h2>
+        <p>
+	        I find the definition given on Wikipedia clear enough :
+	      </p>
+    	  <blockquote class="wiki-quote">
+          A <b> <a rel="external" href="https://en.wikipedia.org/wiki/Smart_contract" target="_blank">smart contract</a></b> is a computer program or a transaction protocol which is intended to automatically execute, control or document legally relevant events and actions according to the terms of a contract or an agreement.
+    	  </blockquote>
+
+        <p>
+          An example of a basic smart contract (outside of the blockchain) that is often taken as a case study is a vending machine. Indeed, the software inside the machine checks which conditions are met and acts accordingly. Did you put the required amount for the snack you selected ? Let it drop then. Are they out of stock ? Return the money and display an error message. Is the amount not high enough ? Display the remaining amount to be paid.
+        </p>
+
+        <p>
+          Ethereum takes this concept and extends its capabilities to almost anything. One of its advantage is its decentralized nature and removing the need for a trusted party. In Eth's case, the program is usually written using the contract-oriented programming language called Solidity. Since the Ethereum Virtual Machine (the runtime environment in which all Ethereum accounts and smart contracts live) is turing complete, there is no way to determine if the code will come to a halt or not. To circumvent that, each transaction costs gas, which is priced in Gwei, a subdivision of Ether (1 Gwei = 10<sup>-9</sup> ETH), hence why there are fees associated with smart contract interactions (except view-only functions). These are quite high now but it should change with Eth 2.0 coming.
+        </p>
+	    <h2>3. Examples of applications</h2>
+	      <p>
+	        When solving a problem, one should first seek the appropriate tools to use and then tackle the issue. In a lot of startups or businesses, that is not done correctly. Instead, an emphasis is put on buzz-words, such as <em>machine learning</em>, <em>blockchain</em>, <em>military-grade encryption</em> and much more. That is why I'm putting a little disclaimer here: the following examples might be more on the side of "How to use Ethereum smart contracts to do X ?" rather than "Which tools are the most suited to do X ?". However, I still see a lot of advantages on putting those applications on the blockchain, the main one being the absence of a third-party or central authority, removing the need for trust.
+	      </p>
+      	<p>
+      	  My examples might inspire you to code your own program or even develop a dapp (decentralized application). Should this be the case, you can <a href="../../../../contact">contact me</a> for business inquiries, <a href="../../../../donate">tip me</a> if my work has been helpful to you, but most importantly <em>give credit &amp; let me know about it</em>. I'm curious to see where this post will take you. Also, these examples are not ready for production so make sure you know what you are doing!
+      	</p>
+
+        <p>
+          There will be recurrent pieces of code that are required in any Solidity contract (More info in the Solidity docs: <a rel="external" href="https://docs.soliditylang.org/en/latest/layout-of-source-files.html" target="_blank">Layout of a Solidity Source File</a>). For instance, the first line is a specifically formatted comment that indicates the license. Being formatted that way, it is easily readable by a machine. I chose the <a rel="external" href="https://spdx.org/licenses/MIT.html">MIT license</a> but I didn't research this enough to have a strong opinion on it. The second line specifies the version of the compiler to be used. I still have to understand the implications of using different ranges (The <code class="inline">^</code> ensures that it is compatible with versions from 0.8.0 to 0.9.0) but I consider this a detail since I'm just a beginner. I'll look into it more extensively once I have the opportunity to write production code. To begin the contract, we add a line specifying its name and opening curly braces. We now have a place to start :
+        </p>
+        <pre class="Solidity"><code>
+<span class="comment">// SPDX-License-Identifier: MIT</span>
+<span class="keyword">pragma solidity</span> <span class="version">^0.8.0</span>;
+
+<span class="type">contract</span> <span class="identifier">ContractName</span> {
+
+}
+
+        </code></pre>
+        <p>
+          They will often contain a <code class="inline">constructor() { }</code> which is a piece of code that is executed once; when the contract is deployed. Also, the variable types need to be defined, that is why you will encounter keywords such as <code class="inline">uint</code>, which is an unsigned integer (\(\in \mathbb{N}\)), a <code class="inline">string</code> of characters, an Ethereum <code class="inline">address</code>, and much more.
+        </p>
+
+	      <h3>3.1 Shared ownership</h3>
+      	  <p>
+      	    When thinking about blockchain applications, I like to try to come up with real-world applications that require the least amount of technical knowledge. For this one, I initially thought about a group of friends (let's say 4) owning a property and renting it to someone. It would be annoying for that person to make four transactions each month. Moreover, we may want to future-proof the agreement in case there is a discrepancy in said group. We can solve that with smart contracts. Instead of the renter paying to one of the friends, they can pay to the smart contract, which will automatically divide (equally or not, depending on the decision taken) and transfer the amount to each co-owner. In it simplest form, it looks like this:
+      	  </p>
+	        <pre class="Solidity"><code>
+<span class="comment">// SPDX-License-Identifier: MIT</span>
+<span class="keyword">pragma solidity</span> <span class="version">^0.8.0</span>;
+
+<span class="type">contract</span> <span class="identifier">SharedProperty</span> {
+
+  <span class="type">address</span> <span class="statemutability">payable</span>[] <span class="identifier">owners</span>;
+
+  <span class="type">constructor</span>() {
+    <span class="identifier">owners</span> = [<span class="statemutability">payable</span>(0x704A1bFD15c629E08EC6824470c37a9aA81558c7),
+              <span class="statemutability">payable</span>(0xa62E10cD675A847E15399ea473AcC91f3BF3775a),
+              <span class="statemutability">payable</span>(0xD73d1B47cdc6fB4aAb59dCf8416e6Eec9bAD467f),
+              <span class="statemutability">payable</span>(0xC6C4187d9ca7585Df74E4df56F64A48bb3976aA4)];
+  }
+
+  <span class="identifier">receive</span>() <span class="visibility">external</span> <span class="statemutability">payable</span> {
+    <span class="type">uint</span> <span class="identifier">rent</span> = <span class="blockdata">msg.value</span>;
+    <span class="keyword">for</span> (<span class="type">uint</span> <span class="identifier">i</span>=0; <span class="identifier">i</span>&lt;<span class="identifier">owners.length</span>; <span class="identifier">i</span>++) {
+      <span class="type">address</span> <span class="statemutability">payable</span> <span class="identifier">co_owner</span> = <span class="identifier">owners</span>[<span class="identifier">i</span>];
+      <span class="identifier">co_owner</span>.<span class="function">transfer</span>(<span class="identifier">rent</span>/<span class="identifier">owners.length</span>);
+    }
+  }
+}
+
+	        </code></pre>
+
+          <p>
+            This contract has been <a rel="external" href="https://ropsten.etherscan.io/address/0xf2a0cc946ad632c5416119a5442aad5008c4d257" target="_blank">deployed on the ropsten network</a> and works properly. You can give it a try, and make sure you have some test Ether. The <a rel="external" href="https://ropsten.etherscan.io/tx/0xda65902dd2d517cdb253162ab58b9e565b8e9e78b1f5056e1cc6ce3736df97b0" target="_blank">first transaction of 0.4 ETH</a> was done by me and shows that it works.
+          </p>
+
+          <p>
+            The line just before the constructor defines an array (by using <code class="inline">[]</code>) of payable addresses, named owners. This allows us to add the addresses of the four co-owners in the constructor. Note that they are hardcoded, so we cannot change them but we can easily think about a function that would achieve that. For example, we could create one that would replace an address if and only if the sender is the owner of that address. Here it is in Solidity:
+          </p>
+
+          <pre class="Solidity"><code>
+<span class="type">function</span> <span class="function">changeOwnerAddress</span>(<span class="type">address</span> <span class="identifier">_newAddress</span>) {
+<span class="keyword">for</span> (<span class="type">uint</span> <span class="identifier">i</span>=0; <span class="identifier">i</span>&lt;<span class="identifier">owners.length</span>; <span class="identifier">i</span>++) {
+    <span class="keyword">if</span>(<span class="blockdata">msg.sender</span> == <span class="identifier">owners</span>[<span class="identifier">i</span>]) {
+      <span class="identifier">owners</span>[<span class="identifier">i</span>] = <span class="identifier">_newAddress</span>;
+    }
+  }
+}
+          </code></pre>
+          <p>
+            And to view the current <code class="inline">owners</code> array:
+          </p>
+<pre class="Solidity"><code>
+<span class="type">function</span> <span class="function">getOwners</span>() <span class="visibility">public</span> <span class="statemutability">view</span> <span class="keyword">returns</span> (<span class="type">address</span> <span class="statemutability">payable</span>[] <span class="savelocation">memory</span>) {
+        <span class="keyword">return</span> <span class="identifier">owners</span>;
+    }
+
+</code></pre>
+
+          <p>
+            This improved contract has also been deployed on the testnet.
+          </p>
+          <p>
+            While writing this post, I stumbled upon <a rel="external" href="https://.stackexchange.com/a/27535/67800" target="_blank">a StackExchange answer</a> which mentioned that the use of a <code class="inline">mapping</code> instead of an <code class="inline">address[]</code> array was a better practice since it should be more efficient and thus save gas. In the case of this contract, this is not conceivable because we still need to loop in order to make a transaction to each owner. However, using a <code class="inline">mapping</code> may come in handy in a lot of cases. Also, note that at the time of writing, there is no way to use an <code class="inline">in</code> keyword, such as :
+          </p>
+<pre class="Solidity"><code>
+<span class="keyword">for</span> (<span class="identifier">owner</span> <span class="keyword">in</span> <span class="identifier">owners</span>) {}
+
+</code></pre>
+
+            <p>
+            because it is not supported in Solidity.
+            </p>
+
+	        <h3>3.2 Money games</h3>
+        	  <p>
+        	     Games are, in general, based on a precise set of rules, which makes them easy to code. That is why they are often used in programming tutorials; they mainly incorporate several <code class="inline">if-then-else</code> statements. The Ethereum blockchain, mixing monetary value and programming in a trustless way, is an ideal platform on which to develop gambling/money games. Additionnaly, they incorporate a problem that I wanted to address: the generation of random numbers on the blockchain.
+            </p>
+            <h4>3.2.1 Random number generation on the blockchain</h4>
+        	    <p>
+	              As you may know, the generation of random numbers is a specific domain of computer science. The main techniques currently employed actually make use of PRNGs, <a rel="external" href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator" target="_blank">pseudorandom number generators</a>. Those generators are not <em>truly</em> random, as, for example, they migh use the clock time of your computer (modulo the number range you want to obtain), which isn't . PRNGs often implement the <a rel="external" href="https://en.wikipedia.org/wiki/Linear_congruential_generator" target="_blank">linear congruential generator</a>, a standard in the field. We can afford to use PRNGs in a majority of applications (simulations, shuffling, statistical sampling &hellip;) because for the most part, trying to find the pattern or predicting the next number is just not worth it. On the other hand, for sensitive subjects potentially involving big amounts of money or privacy, it is needed to have true RNGs. For that, we can link real world data or even deal with truly random physical phenomenona such as quantum fluctuations or radioactive decay.
+              </p>
+
+          	  <p>
+          	    In the blockchain space, the will to have a <em>trustless</em> or <em>decentralized</em> source of randomness adds complexity to this task. We cannot trust a single lab to send us its quantum data because it comes from a centralized source, nor can we request a user to submit a <a rel="external" href="https://en.wikipedia.org/wiki/Hardware_random_number_generator" target="_blank">hardware-generated RN</a> because they could manipulate it. However, we can request numbers from a variety of users and XOR them together. to obtain a 1 or 0. It is no wonder that "<a rel="external" href="https://ethereum.stackexchange.com/q/191/67800" target="_blank">How can I securely generate a random number in my smart contract?</a>" is currently the <a rel="external" href="https://ethereum.stackexchange.com/questions?tab=Votes" target="_blank">second most upvoted question on the Ethereum stackexchange</a>.
+          	  </p>
+
+          	  <p>
+          	    It seems like <a rel="external" href="https://docs.chain.link/docs/chainlink-vrf" target="_blank">Chainlink's VRF</a> provides a solution for this. I still need to dig deeper into the underlying mathematics but as I understand it now, Chainlink is a decentralized oracle and when you request a random number, you need to provide a (pseudo-random) seed which, after being mixed with other data, is used by the chainlink network to return a random number, A lot of Ethereum's cryptographic functions are used, in order to perform actions such as recursive hashing. In order to use it, some LINK must be sent to the contract address, because requesting a random number costs a LINK fee.
+          	  </p>
+
+          	  <p>
+          	    Using <a rel="external" href="https://docs.chain.link/docs/get-a-random-number" target="_blank">the minimal working example provided by Chainlink</a>, we can add a function that will take a number \(n\) as a parameter and output a random number between 0 and \(n-1\):
+              </p>
+
+	  <pre class="Solidity"><code>
+<span class="type">contract</span> <span class="identifier">RandomNumberInRange</span> <span class="keyword">is</span> <span class="identifier">RandomNumberConsumer</span> {
+  <span class="type">function</span> <span class="function">getRandomInRange</span>(<span class="type">uint</span> <span class="parameter">userSeed</span>, <span class="type">uint</span> <span class="parameter">_range</span>) <span class="visibility">public</span> <span class="keyword">returns</span> (<span class="type">uint</span>) {
+    <span class="identifier">getRandomNumber</span>(<span class="identifier">userSeed</span>);
+    <span class="type">uint</span> <span class="identifier">number</span> = <span class="identifier">randomResult</span> % <span class="identifier">_range</span>;
+    <span class="keyword">return</span> <span class="identifier">number</span>;
+  }
+}
+	  </code></pre>
+
+          	  <p>
+                You may want to check the link I just gave in order to understand it better. Using the <code class="inline">is</code> keyword, we are creating a contract that inherits from the one provided by Chainlink. Many other functions can be built this way, but I'm not going to implement them in this article.
+          	  </p>
+        	  <h4>3.2.2 Choice of game</h4>
+          	  <p>
+          	  I initially wanted to code Blackjack but I faced some issues:
+            	  <ol>
+            	    <li>Although it is one of the simplest casino games, the rules are quite convoluted. Using it as an example would not have been a wise choice; not only the reader has to know the rules of the game but reading the code would also be confusing.</li>
+            	    <li>A lot of casino games require the users not to display their cards. It isn't much for anonymity but rather to prevent cheating and to avoid giving an advantage to the other players. Since the blockchain is public, keeping track of card ownership without revealing it to others is complex. Each solution to hide that data has a degree of tolerance attached to it. For example, setting a variable as <code class="inline">private</code> might be enough for some applications but its name is a bit misleading. Indeed, as stated by the <a rel="external" href="https://docs.soliditylang.org/en/latest/contracts.html#visibility-and-getters" target="_blank">solidity documentation</a> :
+            	  <blockquote class="wiki-quote">
+                        Everything that is inside a contract is visible to all observers external to the blockchain. Making something private only prevents other contracts from reading or modifying the information, but it will still be visible to the whole world outside of the blockchain.
+            	  </blockquote>
+            	    We could also think about building a part of the game on a website, which would create a partially decentralized application. I'm not sure on how exactly this would be achieved though, maybe by using cryptographic signatures and encrypting some data on the client's machine.</li>
+            	    <li>I am not qualified enough -yet- to quickly setup a frontend and UI for a dapp, which prevents me from adding the card designs and link them to their ID (a number between 0 and 51). I could have skipped this step and have the users deal with the IDs but, considering the previous points and that such a decision would make the user experience less smooth, it was smarter to choose another game. </li>
+            	  </ol>
+          	  </p>
+            <h4>3.2.3 Lottery</h4>
+          	  <p>
+          	    That is the game I went for. Here, we'll make a self-filling pool. That is, the prize will start at zero and will be increased for each ticket bought. After a predetermined amount of time (stored in the <code class="inline">gameDuration</code> variable) has passed, the ticket sales will close and the function <code class="inline">pickWinner()</code> (that will select a winner and transfer the funds to it) will be callable. I initially thought about restricting the access to that function to an administrator (the creator of the contract) but one problem is that if the owner didn't call it, the funds would be locked. There are a lot of ways in which that can be avoided (adding a time limit, change the owner based on a consensus &hellip;) but I wanted to demonstrate the power of good smart contract design. That is why I wrote it in such a way that <em>anyone</em> could call the function that picks a winner! Because a timelock was put, and that -supposedly- a good RNG is used, <em>alea iacta est</em> and let the winner be picked!
+              </p>
+
+          	  <p>
+                We will first define the price of a ticket. For that, I'll go with a fixed price in Ether, let's say 0.01 ETH. We define the following variables :
+          	  </p>
+
+	  <pre class="Solidity"><code>
+<span class="type">uint</span> <span class="visibility">public</span> <span class="identifier">ticketPrice</span> = 0.01 ether;
+<span class="type">uint</span> <span class="visibility">public</span> <span class="identifier">gameDuration</span> = 1 days;
+<span class="type">address</span>[] <span class="visibility">private</span> <span class="identifier">players</span>;
+<span class="type">uint</span> <span class="visibility">public</span> <span class="identifier">startTime</span>;
+	  </code></pre>
+
+          	  <p>
+          	     Where, in the first two lines, we used Solidity units such that the preceding value is automatically converted to the appropriate format. Here, putting <code class="inline">ether</code> after <code class="inline">0.01</code> multiplies the value by 10<sup>18</sup>, essentially expressing the amount in wei, the smallest denomination of ether, which can then be stored as an unsigned integer and thus avoid problems originating from floating-point numbers . Similarly, <code class="inline">days</code> is a unit that converts the preceding value in seconds, which is also stored as an <code class="inline">uint</code>. The <code class="inline">players</code> variable is an array of addresses and the indexes represent the ticket numbers. In order to apply a time lock, we need to keep track of when the game started. We'll use <code class="inline">startTime</code> and overwrite it everytime a new game is started. However, we need to initialise it, that is why we add a line in the constructor:
+          	  </p>
+
+	  <pre class="Solidity"><code>
+<span class="type">constructor</span>() {
+  <span class="identifier">startTime</span> = <span class="blockdata">block.timestamp</span>;
+}
+  </code></pre>
+              <p>
+                By doing so, the value of <code class="inline">startTime</code> is first set to the contract deployment time.
+              </p>
+              <p>
+                We now need to define the two main functions of our contract: <code class="inline">buyTicket()</code> and <code class="inline">pickWinner()</code>. The former is payable and requires the ticket sales to be opened, while the latter cannot be called if tickets are still being sold. Here is how I wrote the buying function:
+              </p>
+<pre class="Solidity"><code>
+<span class="type">function</span> <span class="function">buyTicket</span>() <span class="visibility">public</span> <span class="statemutability">payable</span> {
+  <span class="function">require</span>(<span class="blockdata">block.timestamp</span> <= <span class="identifier">startTime</span> + <span class="identifier">gameDuration</span>, "The ticket sales are closed");
+  <span class="function">require</span>(<span class="blockdata">msg.value</span> == <span class="identifier">ticketPrice</span>, "The amount sent is different from the price of the ticket");
+  <span class="identifier">players.push</span>(<span class="blockdata">msg.sender</span>);
+}
+  </code></pre>
+              <p>
+                The second requirement ensures that the correct amount is paid. I could've written it in such a way that if a player sends too much funds, a ticket would still be bought and the excess funds would be sent back but it would cost (the user) additionnal gas, and it makes it clearer if only the ticket price can be sent as an amount. The last line adds the address of the sender to the array of players. That will link an index (that can be seen as the ticket ID) to its buyer.
+              </p>
+
+              <p>
+                The following function picks and awards a winner. It first ensures that the ticket sales are closed, then I added a statement to handle the case where no one played. This will directly start a new game and save some more gas. In the case where people have played, a winning ID in the range of the tickets sold is picked at random and the person who bought that ticket is the winner. After that, the funds are transferred, the variables are deleted (or overwritten) and a new <code class="inline">startTime</code> is set.
+              </p>
+
+<pre class="Solidity"><code>
+<span class="type">function</span> <span class="function">pickWinner</span>() <span class="visibility">public</span> {
+  <span class="function">require</span>(<span class="blockdata">block.timestamp</span> &gt; <span class="identifier">startTime</span> + <span class="identifier">gameDuration</span>, "The ticket sales are still open");
+  <span class="keyword">if</span> (<span class="identifier">players.length</span> != 0) {
+    <span class="type">uint</span> <span class="identifier">ticketsSold</span> = <span class="identifier">players.length</span>;
+    <span class="comment">//get a random number using the function I defined earlier</span>
+    <span class="type">uint</span> <span class="identifier">winningID</span> = <span class="identifier">getRandomInRange</span>(<span class="blockdata">block.timestamp</span>, <span class="identifier">ticketsSold</span>);
+    <span class="type">address</span> <span class="identifier">winner</span> = <span class="identifier">players</span>[<span class="identifier">winningID</span>];
+    <span class="type">address</span>(<span class="blockdata">this</span>)<span class="blockdata">.balance</span><span class="function">.transfer</span>(<span class:"statemutability">payable</span>(<span class="identifier">winner</span>));
+    delete <span class="identifier">players</span>;
+    delete <span class="identifier">winningID</span>;
+    delete <span class="identifier">winner</span>;
+  }
+  <span class="identifier">startTime</span> = <span class="blockdata">block.timestamp</span>;
+}
+  </code></pre>
+              <p>
+                Please note that Chainlink's VRF is not very mature yet and it requires the deployment of several other contracts, which may confuse you. If you want to keep some simplicity, you can deploy a (more insecure) version on a testnet by using
+              </p>
+
+<pre class="Solidity"><code>
+<span class="type">uint</span> <span class="identifier">winningID</span> = <span class="blockdata">block.timestamp</span> % <span class="identifier">ticketsSold</span>;
+
+</code></pre>
+
+              <p>
+                instead of
+              </p>
+<pre class="Solidity"><code>
+<span class="type">uint</span> <span class="identifier">winningID</span> = <span class="identifier">getRandomInRange</span>(<span class="blockdata">block.timestamp</span>, <span class="identifier">ticketsSold</span>);
+
+</code></pre>
+
+              <p>
+                One improvement of this contract is the addition of two functions callable by the owner only. For this, I can add a <code class="inline">modifier</code> and add it to the functions. I will let the reader understand how they work.
+              </p>
+              <p>
+                Here is the final contract:
+              </p>
+
+	  <pre class="Solidity"><code>
+<span class="comment">// SPDX-License-Identifier: MIT</span>
+<span class="keyword">pragma solidity</span> <span class="version">^0.8.0</span>;
+
+<span class="type">contract</span> <span class="identifier">Lottery</span> {
+
+  <span class="type">address</span> <span class="visibility">public</span> <span class="identifier">owner</span>;
+  <span class="type">uint</span> <span class="visibility">public</span> <span class="identifier">ticketPrice</span> = 0.01 ether;
+  <span class="type">uint</span> <span class="visibility">public</span> <span class="identifier">gameDuration</span> = 1 days;
+  <span class="type">address</span>[] <span class="visibility">private</span> <span class="identifier">players</span>;
+  <span class="type">uint</span> <span class="visibility">public</span> <span class="identifier">startTime</span>;
+
+  <span class="type">constructor</span>() {
+    <span class="identifier">owner</span> = <span class="blockdata">msg.sender</span>;
+    <span class="identifier">startTime</span> = <span class="blockdata">block.timestamp</span>;
+  }
+
+  <span class="type">modifier</span> <span class="identifier">onlyOwner</span> {
+    <span class="function">require</span>(<span class="blockdata">msg.sender</span> == owner);
+    _;
+  }
+
+  <span class="type">function</span> <span class="function">buyTicket</span>() <span class="visibility">public</span> <span class="statemutability">payable</span> {
+    <span class="function">require</span>(<span class="blockdata">block.timestamp</span> <= <span class="identifier">startTime</span> + <span class="identifier">gameDuration</span>, "The ticket sales are closed");
+    <span class="function">require</span>(<span class="blockdata">msg.value</span> == <span class="identifier">ticketPrice</span>, "The amount sent is different from the price of the ticket");
+    <span class="identifier">players.push</span>(<span class="blockdata">msg.sender</span>);
+  }
+
+  <span class="type">function</span> <span class="function">pickWinner</span>() <span class="visibility">public</span> {
+    <span class="function">require</span>(<span class="blockdata">block.timestamp</span> &gt; <span class="identifier">startTime</span> + <span class="identifier">gameDuration</span>, "The ticket sales are still open");
+    <span class="keyword">if</span> (<span class="identifier">players.length</span> != 0) {
+      <span class="type">uint</span> <span class="identifier">ticketsSold</span> = <span class="identifier">players.length</span>;
+      <span class="type">uint</span> <span class="identifier">winningID</span> = <span class="identifier">getRandomInRange</span>(<span class="blockdata">block.timestamp</span>, <span class="identifier">ticketsSold</span>);
+      <span class="type">address</span> <span class="identifier">winner</span> = <span class="identifier">players</span>[<span class="identifier">winningID</span>];
+      <span class="type">address</span>(<span class="blockdata">this</span>)<span class="blockdata">.balance</span><span class="function">.transfer</span>(<span class:"statemutability">payable</span>(<span class="identifier">winner</span>));
+      delete <span class="identifier">players</span>;
+      delete <span class="identifier">winningID</span>;
+      delete <span class="identifier">winner</span>;
+    }
+    <span class="identifier">startTime</span> = <span class="blockdata">block.timestamp</span>;
+  }
+
+}
+
+</code></pre>
+      <h2>4. Closing thoughts</h2>
+        <p>
+          I initially wanted to provide 4 or 5 examples (I'm not out of ideas <em>at all</em>) but during the redaction of this post, I noticed that I had been more verbose than I thought I was going to be. That is not an issue because it may have helped some readers to get a better understanding on the potential of Ethereum. Of course, there are improvements that can be made, especially in regards to gas cost optimisation but I have already provided some hints here and there. Smart contract redaction is something that I like more and more, their applications are enormous, as decentralized finance (aka DeFi) could compete with traditionnal finance in the near future. I will write other posts related to Ethereum, and I'll probably look into other smart contract capable blockchains but I've got my heart set on Ethereum for the moment.
+        </p>
+  </article>
+</body>
+
+<script type="text/javascript" src="/js/mobile.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+</html>
