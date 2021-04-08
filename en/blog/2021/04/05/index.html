@@ -99,12 +99,12 @@
 
         </code></pre>
         <p>
-          They will often contain a <code class="inline">constructor() { }</code> which is a piece of code that is executed once; when the contract is deployed. Also, the variable types need to be defined, that is why you will encounter keywords such as <code class="inline">uint</code>, which is an unsigned integer (\(\in \mathbb{N}\)), a <code class="inline">string</code> of characters, an Ethereum <code class="inline">address</code>, and much more.
+          They will often contain a <code class="inline">constructor() { }</code> which is a piece of code that is executed once; when the contract is deployed. Also, the variable types need to be defined, that is why you will encounter keywords such as <code class="inline">uint</code>, which is an unsigned integer (\(\in \mathbb{N}\)), a <code class="inline">string</code>, an Ethereum <code class="inline">address</code>, and much more.
         </p>
 
 	      <h3>3.1 Shared ownership</h3>
       	  <p>
-      	    When thinking about blockchain applications, I like to try to come up with real-world applications that require the least amount of technical knowledge. For this one, I initially thought about a group of friends (let's say 4) owning a property and renting it to someone. It would be annoying for that person to make four transactions each month. Moreover, we may want to future-proof the agreement in case there is a discrepancy in said group. We can solve that with smart contracts. Instead of the renter paying to one of the friends, they can pay to the smart contract, which will automatically divide (equally or not, depending on the decision taken) and transfer the amount to each co-owner. In it simplest form, it looks like this:
+      	    When thinking about blockchain applications, I like to try to come up with real-world use cases that require the least amount of technical knowledge. For this one, I thought about a group of friends (let's say 4) owning a property and renting it to someone. It would be annoying for that person to make four transactions each month. Moreover, we may want to future-proof the agreement in case there is a discrepancy in said group. We can solve that with smart contracts. Instead of the renter paying to one of the friends, they can pay to the smart contract, which will automatically divide (equally or not, depending on the decision taken) and transfer the amount to each co-owner. In it simplest form, it looks like this:
       	  </p>
 	        <pre class="Solidity"><code>
 <span class="comment">// SPDX-License-Identifier: MIT</span>
@@ -180,15 +180,15 @@
             </p>
             <h4>3.2.1 Random number generation on the blockchain</h4>
         	    <p>
-	              As you may know, the generation of random numbers is a specific domain of computer science. The main techniques currently employed actually make use of PRNGs, <a rel="external" href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator" target="_blank">pseudorandom number generators</a>. Those generators are not <em>truly</em> random, as, for example, they migh use the clock time of your computer (modulo the number range you want to obtain), which isn't . PRNGs often implement the <a rel="external" href="https://en.wikipedia.org/wiki/Linear_congruential_generator" target="_blank">linear congruential generator</a>, a standard in the field. We can afford to use PRNGs in a majority of applications (simulations, shuffling, statistical sampling &hellip;) because for the most part, trying to find the pattern or predicting the next number is just not worth it. On the other hand, for sensitive subjects potentially involving big amounts of money or privacy, it is needed to have true RNGs. For that, we can link real world data or even deal with truly random physical phenomenona such as quantum fluctuations or radioactive decay.
+	              As you may know, the generation of random numbers is a specific domain of computer science. The main techniques currently employed actually make use of PRNGs, <a rel="external" href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator" target="_blank">pseudorandom number generators</a>. Those generators are not <em>truly</em> random, as, for example, they migh use the clock time of your computer (modulo the adequate number, in order to have an integer in a specific range), which isn't. PRNGs often implement the <a rel="external" href="https://en.wikipedia.org/wiki/Linear_congruential_generator" target="_blank">linear congruential generator</a>, a standard in the field. We can afford to use PRNGs in a majority of applications (simulations, shuffling, statistical sampling &hellip;) because for the most part, trying to find the pattern or predicting the next number is just not worth it. On the other hand, for sensitive subjects potentially involving big amounts of money or anonymity, it is needed to have true RNGs. For that, we can link real world data that, although not random, are extremely hard -nay impossible- to predict. Such data are often coming from chaotic systems. We could even deal with truly random physical phenomenona such as quantum fluctuations or radioactive decay.
               </p>
 
           	  <p>
-          	    In the blockchain space, the will to have a <em>trustless</em> or <em>decentralized</em> source of randomness adds complexity to this task. We cannot trust a single lab to send us its quantum data because it comes from a centralized source, nor can we request a user to submit a <a rel="external" href="https://en.wikipedia.org/wiki/Hardware_random_number_generator" target="_blank">hardware-generated RN</a> because they could manipulate it. However, we can request numbers from a variety of users and XOR them together. to obtain a 1 or 0. It is no wonder that "<a rel="external" href="https://ethereum.stackexchange.com/q/191/67800" target="_blank">How can I securely generate a random number in my smart contract?</a>" is currently the <a rel="external" href="https://ethereum.stackexchange.com/questions?tab=Votes" target="_blank">second most upvoted question on the Ethereum stackexchange</a>.
+          	    In the blockchain space, the will to have a <em>trustless</em> or <em>decentralized</em> source of randomness adds complexity to this task. We cannot trust a single lab to send us its quantum data because it comes from a centralized source, nor can we request a user to submit a <a rel="external" href="https://en.wikipedia.org/wiki/Hardware_random_number_generator" target="_blank">hardware-generated RN</a> because they could manipulate it. However, we can request numbers from a variety of users and XOR them together, in order to obtain a 1 or 0. It is no wonder that "<a rel="external" href="https://ethereum.stackexchange.com/q/191/67800" target="_blank">How can I securely generate a random number in my smart contract?</a>" is currently the <a rel="external" href="https://web.archive.org/web/20210407160942/https://ethereum.stackexchange.com/questions?tab=Votes" target="_blank">second most upvoted question on the Ethereum stackexchange</a>.
           	  </p>
 
           	  <p>
-          	    It seems like <a rel="external" href="https://docs.chain.link/docs/chainlink-vrf" target="_blank">Chainlink's VRF</a> provides a solution for this. I still need to dig deeper into the underlying mathematics but as I understand it now, Chainlink is a decentralized oracle and when you request a random number, you need to provide a (pseudo-random) seed which, after being mixed with other data, is used by the chainlink network to return a random number, A lot of Ethereum's cryptographic functions are used, in order to perform actions such as recursive hashing. In order to use it, some LINK must be sent to the contract address, because requesting a random number costs a LINK fee.
+          	    It seems like <a rel="external" href="https://docs.chain.link/docs/chainlink-vrf" target="_blank">Chainlink's VRF</a> provides a solution for this. I still need to dig deeper into the underlying mathematics but as I understand it now, Chainlink is a decentralized oracle and when you request a random number, you need to provide a (pseudo-random) seed which, after being mixed with other data, is used by the chainlink network to return a random number. A lot of Ethereum's cryptographic functions are used, in order to perform actions such as recursive hashing. In order to use it, some LINK must be sent to the contract address, because requesting a random number costs a LINK fee.
           	  </p>
 
           	  <p>
@@ -210,7 +210,7 @@
           	  </p>
         	  <h4>3.2.2 Choice of game</h4>
           	  <p>
-          	  I initially wanted to code Blackjack but I faced some issues:
+          	  At first, I wanted to code Blackjack but then I faced some issues:
             	  <ol>
             	    <li>Although it is one of the simplest casino games, the rules are quite convoluted. Using it as an example would not have been a wise choice; not only the reader has to know the rules of the game but reading the code would also be confusing.</li>
             	    <li>A lot of casino games require the users not to display their cards. It isn't much for anonymity but rather to prevent cheating and to avoid giving an advantage to the other players. Since the blockchain is public, keeping track of card ownership without revealing it to others is complex. Each solution to hide that data has a degree of tolerance attached to it. For example, setting a variable as <code class="inline">private</code> might be enough for some applications but its name is a bit misleading. Indeed, as stated by the <a rel="external" href="https://docs.soliditylang.org/en/latest/contracts.html#visibility-and-getters" target="_blank">solidity documentation</a> :
@@ -260,7 +260,7 @@
 }
   </code></pre>
               <p>
-                The second requirement ensures that the correct amount is paid. I could've written it in such a way that if a player sends too much funds, a ticket would still be bought and the excess funds would be sent back but it would cost (the user) additionnal gas, and it makes it clearer if only the ticket price can be sent as an amount. The last line adds the address of the sender to the array of players. That will link an index (that can be seen as the ticket ID) to its buyer.
+                The second requirement ensures that the correct amount is paid. I could've written it in such a way that if a player sends too much funds, a ticket would still be bought and the excess funds would be sent back but it would cost (the user) additionnal gas, and it makes it clearer if only the ticket price can be sent as an amount. The last line adds the address of the sender to the array of players. That will link an index (that can be seen as the ticket number) to its buyer.
               </p>
 
               <p>
@@ -347,6 +347,17 @@
       delete <span class="identifier">winner</span>;
     }
     <span class="identifier">startTime</span> = <span class="blockdata">block.timestamp</span>;
+  }
+
+  <span class="type">function</span> <span class="function">changeTicketPrice</span>(<span class="type">uint</span> <span class="parameter">_newPrice</span>) <span class="visibility">public</span> <span class="identifier">onlyOwner</span> {
+    <span class="function">require</span>(<span class="identifier">players.length</span>, "In order not to disadvantage players, the price cannot be changed if the current game already has players");
+    <span class="identifier">ticketPrice = _newPrice</span>;
+  }
+
+
+  <span class="type">function</span> <span class="function">changeGameDuration</span>(<span class="type">uint</span> <span class="parameter">_newGameDuration</span>) <span class="visibility">public</span> <span class="identifier">onlyOwner</span> {
+    <span class="function">require</span>(<span class="identifier">players.length</span>, "In order not to disadvantage players, the duration cannot be changed if the current game already has players");
+    <span class="identifier">gameDuration = _newGameDuration</span>;
   }
 
 }
