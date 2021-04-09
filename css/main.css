@@ -66,6 +66,13 @@ a[rel~="external"]:after {
 	content: " " url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIpJREFUeNqEkIEJwCAMBGPpEs7hHK6hY+gauoZr6Bo6RtqEWkxb6EMQnuM/USEirIoxSmOKwDkhBEwp4VPkb4801Xun9xW4e+9FldYarLUvkBPPOp4JGWOgtSaSt6VWQKUU9nPOEiSIgAmNMdadFTjn7utqrXwh6fLvH9nXhamW5ksMnpfDnw4BBgBfunO056MmqAAAAABJRU5ErkJggg==");
 }
 
+
+select {
+  background-color:var(--background-color);
+  color: var(--content-color);
+  border-radius: 5px;
+}
+
 .wiki-quote {
   font-style: italic;
   border: 1px solid var(--content-color);
