@@ -275,7 +275,7 @@ now
     <span class="comment">//obtention d'un nombre aléatoire en utilisant la fonction définie précédemment</span>
     <span class="type">uint</span> <span class="identifier">indexGagnant</span> = <span class="identifier">getAleatoireDansIntervalle</span>(<span class="blockdata">block.timestamp</span>, <span class="identifier">ticketsVendus</span>);
     <span class="type">address</span> <span class="identifier">gagnant</span> = <span class="identifier">joueurs</span>[<span class="identifier">indexGagnant</span>];
-    <span class="type">address</span>(<span class="blockdata">this</span>)<span class="blockdata">.balance</span><span class="function">.transfer</span>(<span class:"statemutability">payable</span>(<span class="identifier">gagnant</span>));
+    <span class="statemutability">payable</span>(<span class="identifier">gagnant</span>)<span class="function">.transfer</span>(<span class="type">address</span>(<span class="blockdata">this</span>)<span class="blockdata">.balance</span>);
     delete <span class="identifier">joueurs</span>;
     delete <span class="identifier">indexGagnant</span>;
     delete <span class="identifier">gagnant</span>;
@@ -341,7 +341,7 @@ now
       <span class="comment">//obtention d'un nombre aléatoire en utilisant la fonction définie précédemment</span>
       <span class="type">uint</span> <span class="identifier">indexGagnant</span> = <span class="identifier">getAleatoireDansIntervalle</span>(<span class="blockdata">block.timestamp</span>, <span class="identifier">ticketsVendus</span>);
       <span class="type">address</span> <span class="identifier">gagnant</span> = <span class="identifier">joueurs</span>[<span class="identifier">indexGagnant</span>];
-      <span class="type">address</span>(<span class="blockdata">this</span>)<span class="blockdata">.balance</span><span class="function">.transfer</span>(<span class:"statemutability">payable</span>(<span class="identifier">gagnant</span>));
+      <span class="statemutability">payable</span>(<span class="identifier">gagnant</span>)<span class="function">.transfer</span>(<span class="type">address</span>(<span class="blockdata">this</span>)<span class="blockdata">.balance</span>);
       delete <span class="identifier">joueurs</span>;
       delete <span class="identifier">indexGagnant</span>;
       delete <span class="identifier">gagnant</span>;
