@@ -275,7 +275,7 @@
     <span class="comment">//get a random number using the function I defined earlier</span>
     <span class="type">uint</span> <span class="identifier">winningID</span> = <span class="identifier">getRandomInRange</span>(<span class="blockdata">block.timestamp</span>, <span class="identifier">ticketsSold</span>);
     <span class="type">address</span> <span class="identifier">winner</span> = <span class="identifier">players</span>[<span class="identifier">winningID</span>];
-    <span class="type">address</span>(<span class="blockdata">this</span>)<span class="blockdata">.balance</span><span class="function">.transfer</span>(<span class:"statemutability">payable</span>(<span class="identifier">winner</span>));
+    <span class="statemutability">payable</span>(<span class="identifier">winner</span>)<span class="function">.transfer</span>(<span class="type">address</span>(<span class="blockdata">this</span>)<span class="blockdata">.balance</span>);
     delete <span class="identifier">players</span>;
     delete <span class="identifier">winningID</span>;
     delete <span class="identifier">winner</span>;
@@ -341,7 +341,7 @@
       <span class="type">uint</span> <span class="identifier">ticketsSold</span> = <span class="identifier">players.length</span>;
       <span class="type">uint</span> <span class="identifier">winningID</span> = <span class="identifier">getRandomInRange</span>(<span class="blockdata">block.timestamp</span>, <span class="identifier">ticketsSold</span>);
       <span class="type">address</span> <span class="identifier">winner</span> = <span class="identifier">players</span>[<span class="identifier">winningID</span>];
-      <span class="type">address</span>(<span class="blockdata">this</span>)<span class="blockdata">.balance</span><span class="function">.transfer</span>(<span class:"statemutability">payable</span>(<span class="identifier">winner</span>));
+      <span class="statemutability">payable</span>(<span class="identifier">winner</span>)<span class="function">.transfer</span>(<span class="type">address</span>(<span class="blockdata">this</span>)<span class="blockdata">.balance</span>);
       delete <span class="identifier">players</span>;
       delete <span class="identifier">winningID</span>;
       delete <span class="identifier">winner</span>;
@@ -350,13 +350,13 @@
   }
 
   <span class="type">function</span> <span class="function">changeTicketPrice</span>(<span class="type">uint</span> <span class="parameter">_newPrice</span>) <span class="visibility">public</span> <span class="identifier">onlyOwner</span> {
-    <span class="function">require</span>(<span class="identifier">players.length</span>, "In order not to disadvantage players, the price cannot be changed if the current game already has players");
+    <span class="function">require</span>(<span class="identifier">players.length</span> == 0, "In order not to disadvantage players, the price cannot be changed if the current game already has players");
     <span class="identifier">ticketPrice = _newPrice</span>;
   }
 
 
   <span class="type">function</span> <span class="function">changeGameDuration</span>(<span class="type">uint</span> <span class="parameter">_newGameDuration</span>) <span class="visibility">public</span> <span class="identifier">onlyOwner</span> {
-    <span class="function">require</span>(<span class="identifier">players.length</span>, "In order not to disadvantage players, the duration cannot be changed if the current game already has players");
+    <span class="function">require</span>(<span class="identifier">players.length</span> == 0, "In order not to disadvantage players, the duration cannot be changed if the current game already has players");
     <span class="identifier">gameDuration = _newGameDuration</span>;
   }
 
