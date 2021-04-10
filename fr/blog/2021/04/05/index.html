@@ -234,7 +234,7 @@ now
 <span class="type">uint</span> <span class="visibility">public</span> <span class="identifier">prixTicket</span> = 0.01 ether;
 <span class="type">uint</span> <span class="visibility">public</span> <span class="identifier">dureeJeu</span> = 1 days;
 <span class="type">address</span>[] <span class="visibility">private</span> <span class="identifier">joueurs</span>;
-<span class="type">uint</span> <span class="visibility">public</span> <span class="identifier">heureDebut</span>;
+<span class="type">uint</span> <span class="visibility">public</span> <span class="identifier">debutJeu</span>;
 	  </code></pre>
 
           	  <p>
@@ -254,8 +254,8 @@ now
               </p>
 <pre class="Solidity"><code>
 <span class="type">function</span> <span class="function">acheterTicket</span>() <span class="visibility">public</span> <span class="statemutability">payable</span> {
-  <span class="function">require</span>(<span class="blockdata">block.timestamp</span> <= <span class="identifier">debutJeu</span> + <span class="identifier">dureeJeu</span>, "La vente de tickets est fermée");
-  <span class="function">require</span>(<span class="blockdata">msg.value</span> == <span class="identifier">prixTicket</span>, "Le montant envoyé est différent du prix d'un ticket.");
+  <span class="function">require</span>(<span class="blockdata">block.timestamp</span> <= <span class="identifier">debutJeu</span> + <span class="identifier">dureeJeu</span>, "La vente de tickets est fermee");
+  <span class="function">require</span>(<span class="blockdata">msg.value</span> == <span class="identifier">prixTicket</span>, "Le montant envoye est different du prix d'un ticket.");
   <span class="identifier">joueurs.push</span>(<span class="blockdata">msg.sender</span>);
 }
   </code></pre>
@@ -316,7 +316,7 @@ now
   <span class="type">uint</span> <span class="visibility">public</span> <span class="identifier">prixTicket</span> = 0.01 ether;
   <span class="type">uint</span> <span class="visibility">public</span> <span class="identifier">dureeJeu</span> = 1 days;
   <span class="type">address</span>[] <span class="visibility">private</span> <span class="identifier">joueurs</span>;
-  <span class="type">uint</span> <span class="visibility">public</span> <span class="identifier">heureDebut</span>;
+  <span class="type">uint</span> <span class="visibility">public</span> <span class="identifier">debutJeu</span>;
 
   <span class="type">constructor</span>() {
     <span class="identifier">proprio</span> = <span class="blockdata">msg.sender</span>;
@@ -329,8 +329,8 @@ now
   }
 
   <span class="type">function</span> <span class="function">acheterTicket</span>() <span class="visibility">public</span> <span class="statemutability">payable</span> {
-    <span class="function">require</span>(<span class="blockdata">block.timestamp</span> <= <span class="identifier">debutJeu</span> + <span class="identifier">dureeJeu</span>, "La vente de tickets est fermée");
-    <span class="function">require</span>(<span class="blockdata">msg.value</span> == <span class="identifier">prixTicket</span>, "Le montant envoyé est différent du prix d'un ticket.");
+    <span class="function">require</span>(<span class="blockdata">block.timestamp</span> <= <span class="identifier">debutJeu</span> + <span class="identifier">dureeJeu</span>, "La vente de tickets est fermee");
+    <span class="function">require</span>(<span class="blockdata">msg.value</span> == <span class="identifier">prixTicket</span>, "Le montant envoye est different du prix d'un ticket.");
     <span class="identifier">joueurs.push</span>(<span class="blockdata">msg.sender</span>);
   }
 
@@ -350,13 +350,13 @@ now
   }
 
   <span class="type">function</span> <span class="function">changerPrixTicket</span>(<span class="type">uint</span> <span class="parameter">_nouveauPrix</span>) <span class="visibility">public</span> <span class="identifier">seulementProprio</span> {
-    <span class="function">require</span>(<span class="identifier">joueurs.length</span>, "Afin de ne pas désavantager les joueurs, le prix ne peut être changé si le jeu en cours possède déjà des participants");
-    <span class="identifier">ticketPrice = _newPrice</span>;
+    <span class="function">require</span>(<span class="identifier">joueurs.length</span> == 0 , "Afin de ne pas desavantager les joueurs, le prix ne peut etre changee si le jeu en cours possede deja des participants");
+    <span class="identifier">prixTicket = _nouveauPrix</span>;
   }
 
 
   <span class="type">function</span> <span class="function">changerDureeJeu</span>(<span class="type">uint</span> <span class="parameter">_nouvelleDureeJeu</span>) <span class="visibility">public</span> <span class="identifier">seulementProprio</span> {
-    <span class="function">require</span>(<span class="identifier">joueurs.length</span>, Afin de ne pas désavantager les joueurs, la durée ne peut être changée si le jeu en cours possède déjà des participants");
+    <span class="function">require</span>(<span class="identifier">joueurs.length</span> == 0, "Afin de ne pas desavantager les joueurs, la duree ne peut etre changee si le jeu en cours possede deja des participants");
     <span class="identifier">dureeJeu = _nouvelleDureeJeu</span>;
   }
 
