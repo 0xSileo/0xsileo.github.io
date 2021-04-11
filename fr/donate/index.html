@@ -8,7 +8,6 @@
   <link rel="stylesheet" type="text/css" href="/css/bloghome.css">
   <link rel="stylesheet" type="text/css" href="/css/mobile.css">
   <link rel="stylesheet" type="text/css" href="/css/donations.css">
-  <script type="text/javascript" src="/js/donations.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,13 +61,26 @@
   <div id="okur">
     Faire un don
   </div>
-  <h3>Merci. Votre soutien financier m'aide à devenir un autodidacte à temps plein.</h3>
+  <h3>Votre soutien financier m'aide à devenir un autodidacte à temps plein.</h3>
   <p>Comme vous l'aurez sûrement compris maintenant, une des choses qui me comble le plus est de pouvoir apprendre ce que je souhaite, quand je le souhaite. De plus, je suis bien plus efficace quand j'en ai la motivation. Avec les dons, je vise à couvrir les coûts de la vie quotidienne, afin de pouvoir me concentrer sur ce que je fais de mieux.
   </p>
   <p>
   Pour l'instant je n'accepte que les cryptos mais d'autres méthodes pourront suivre. <a href="../contact">Faites-moi savoir</a> s'il y a une méthode de paiement que vous souhaiteriez utiliser. Aussi, si vous utilisez le navigateur Brave et que vous avez gagné des BAT, vous pouvez m'envoyer un <em>tip</em> directement depuis le navigateur.
   </p>
-  <select onchange="cryptoChange(this)">
+
+
+    <div id="forMetamask" style="display: none;">
+      <h3>Un portefeuille a été détecté, utilisez-le maintenant pour faire un don!</h3>
+      <p id="networkChainP">Aucune chaîne détectée</p>
+      <p id="connexionStatusP">Vous n'êtes pas connecté.</p>
+      <button class="enableEthereumButton" style="margin: 0 auto; display: block;">Cliquez ici pour vous connecter.</button>
+      <p> Le montant initial est mis à 0.005 ETH et le prix du gaz est téléchargé depuis  <a rel="external" href="https://ethgasstation.info/" target="_blank">ethgasstation</a> mais vous pouvez changer ces valeurs dans Metamask. Pour faire un don, il suffit de cliquer sur le bouton suivant:</p>
+      <button class="sendEthButton" style="padding: 20px; text-align: center; color:var(--background-color); background-color:var(--content-color); border: 0px; margin: 0 auto; display: block; font-size : 18px; cursor: not-allowed; border-radius: 10px; opacity: 0.5;" disabled>Faire un don avec Metamask</button>
+      <p id="Donation"></p>
+      <p>Sinon, vous pouvez toujours utiliser les autres cryptos acceptées :</p>
+    </div>
+
+  <select onchange="cryptoChange(this)" style="padding: 10px;"">
     <option selected value='{"imageurl":"../../images/donations/crypto/eth_light.png","description":"Vous pouvez envoyer de l&apos;Ether à cette adresse, ainsi que n&apos;importe quel token ERC20 (USDT, BAT, LINK &hellip;). Si vous voulez, vous pouvez aussi me transférer la propriété d&apos;un token ER721.", "address":"0xA8f089E2f29822b9B3726Dc7AD38a4C942418083"}'>Ether</option>
     <option value='{"imageurl":"../../images/donations/crypto/btc_light.png","description":"Le Bitcoin est la crypto originale. J&apos;aime en hodl un peu parce que l&apos;idée derrière a complètement bouleversé le monde de la finance. ","address":"1RphadsEwBEhW1F1oCfV8Nm5o8NFaXhKq"}'>Bitcoin</option>
     <option value='{"imageurl":"../../images/donations/crypto/nano_light.png","description":"Nano est une cryptomonnaie qui ne requiert pas de frais de transaction, dont le transfer est quasi-instantané, et qui dépense peu d&apos;énergie. Certaines personnes la considèrent qu&apos;elle rassemble les qualités des cryptos en tant que monnaie; <em>crypto as it should be</em>.", "address":"nano_19xthqcquasmxy78so4rof99qjjycpgisz1iijmdr469j8eg8hdcz783q965"}'>Nano</option>
@@ -81,9 +93,11 @@
   <p id="CoinDescription">Vous pouvez envoyer de l'Ether à cette adresse, ainsi que n'importe quel token ERC20 (USDT, BAT, LINK &hellip;). Si vous voulez, vous pouvez aussi me transférer la propriété d'un token ER721.</p>
 
   <p>Voici l'addresse : <pre style="overflow:auto;"><code id="address">0xA8f089E2f29822b9B3726Dc7AD38a4C942418083</code></pre></p>
+ <h3 style="text-align:center;">Merci.</h3>
 </body>
 
 <script type="text/javascript" src="/js/mobile.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
 <script type="text/javascript" src="/js/cleantheme.js"></script>
+<script type="text/javascript" src="/js/fr_donations.js"></script>
 </html>
