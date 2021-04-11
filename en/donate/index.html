@@ -8,7 +8,6 @@
   <link rel="stylesheet" type="text/css" href="/css/bloghome.css">
   <link rel="stylesheet" type="text/css" href="/css/mobile.css">
   <link rel="stylesheet" type="text/css" href="/css/donations.css">
-  <script type="text/javascript" src="/js/donations.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,13 +61,25 @@
   <div id="okur">
     Donate
   </div>
-  <h3>Thank you. Your financial support helps me in becoming a full-time autodidact.</h3>
+  <h2>Your financial support helps me in becoming a full-time autodidact.</h2>
   <p>As you may have understood by now, one of the things that fulfills me the most is to be able to learn whatever I want, whenever I want. Additionnaly, I am much more efficient when I have the motivation. With donations, I seek to cover the costs of everyday life, so that I can focus on what I do best.
   </p>
   <p>
-  For now I'll only accept cryptos, but other methods might come later. <a href="../contact">Let me know</a> if there's an unsupported payment method that you'd like to use. Also, if you are a user of the Brave browser and have earned some BAT, you can make a tip directly in the browser! 
+  For now I'll only accept cryptos, but other methods might come later. <a href="../contact">Let me know</a> if there's an unsupported payment method that you'd like to use. Also, if you are a user of the Brave browser and have earned some BAT, you can make a tip directly in the browser!
   </p>
-  <select onchange="cryptoChange(this)">
+
+  <div id="forMetamask">
+    <h3>A browser wallet was detected, use it to donate !</h3>
+    <p id="networkChainP">Chain not detected.</p>
+    <p id="connexionStatusP">You are not connected.</p>
+    <button class="enableEthereumButton" style="margin: 0 auto; display: block;">Click here to connect</button>
+    <p> The initial amount is set to 0.005 ETH and the gas price is fetched from <a rel="external" href="https://ethgasstation.info/" target="_blank">ethgasstation</a> but you can change those values in MetaMask. To donate, just press the following button:</p>
+    <button class="sendEthButton" style="padding: 20px; text-align: center; color:var(--background-color); background-color:var(--content-color); border: 0px; margin: 0 auto; display: block; font-size : 18px; cursor: not-allowed; border-radius: 10px; opacity: 0.5;" disabled>Donate using Metamask</button>
+    <p id="Donation"></p>
+    <p>Otherwise, you can use the other supported cryptos :</p>
+  </div>
+
+  <select onchange="cryptoChange(this)" style="padding: 10px;">
     <option selected value='{"imageurl":"../../images/donations/crypto/eth_light.png","description":"You can send Ether to this address, as well as any ERC20 (USDT, BAT, LINK &hellip;) token. If you want, you can also transfer ownership of an ERC721 token.", "address":"0xA8f089E2f29822b9B3726Dc7AD38a4C942418083"}'>Ether</option>
     <option value='{"imageurl":"../../images/donations/crypto/btc_light.png","description":"Bitcoin is the OG of crypto. I like to hodl some because the idea behind it has drastically changed the game. ","address":"1RphadsEwBEhW1F1oCfV8Nm5o8NFaXhKq"}'>Bitcoin</option>
     <option value='{"imageurl":"../../images/donations/crypto/nano_light.png","description":"Nano is a feeless, instant and environmentally friendly cryptocurrency. Some people qualify it as <em>crypto as it should be</em>", "address":"nano_19xthqcquasmxy78so4rof99qjjycpgisz1iijmdr469j8eg8hdcz783q965"}'>Nano</option>
@@ -81,9 +92,12 @@
   <p id="CoinDescription">You can send Ether to this address, as well as any ERC20 (USDT, BAT, LINK &hellip;) token. If you want, you can also transfer ownership of an ERC721 token.</p>
 
   <p>Here is the address : <pre style="overflow:auto;"><code id="address">0xA8f089E2f29822b9B3726Dc7AD38a4C942418083</code></pre></p>
+  <h3 style="text-align:center;">Thank you.</h3>
+
 </body>
 
 <script type="text/javascript" src="/js/mobile.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
 <script type="text/javascript" src="/js/cleantheme.js"></script>
+<script type="text/javascript" src="/js/donations.js"></script>
 </html>
