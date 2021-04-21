@@ -35,7 +35,9 @@ d3.csv("https://raw.githubusercontent.com/Rphad/Decentraland-Online-Users/main/a
       title: {
         text: 'Number of players',
       }
-    }
+    },
+    width: window.innerWidth * 0.99,
+    height: window.innerHeight * 0.8
   };
 
   Plotly.newPlot('myDiv', data, layout);
@@ -47,7 +49,7 @@ window.addEventListener('resize', updatePlotlyLayout);
 function updatePlotlyLayout() {
   var update = {
     width: window.innerWidth * 0.99,
-    height: window.innerHeight *0.6
+    height: window.innerHeight *0.8
   }
   Plotly.relayout('myDiv', update);
 }
