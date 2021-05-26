@@ -2,24 +2,23 @@
 <html lang="en" dir="ltr">
 <head>
   <meta name="theme-color" content="#212b31">
-  <script async defer data-domain="rphad.com" src="https://plausible.io/js/plausible.js"></script>
-  <script type="text/javascript" src="/js/cleantheme.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/variables.css">
   <link rel="stylesheet" type="text/css" href="/css/main.css">
   <link rel="stylesheet" type="text/css" href="/css/fonts.css">
   <link rel="stylesheet" type="text/css" href="/css/bloghome.css">
   <link rel="stylesheet" type="text/css" href="/css/mobile.css">
-  <link rel="stylesheet" type="text/css" href="/css/aboutmenu.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About - Rphad</title>
+  <script async defer data-domain="rphad.com" src="https://plausible.io/js/plausible.js"></script>
+  <title>Blog - Rphad</title>
 </head>
-<body>  <div id="mySidepanel" class="sidepanel">
-    <a href="../blog">Blog</a>
-    <a href="." class="active">About</a>
+<body>
+  <div id="mySidepanel" class="sidepanel">
+    <a href="../blog" >Blog</a>
+    <a href="../about">About</a>
     <a href="../contact">Contact</a>
-    <a href="/fr/about" class=icon title="Passer en Français" id="langlink">
+    <a href="/fr/evm-nets" class=icon title="Passer en Français" id="langlink">
       <svg width="24" height="24" id="langicon" />
       &nbsp;en
     </a>
@@ -40,10 +39,10 @@
     <!-- Right-aligned links -->
     <div class="topnav-right">
       <a href="../blog">Blog</a>
-      <a href="." class="active">About</a>
+      <a href="../about">About</a>
       <a href="../contact">Contact</a>
 
-      <a href="/fr/about" class=icon title="Passer en Français" id="langlink">
+      <a href="/fr/evm-nets" class=icon title="Passer en Français" id="langlink">
         <svg width="24" height="24" id="langicon" />
         &nbsp;en
       </a>
@@ -59,22 +58,31 @@
       </div>
     </div>
   </div>
-  <div id="okur">
-    About
-  </div>
-  <p>
-  This part of the website will provide a better understanding about self-referential (aka <em>meta</em>) stuff, such as me or my projects. I intend to give a broader context to those subjects in order for a new visitor not to be lost. For now, there are two sections:
-  </p>
-  <ul class="aboutlist">
-    <li><a href="site">About this site</a></li>
-    <li><a href="me">About me</a></li>
-  </ul>
- <p>Also, if you'd like to support my work, you can take a look at my donation page :</p>
-   <ul class="aboutlist">
-     <li><a href="../donate">Donate</a></li>
-   </ul>
-</body>
 
-<script type="text/javascript" src="/js/mobile.js"></script>
-<script type="text/javascript" src="/js/main.js"></script>
+  <h2>Add the following networks in one click using Metamask</h2>
+  <p>For now, I only added Energy Web Chain and the button is ugly but at least it works. This will save you the hassle of manually adding the network.</p>
+  <button id="id246">Add Energy Web Chain to Metamask</button>
+
+  <script>
+    const id246 = document.querySelector('#id246');
+    id246.onclick = async () => {
+    await ethereum.request({
+      method: 'wallet_addEthereumChain',
+      params: [{
+        chainId: '0xF6',
+        rpcUrls: ["https://rpc.energyweb.org",
+    		  "wss://rpc.energyweb.org/ws"],
+        chainName: 'Energy Web Chain',
+        nativeCurrency: { name: 'Energy Web Token', decimals: 18, symbol: 'EWT' },
+        blockExplorerUrls: ['https://explorer.energyweb.org'],
+      }],
+    })
+  }
+  </script>
+
+    
+    <script type="text/javascript" src="/js/mobile.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    <script type="text/javascript" src="/js/cleantheme.js"></script>
+</body>
 </html>
