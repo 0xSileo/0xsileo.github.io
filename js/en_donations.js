@@ -18,7 +18,7 @@ if (typeof window.ethereum !== 'undefined') {
     "0x5": function(hash){return "https://goerli.etherscan.io/tx/" + hash},
     "0x2a": function(hash){return "https://kovan.etherscan.io/tx/" + hash}
   }
-  
+
   let accounts;
   const chainP = document.querySelector('#networkChainP')
   const statusP = document.querySelector('#connexionStatusP');
@@ -37,7 +37,7 @@ if (typeof window.ethereum !== 'undefined') {
   getChains();
   getAccount();
   getNet();
-	
+
   ethereumButton.addEventListener('click', () => {
     getAccount();
   });
@@ -58,7 +58,7 @@ if (typeof window.ethereum !== 'undefined') {
 	chainP.innerHTML = 'You are using the Ethereum Mainnet';
     }
   }
-  
+
   ethereum.on('chainChanged', (chainId) => {
   // Handle the new chain.
   // Correctly handling chain changes can be complicated.
@@ -67,7 +67,7 @@ if (typeof window.ethereum !== 'undefined') {
     i++;
   });
 
-  ethereum.on('accountsChanged', function (accounts) {
+  ethereum.on('accountsChanged', function () {
     window.location.reload();
     i++
   });
