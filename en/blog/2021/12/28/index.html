@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="theme-color" content="#212b31">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/js/cleantheme.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/variables.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/highlight/solidity.css">
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/css/mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <title>Capture the Ether writeup | Rphad</title>
+  </head>
+  <body>
+    <div id="mySidepanel" class="sidepanel">
+      <a href="../../.." class="active">Blog</a>
+      <a href="../../../../about">About</a>
+      <a href="../../../../contact" >Contact</a>
+      <a href="/fr/blog/2021/12/28" class=icon title="Passer en Français" id="langlink">
+        <svg width="24" height="24" id="langicon" />
+        &nbsp;en
+      </a>
+      <button onclick="changeTheme()" class="themebtn">
+        <svg width="24" height="24" class="themeSvg" />
+      </button>
+    </div>
+
+  <!-- Top navigation -->
+  <div class="topnav">
+    <!-- Left-aligned links (default) -->
+    <a href="/en" id="logo" title="Home">
+       R<span id="logo_fn">aphaël </span>
+       D<span id="logo_ln">eknop </span>
+    </a>
+    <!-- Right-aligned links -->
+    <div class="topnav-right">
+      <a href="../../.." class="active">Blog</a>
+      <a href="../../../../about">About</a>
+      <a href="../../../../contact" >Contact</a>
+      <a href="/fr/blog/2021/12/28" class=icon title="Passer en Français" id="langlink">
+        <svg width="24" height="24" id="langicon" />
+        &nbsp;en
+      </a>
+
+      <button onclick="changeTheme()" id="themebtn">
+        <svg width="24" height="24" id="themeSvg" class="themeSvg"/>
+      </button>
+
+      <div class="container" onclick="MobileMenu(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+    </div>
+  </div>
+  <article>
+    <h1>Capture The Ether writeup</h1>
+      <h2>Introduction</h2>
+        <p>
+          I recently achieved a perfect score (11600/11600) at the <a href="https://www.capturetheether.com" target="_blank" rel="external">Capture the ether</a> series of smart contract security challenges. Here are the notes I took while solving them, followed by a conclusion. I made my points a bit more explanatory after I finished, but it’s still an overwiew of the steps I took rather than a tutorial. Please don’t read this if you want to attempt the challenges yourself.
+        </p>
+      <h2>Preliminary notes</h2>
+        <p>
+          The challenge flow is usually the following :
+          <ol>
+            <li>Begin the challenge by submitting a tx to the CTE contract. This creates an instance of the contract that you will need to attack</li>
+            <li>Solve the challenge by interacting with the recently deployed contract</li>
+            <li>Call the ‘Check solution’ tx on the website, which will check the <code class="inline">isComplete</code> status of the recently deployed contract.</li>
+          </ol>
+          Ok, let's dive into it.
+        </p>
+      <h2>1. Warmup</h2>
+        <h3>1.1 Deploy a contract</h3>
+          <p>This is a trivial blockchain interaction that can be done using Remix.</p>
+        <h3>1.2 Call me</h3>
+          <p>
+            Trivial too, deploy the contract and call <code class="inline">callme()</code>. I did this by verifying the contract on Etherscan (which creates the UI automatically) but it is feasible without verifying it, because we have the abi and can create the encoded data.
+          </p>
+        <h3> 1.3 Choose a Nickname</h3>
+          <p>
+            This one was a bit tricky. Because the <code class="inline">setNickname()</code> function of the CTE contract is public, we should be able to call it directly. I used the <code class="inline">encodeFunctionData</code> of ethers.io. Because the accepted data is of type <code class="inline">bytes32</code>, we cannot pass a string directly. I decided to convert the string to a hexadecimal base offchain, but a contract which takes a string as an input and returns the hex encoding can be done on chain. I failed several times because I padded the hex data on the wrong side. I’m used to having the zeros at the beginning but looking at the line of the verifying function :
+          </p>
+          <pre class="Solidity"><code>
+<span class="keyword">return</span> <span class="identifier">cte.nicknameOf</span>(<span class="identifier">player</span>)[0] != 0;
+          </code></pre>
+          <p>
+            we see that it’s the first byte that needs to be modified. So instead of passing
+          </p>
+      <pre class="Solidity"><code>
+0x00000000000000000000000000000000000005261706861eb6c2044656b6e6f7
+      </code></pre>
+      <p>I needed to pass</p>
+      <pre class="Solidity"><code>
+0x5261706861eb6c2044656b6e6f70000000000000000000000000000000000000
+      </code></pre>
+      <h2> 2. Lotteries</h2>
+        <h3> 2.1 Guess the number</h3>
+          <p>It’s visible on the contract code at <code class="inline">uint8 answer = 42;</code> so we can pass it directly.</p>
+        <h3> 2.2 Guess the secret number</h3>
+          <p>Since the stored hash is the one of an 8 bit number (<code class="inline">uint8</code>), it can be bruteforced offchain.</p>
+        <h3>2.3 Guess the random number</h3>
+          <p>I struggled a bit with this one. The main issue I had was that I didn’t pass the timestamp in the <code class="inline">uint256()</code> function, which caused the hash to be different. I deployed the contract and then used etherscan to retrieve the block hash of the preceding block and the timestamp. This can be done on chain (the hash of a block can only be accessed for the 256 following blocks though) or offchain with a library. In the end I deployed locally a contract containing this line:</p>
+      <pre class="Solidity"><code>
+answer = <span class="type">uint8</span>(keccak256(<span class="type">bytes32</span>(&lt;block_hash_prefixed_with_0x&gt;), <span class="type">uint256</span>(&lt;unix_timestamp&gt;)));
+      </code></pre>
+        <h3> 2.4 Guess the new number</h3>
+          <p>
+            For this, a new contract must be deployed. This will calculate the answer beforehand and then call the guess function within the same transaction. (and the same block). This is my contract :
+          </p>
+      <pre class="Solidity"><code>
+<span class="keyword">pragma solidity</span> <span class="version">^0.4.21</span>;
+
+<span class="type">interface</span> <span class="identifier">GuessTheNewNumberChallenge</span> {
+<span class="type">function</span> <span class="function">guess</span>(<span class="type">uint8</span> n) <span class="visibility">external</span> <span class="statemutability">payable</span>;
+}
+
+<span class="type">contract</span> computeAnswer {
+
+  <span class="type">function</span>() <span class="statemutability">payable</span> {}
+  GuessTheNewNumberChallenge <span class="identifier">gtnnc</span> = GuessTheNewNumberChallenge(0x356Fe316C0Ad5C1A10596b17382C49a15A251b61);
+
+  <span class="type">function</span> <span class="function">compute</span>() <span class="visibility">public</span> <span class="statemutability">payable</span> {
+    <span class="type">uint8</span> <span class="identifier">computedAnswer</span> = <span class="type">uint8</span>(keccak256(<span class="blockdata">block.blockhash</span>(<span class="blockdata">block.number</span> - 1), <span class="blockdata">now</span>));
+    <span class="type">uint</span> <span class="identifier">valueToSend</span> = 1 ether;
+    gtnnc.guess.value(<span class="identifier">valueToSend</span>)(<span class="identifier">computedAnswer</span>);
+  }
+}</code></pre>
+          <p>
+            There needs to be a fallback function, that’s what the <code class="inline">function() payable {}</code> does, because the contract needs to call the other contract with a value of 1 ETH. However, I was a bit dumb and forgot to implement a withdraw function, so the eth is locked in my attacker contract… At least, the other one is drained, so I passed the challenge. I also spent some time figuring out the correct syntax to call another function and specify the value (it’s <code class="inline">pragma solidity ^0.4.21</code> after all).
+          </p>
+        <h3>2.5 Predict the future</h3>
+          <p>
+            For this challenge, a contract needs to be deployed. We see that we <em>must</em> make the prediction before the block is mined. However, since we take the uint8 of the hash <em>modulo</em> 10 (<code class="inline">%10</code>), we can attempt a brute force.
+          </p>
+          <p>
+            First we will set an arbitrary value between 0 and 9. We must do this to change the <code class="inline">guesser</code> address to our own. Then, we’ll check if the result is that one and, if so, call the <code class="inline">settle()</code> function. First, I called the <code class="inline">lockInGuess</code> function directly but because the contract I deployed was calling the <code class="inline">settle()</code>, the <code class="inline">msg.sender == guesser</code> requirement was not met. I then rewrote the attacker contract in order for me to be able to call the <code class="inline">lockInGuess</code> function. Then I repeatedly called the <code class="inline">compute</code> function of my attacker contract, that computes the answer and, if it’s the same as we set before (I chose 6), calls <code class="inline">settle()</code>. The average number of tries is 10, which is perfectly doable by hand.
+          </p>
+          <p>
+            I noticed there was a failure in my 1st attempt because of the number of tries that failed. I then looked at the gas spent and noticed that some were higher. By computing the value by hand for those, I saw that despite the right number being computed, there was an error. Also, since I hadn’t put an error message, only the gas spent was telling me that the <code class="inline">revert</code> error came from the victim contract.
+          </p>
+        <h3>2.6 Predict the block hash</h3>
+          <p>
+            To solve this challenge, I made use of the limits of the <code class="inline">block.blockhash()</code> special function. Indeed, as written in the <a href="https://docs.soliditylang.org/en/v0.4.24/units-and-global-variables.html#block-and-transaction-properties" target="_blank" rel="external">docs</a> : &gt; <code class="inline">block.blockhash(uint blockNumber) returns (bytes32)</code>: hash of the given block - only works for 256 most recent, excluding current, blocks - deprecated in version 0.4.22 and replaced by <code class="inline">blockhash(uint blockNumber)</code>
+          </p>
+          <p>
+            So, if I set the hash to the default one (<code class="inline">0x0000...0</code> for 32 bytes), and waited 256+ blocks (approx. 1h at the time of writing) to call the <code class="inline">settle()</code> function, the hash would be the same, as I would be looking to far back into the past and the function returns a 0x0 hash.
+          </p>
+      <h2>3. Math</h2>
+        <h3>3.1 Token sale</h3>
+          <p>
+            Okay, this one took me some time to figure out. One hypothesis I had at first (and was like 80% convinced that it wouldn’t work) was to try to sell 0 tokens and see if the contract somehow had to pay for the gas. As I suspected, it’s always the caller (EOA) that pays gas. So I had to search more. I finally thought that there should be some kind of integer overflow -or underflow- somewhere. The <code class="inline">-=</code>, <code class="inline">+=</code> operations, as well as the challenge being in the math section were signs that I was on the right track. After some searching, it came to mint that an overflow can also be obtained after a multiplication. The <code class="inline">msg.value</code> of a tx is a <code class="inline">uint256</code> after all. And 1 eth = 10<sup>18</sup> wei. So if I managed to get an overflow that resulted in the smallest result possible, I could use it as the value, and have plenty of tokens on the balance while having spent a little. We can divide the biggest uint256 number, aka, in decimal :
+          </p>
+      <pre class="Solidity"><code>
+115792089237316195423570985008687907853269984665640564039457584007913129639936
+</code></pre>
+      <p>by 18, which gives :</p>
+      <pre class="Solidity"><code>
+115792089237316195423570985008687907853269984665640564039457.584007913129639936
+</code></pre>
+      <p>If we round this to have an integer, we get :</p>
+      <pre class="Solidity"><code>
+115792089237316195423570985008687907853269984665640564039458
+</code></pre>
+      <p>Then, by multiplying this by <code class="inline">1 ether</code> (i.e. 1<sup>18</sup>), we get</p>
+      <pre class='Solidity'><code>
+415992086870360064
+      </code></pre>
+          <p>which is <code class="inline">0.415992086870360064 ether</code>. This isn’t a huge amount to get, so it’s feasible.</p>
+          <p>
+            By calling <code class="inline">buy()</code> with <code class="inline">115792089237316195423570985008687907853269984665640564039458</code> tokens as parameter and a value of <code class="inline">0.415992086870360064 ether</code>, the requirement <code class="inline">msg.value == numTokens * PRICE_PER_TOKEN</code> should be met. The contract balance is now <code class="inline">1.415992086870360064 ether</code>. We can then <code class="inline">sell()</code> 1 token to get an ether back, and we have a huge balance so it’s ok. The contract balance is now 0.41.. eth, meeting the requirement to pass the challenge.
+          </p>
+        <h3>3.2 Token whale</h3>
+          <p>
+            The trick for this one lays in a hardcoded value of <code class="inline">msg.sender</code> in the <code class="inline">_transfer</code> function. Generally, this wouldn’t pose a problem, but because we are implementing an allowance system that allows one party to transfer tokens on behalf of another party, the <code class="inline">_transfer</code> function needs to account for it. Here are the steps : 1. Account <code class="inline">player</code> starts with 1000 tokens and sends them to account <code class="inline">player2</code>. (the accounts are owned by the same person) 2. <code class="inline">player2</code> authorises <code class="inline">player</code> to spend tokens on its behalf 3. <code class="inline">player</code> uses the <code class="inline">transferFrom()</code> function to transfer a nonzero amount of tokens to any other address. This will meet the requirements. The last line calls the <code class="inline">_transfer()</code> function, which has the following line :
+          </p>
+      <pre class="Solidity"><code>
+<span class="identifier">balanceOf</span>[<span class="blockdata">msg.sender</span>] -= <span class="identifier">value</span>;
+      </code></pre>
+          <p>and because the token balance of <code class="inline">player</code> is 0, we have an integer underflow, resulting in an enormous balance, meeting the requirement for the challenge.</p>
+        <h3>3.3 Retirement fund</h3>
+          <p>What immediately stands out is that if we manage to set</p>
+      <pre class="Solidity"><code>
+<span class="type">uint256</span> <span class="identifier">withdrawn</span> = <span class="identifier">startBalance</span> - <span class="type">address</span>(<span class="blockdata">this</span>)<span class="blockdata">.balance</span>;
+      </code></pre>
+          <p>to a nonzero value, we can meet the requirement and get all the funds from the <code class="inline">collectPenalty()</code> function.</p>
+          <p>
+            We cannot change the startbalance, so if we can change the contract balance, we can have an integer underflow. However, it’s not as easy as sending ETH to the contract, because it doesn’t have a payable fallback function. So, we can create an other contract and forcefully send ether to our victim contract, using the selfdestruct method. (more info in <a href="https://www.youtube.com/watch?v=cODYglsn3bs" target="_blank" rel="external"> this video by the channel Smart Contract Programmer</a>).
+          </p>
+        <h3>3.4 Mapping</h3>
+          <p>
+            This challenge is confusing at first because one has to change the value of the <code class="inline">isComplete</code> variable where there apparently is no way to do it. One piece of documentation I found interesting was the <a href="https://programtheblockchain.com/posts/2018/03/09/understanding-ethereum-smart-contract-storage" target="_blank" rel="external">Program the Blockchain article titled “Understanding Ethereum Smart Contract Storage”</a>, particularly the “Locating Dynamically-Sized Values” paragraph.
+          </p>
+          <p>
+            So, our <code class="inline">isComplete</code> variable is stored at slot 0 with a value of 0. The goal is therefore to change it to a 1, corresponding to <code class="inline">true</code>, for a boolean. For that, we can use the provided functions. We know that <code class="inline">map</code> is “stored” at slot 1, and that for any element with index <code class="inline">index</code> of size <code class="inline">elementSize</code>, its storage slot will be
+          </p>
+      <pre class="Solidity"><code>
+<span class="type">uint256</span>(keccak256(<span class="identifier">slot</span>)) + (<span class="identifier">index</span> * <span class="identifier">elementSize</span>);
+      </code></pre>
+          <p>where <code class="inline">slot</code> is the slot of our <code class="inline">map</code> array.</p>
+          <p>So, we’d like to store something at slot 1, so, with an elementSize of 1 (easier), which index should we use to do so ? Essentially, we can solve the equation for <code class="inline">index</code>, keeping the integer overflows in mind. We have that</p>
+      <pre class="Solidity"><code>
+<span class="type">uint256</span>(keccak256(1)) = 80084422859880547211683076133703299733277748156566366325829078699459944778998
+</code></pre>
+          <p>and we want to add <code class="inline">x</code> so that the result is 0. We can do <code class="inline">8008442...78998 + x =</code> 2<sup>256</sup> because the max value is 2<sup>256</sup>-1 since we start from 0. This would give us the index we should use in order to overflow to 0. The result is:</p>
+      <pre class="Solidity"><code>
+35707666377435648211887908874984608119992236509074197713628505308453184860938
+</code></pre>
+          <p>and, indeed it works ! We can now call the <code class="inline">set()</code> to store 1 at the index found. This overwrites the value of the <code class="inline">isComplete</code> variable to 1.</p>
+        <h3>3.5 Donation</h3>
+          <p>
+            At first I didn’t exacly understand how it went. I then saw that by making a donation, the <code class="inline">owner</code> address changed. Then I looked at the remix warnings and saw that there was one warning that said <code class="inline">uninitialized storage reference</code>. This means that the <code class="inline">donations[]</code> array starts at slot 0, which stores the length and then uses the slots 1,2,3… By making a donation, the <code class="inline">timestamp</code> overwrites <code class="inline">donations.length</code> and <code class="inline">donation.etherAmout</code> overwrites the <code class="inline">owner</code>, stored at slot 1. Conveniently, the challenge is designed so that the amount to send isn’t astronomically large. We can therefore pass our address as the <code class="inline">etherAmount</code> parameter and add the corresponding value to the tx.
+          </p>
+        <h3>3.6 Fifty years</h3>
+          <p>
+            The main idea is to submit 2 contributions: one that’s 2<sup>256</sup>-1 days for the unlockTimestamp and a second one that is 0 for the timestamp. so that, when withdrawing, because the function assumes that the timestamp only go by increasing value, we can withdraw for index 2 (which unlocks at 0) and get the eth from indexes 0 and 1. But it’s not so simple.
+          </p>
+          <p>
+            A bit of playing around with remix + looking at the storage and making variables public show us that &gt; <code class="inline">contribution.amount = msg.value</code> overwrites <code class="inline">queue.length</code>. Then <code class="inline">queue.push</code> increments <code class="inline">queue.length</code> So, in the first tx, the message value needs to be 1 wei as not to overwrite the 1eth contribution, and the second tx needs to have a value of 2wei. The total is 1et + 2wei +3wei because each time, the push incremented the variable by 1. So the balance is 1ETH and 3 wei and the total amount is 1 ETH and 5 wei, so we need to force send 2 wei to the contract.
+          </p>
+          <p>
+            Also, the <code class="inline">head</code> variable changes with the timestamp so it’s important we set the timestamp to 0 instead of any other value in the past because we want to loop from index 0 to 3 when we withdraw (and the head needs to be at 0 for this).
+          </p>
+      <h2>4. Accounts</h2>
+        <h3>4.1 Fuzzy identity</h3>
+          <p>
+            The requirements to pass this challenge are to call the <code class="inline">authenticate()</code> function with an address that: 1. Has a <code class="inline">name()</code> function which returns <code class="inline">bytes32("smarx")</code>, thus that address needs to be a smart contract. 2. Has <code class="inline">badc0de</code> somewhere in the address.
+          </p>
+          <p>Smart contract addresses are deterministic and depend on the deployer’s address and nonce (number of txs sent from the deployer). There are 2 ways to tackle this, both by bruteforce:</p>
+            <ul>
+              <li>Check which nonce needs to be used with an address you control to have such a contract</li>
+              <li>Generate random addresses and compute the address of the SC with nonce 0</li>
+            </ul>
+          <p>I chose to go with the latter, as it’s easier to create a new address rather than change the nonce of an existing one.</p>
+        <h3>4.2 Public Key</h3>
+          <p>
+            The account has sent a transaction so we know that we can recover the public key easily, because we know the message and the signature. There is a tool <a href="https://toolkit.abdk.consulting/ethereum#recover-address" target="_blank" rel="external">here</a> that lets us recover it easily when providing the <a href="https://ropsten.etherscan.io/getRawTx?tx=0xabc467bedd1d17462fcc7942d0af7874d6f8bdefee2b299c9168a216d3ff0edb" target="_blank" rel="external">raw transaction hex</a>. Otherwise, Christoph Michel has written a more detailed explaination in one <a href="https://cmichel.io/capture-the-ether-solutions/" target="_blank" rel="external">blog post</a>. I initially struggled because I forgot to remove the first byte (<code class="inline">04</code>) from the uncompressed public key.
+          </p>
+        <h3>4.3 Account Takeover</h3>
+          <p>
+            I was first surprised by the shortness of the victim contract. Then I noticed that it was the second biggest challenge in terms of points. After having put my knowledge in question, I concluded that there was nothing wrong in the contract itself.
+          </p>
+          <p>
+            One thing that reinforced the idea that the contract didn’t contain any error, and that I had to look elsewhere was the fact that the address was hardcoded, and not different for each player. The problem had to do with that particular address; maybe it was a vulnerable contract, maybe the private key used wasn’t properly generated or leaked somewhere, maybe I had to look on other chains.
+          </p>
+          <p>
+            I then decided to look at the earliest transactions made on the ropsten network. At first, nothing was wrong but at one point, in the weeds I found an oddity: these two transactions (<a href="https://ropsten.etherscan.io/tx/0xd79fc80e7b787802602f3317b7fe67765c14a7d40c3e0dcb266e63657f881396" target="_blank" rel="external">tx1</a>, <a href="https://ropsten.etherscan.io/tx/0x061bf0b4b5fdb64ac475795e9bc5a3978f985919ce6747ce2cfbbcaccaf51009" target="_blank" rel="external">tx2</a>) have the same value for <code class="inline">r</code>, which is supposed to be different for every tx, as it results from an elliptic curve signature. This was clearly wrong and reminded me of the <a href="https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm#Security" target="_blank" rel="external">2010 hack of the Sony Playstation 3</a>. The private key of the <code class="inline">owner</code> address can therefore be retrieved and used to call the <code class="inline">authenticate()</code> function.
+          </p>
+      <h2>5.Miscellaneous</h2>
+        <h3>5.1 Assume ownership</h3>
+          <p>This is straightforward; call <code class="inline">AssumeOwnershipChallenge()</code> to set the owner and then <code class="inline">authenticate()</code>. I believe that this was put in a challenge as the function has the same name as the contract and thus acts as a constructor upon deployment.</p>
+        <h3>5.2 Token Bank</h3>
+          <p>I was waiting for a reentrancy attack and we finally got one ! As <a href="http://samczsun.com/" target="_blank" rel="external">samczsun</a> put it well in his <a href="https://youtu.be/95_RmIAqRy0" target="_blank" rel="external">Gitcoin talk</a>, the first thing to look for are external calls. Here, the bank makes an external call to the token contract in the requirement, before updating the value.</p>
+      <pre class="Solidity"><code>
+<span class="function">require</span>(<span class="identifier">token</span>.<span class="function">transfer</span>(<span class="blockdata">msg.sender</span>, <span class="identifier">amount</span>));
+      </code></pre>
+      <p>that function calls the more general <code class="inline">transfer(address to, uint256 value, bytes data)</code> function, with empty bytes for the <code class="inline">data</code> parameter. Then, another external call is made that checks whether the recipient (which is the caller of the bank’s <code class="inline">withdraw</code> function) is a contract :</p>
+      <pre class="Solidity"><code>
+<span class="keyword">if</span> (<span class="identifier">isContract</span>(<span class="identifier">to</span>)) {
+<span class="identifier">ITokenReceiver</span>(<span class="identifier">to</span>).<span class="identifier">tokenFallback</span>(<span class="blockdata">msg.sender</span>, <span class="identifier">value</span>, <span class="identifier">data</span>);
+}
+      </code></pre>
+          <p>the vulnerability here is that it just <em>assumes</em> that the contract will be the bank’s one and not another one. We can then create a malicious function called <code class="inline">tokenFallback</code> that will be called by the token contract.</p>
+          <p>To satisfy the requirements, we need to have tokens in the contract but it’s not possible to send them once the contract is deployed because of that same <code class="inline">isContract(to)</code> check. So, we’ll compute the address of the contract beforehand, send the tokens, and only after we sent them, deploy the contract.</p>
+          <p>The contract essentially does 3 things:</p>
+            <ol type="1">
+              <li>Put the tokens it has received in the bank (<code class="inline">IToken(token).transfer(bank,balance)</code>)</li>
+              <li>Initiate a withdrawal, which will call the token transfer function that itself will call our <code class="inline">tokenFallback</code> function</li>
+              <li>When the <code class="inline">tokenFallback</code> function of our contract is called, we initiate a second withdrawal but the first one hasn’t finished so our balance hasn’t been decreased. This lets us transfer tokens to us once more, effectively emptying the Bank.</li>
+            </ol>
+          <p>To prevent an infinite loop, we add a <code class="inline">hasBeenCalled</code> bool, which only lets our <code class="inline">tokenFallback</code> be called once. I made a mistake for my first try and set the bool to update <em>after</em> the <code class="inline">withdraw</code> call, making it useless.</p>
+      <h2>Conclusion</h2>
+        <p>I very much enjoyed this challenge and must thank <a href="https://twitter.com/smarx" target="_blank" rel="external">@smarx</a> for creating it. I learned a lot by doing it and I’m quite proud of the progress I’ve made since I began learning Solidity (approximately at the time of my <a href="../../04/05">last post</a>). The more I dig into the Ethereum ecosystem, the more I’m eager to learn its most complex inner workings.</p>
+</article>
+</body>
+
+<script type="text/javascript" src="/js/mobile.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+</html>
