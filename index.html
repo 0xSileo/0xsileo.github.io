@@ -1,32 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<script>
-const SupportedLangs = ["fr","en"];
-var UserLangCookie = localStorage.getItem("UserLang");
-const UserLanguage = navigator.language
-const UserLang = UserLanguage.slice(0,2)
+<head>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#212b31">
+  <link rel="stylesheet" type="text/css" href="/css/variables.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <title>Sileo</title>
+</head>
+<body>
+  <div id="mySidepanel" class="sidepanel">
+    <a href="blog">Blog</a>
+    <a href="info">Info</a>
+</div>
 
-if (UserLangCookie) {
-  window.location.href = UserLangCookie
-} else if (SupportedLangs.includes(UserLang)) {
-    window.location.href=UserLang
-    localStorage.setItem("UserLang", UserLang)
-  } else {
-    window.location.href="en"
-    localStorage.setItem("UserLang", "en")
-  }
+  <!-- Top navigation -->
+  <nav class="topnav">
 
+    <!-- Left-aligned links (default) -->
+    <a href="/en" class="active" id="logo" title="Home">
+       R<span id="logo_fn">aphaël </span>
+       D<span id="logo_ln">eknop </span>
+    </a>
 
+    <!-- Right-aligned links -->
+    <div class="topnav-right">
+      <a href="blog">Blog</a>
+      <a href="info">Info</a>
 
-</script>
-  <head>
-    <script async defer data-domain="rphad.com" src="https://plausible.io/js/plausible.js"></script>
-    <meta charset="utf-8">
-    <title>Lanuague choice - Rphad</title>
-  </head>
-  <body>
-    This site doesn't have a version in the language of your browser (<b><script>document.write(UserLanguage)</script></b>). Please choose a language.
-    <h3> <a href="en">English version</a></h3>
-    <h3> <a href="fr">Version française</a></h3>
-  </body>
+      <div class="container" onclick="MobileMenu(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+    </div>
+
+  </nav>
+
+  <div id="homemsg">
+    I am <span id="introname">Sileo</span>, living between <span id="bits">bits</span> and <span id="atoms">atoms</span>.
+    <img src="https://sileo.dev/pfp.jpg" width="250" id="profile">
+  </div>
+</body>
+
+<script type="text/javascript" src="/js/mobile.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
 </html>

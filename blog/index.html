@@ -10,28 +10,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-  <script async defer data-domain="rphad.com" src="https://plausible.io/js/plausible.js"></script>
-  <title>Blog - Rphad</title>
+  <title>Blog - Sileo</title>
 </head>
 <body>
   <div id="mySidepanel" class="sidepanel">
     <a href="." class="active">Blog</a>
-    <a href="../about">About</a>
-    <a href="../contact">Contact</a>
-    <a href="/fr/blog" class=icon title="Passer en Français" id="langlink">
-      <svg width="24" height="24" id="langicon" />
-      &nbsp;en
-    </a>
-    <button onclick="changeTheme()" class="themebtn">
-      <svg width="24" height="24" class="themeSvg" />
-    </button>
+    <a href="../info">Info</a>
   </div>
 
   <!-- Top navigation -->
   <div class="topnav">
 
     <!-- Left-aligned links (default) -->
-    <a href="/en" id="logo" title="Home">
+    <a href="/" id="logo" title="Home">
        R<span id="logo_fn">aphaël </span>
        D<span id="logo_ln">eknop </span>
     </a>
@@ -39,17 +30,8 @@
     <!-- Right-aligned links -->
     <div class="topnav-right">
       <a href="." class="active">Blog</a>
-      <a href="../about">About</a>
-      <a href="../contact">Contact</a>
+      <a href="../info">Info</a>
 
-      <a href="/fr/blog" class=icon title="Passer en Français" id="langlink">
-        <svg width="24" height="24" id="langicon" />
-        &nbsp;en
-      </a>
-
-      <button onclick="changeTheme()" id="themebtn">
-        <svg width="24" height="24" id="themeSvg" class="themeSvg"/>
-      </button>
 
       <div class="container" onclick="MobileMenu(this)">
         <div class="bar1"></div>
@@ -59,46 +41,34 @@
     </div>
   </div>
 
-  <div id="okur">
+  <h1>
     Blog
-  </div>
+  </h1>
   <h2>Editorial slant</h2>
   <p>I have decided not to put any limitation concerning the covered disciplines in this blog, as long as I consider myself qualified enough to write about it. I might write opinion-based posts but the premises on which I base my reasoning must remain true regardless of any school of thought. A post might be aimed at the general public or at a smaller subset of readers depending on the technicality and prerequisites that its writing implies. </p>
   <h2>Posts</h2>
   <p>All the posts are listed here. The date assigned to them is the date of publication. Some updates might have been made since, in which case it is mentionned in the post.</p>
 
-<h3 class="blogyear">2021</h3>
-  <h4 class="blogmonth">December</h4>
-  <ul class="bloglist">
-    <li>
-      <a href="2021/12/30">Capture the Ether writeup</a>
-    </li>
-  </ul>
-  <h4 class="blogmonth">April</h4>
-  <ul class="bloglist">
-    <li>
-      <a href="2021/04/05">Fun with Ethereum smart contracts</a>
-    </li>
-  </ul>
-  <h4 class="blogmonth">February</h4>
-  <ul class="bloglist">
-    <li>
-      <a href="2021/02/24">The first version of my website is live!</a>
-    </li>
-  </ul>
 
-<h3 class="blogyear">2020</h3>
-  <h4 class="blogmonth">October</h4>
-    <ul class="bloglist">
-  <li><a href="2020/10/27">A proposal to cancel systematical errors in an experimental setup on the photoelectric effect</a></li>
-</ul>
-  <h4 class="blogmonth">July</h4>
-    <ul class="bloglist">
-  	  <li><a href="2020/07/30">A first look at Generative Adversarial Networks</a></li>
+  <div id="bloglangs">
+    <label><input type="checkbox" id="en" checked> English</label>
+    <label><input type="checkbox" id="fr"> Français</label>
+
+
+    <ul id="bloglist">
+      <li class="english"><a href="2021/12/30"><span class="postdate">[30 Dec 2021]</span> <span class="posttitle">Capture the Ether writeup</span></a></li>
+      <li class="english"><a href="2021/04/05"><span class="postdate">[05 Apr 2021]</span> <span class="posttitle">Fun with Ethereum smart contracts</span></a></li>
+      <li class="french"><a href="../../fr/blog/2021/04/05"><span class="postdate">[05 Apr 2021]</span> <span class="posttitle">Expérimentations avec les smart contracts d'Ethereum</span></a></li>
+      <li class="english"><a href="2021/02/24"><span class="postdate">[24 Feb 2021]</span> <span class="posttitle">The first version of my website is live!</span></a></li>
+      <li class="french"><a href="../../fr/blog/2021/02/24"><span class="postdate">[24 Feb 2021]</span> <span class="posttitle">La première version de mon site est en ligne!</span></a></li>
+      <li class="english"><a href="2020/10/27"><span class="postdate">[27 Oct 2020]</span> <span class="posttitle">A proposal to cancel systematical errors in an experimental setup on the photoelectric effect</span></a></li>
+      <li class="french"><a href="../../fr/blog/2020/10/27"><span class="postdate">[27 Oct 2020]</span> <span class="posttitle">Proposition pour annuler les erreurs systématiques dans un dispositif expérimental sur l'effet photoélectrique</span></a></li>
+      <li class="english"><a href="2020/07/30"><span class="postdate">[30 Jul 2020]</span> <span class="posttitle">A first look at Generative Adversarial Networks</span></a></li>
+      <li class="french"><a href="../../fr/blog/2020/07/30"><span class="postdate">[30 Jul 2020]</span> <span class="posttitle">Un premier coup d'œil aux réseaux antagonistes génératifs</span></a></li>
     </ul>
-    <script type="text/javascript" src="/js/mobile.js"></script>
+  </div>
+  <script type="text/javascript" src="/js/mobile.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
-    <script type="text/javascript" src="/js/cleantheme.js"></script>
-    <script type="text/javascript" src="/js/blogmenu.js"></script>
+    <script type="text/javascript" src="/js/langfilters.js"></script>
 </body>
 </html>

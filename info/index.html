@@ -2,54 +2,37 @@
 <html lang="en" dir="ltr">
 <head>
   <meta name="theme-color" content="#212b31">
+  <script async defer data-domain="rphad.com" src="https://plausible.io/js/plausible.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/variables.css">
   <link rel="stylesheet" type="text/css" href="/css/main.css">
   <link rel="stylesheet" type="text/css" href="/css/fonts.css">
   <link rel="stylesheet" type="text/css" href="/css/bloghome.css">
   <link rel="stylesheet" type="text/css" href="/css/mobile.css">
+  <link rel="stylesheet" type="text/css" href="/css/aboutmenu.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-  <script async defer data-domain="rphad.com" src="https://plausible.io/js/plausible.js"></script>
-  <title>Rphad</title>
+  <title>About - Sileo</title>
 </head>
 <body>  <div id="mySidepanel" class="sidepanel">
-    <a href="../../blog">Blog</a>
-    <a href=".." class="active">About</a>
-    <a href="../../contact">Contact</a>
-    <a href="/en/about/me" class=icon title="Switch to English" id="langlink">
-      <svg width="24" height="24" id="langicon" />
-      &nbsp;fr
-    </a>
-    <button onclick="changeTheme()" class="themebtn">
-      <svg width="24" height="24" class="themeSvg" />
-    </button>
+    <a href="../blog">Blog</a>
+    <a href="." class="active">Info</a>
+    <a href="../contact">Contact</a>
   </div>
 
   <!-- Top navigation -->
   <div class="topnav">
 
     <!-- Left-aligned links (default) -->
-    <a href="/en" id="logo" title="Home">
+    <a href="/" id="logo" title="Home">
        R<span id="logo_fn">aphaël </span>
        D<span id="logo_ln">eknop </span>
     </a>
 
     <!-- Right-aligned links -->
     <div class="topnav-right">
-      <a href="../../blog">Blog</a>
-      <a href=".." class="active">About</a>
-      <a href="../../contact">Contact</a>
-
-      <a href="/en/about/me" class=icon title="Switch to English" id="langlink">
-        <svg width="24" height="24" id="langicon" />
-        &nbsp;fr
-      </a>
-
-      <button onclick="changeTheme()" id="themebtn">
-        <svg width="24" height="24" id="themeSvg" class="themeSvg"/>
-      </button>
-
+      <a href="../blog">Blog</a>
+      <a href="." class="active">Info</a>
       <div class="container" onclick="MobileMenu(this)">
         <div class="bar1"></div>
         <div class="bar2"></div>
@@ -58,12 +41,15 @@
     </div>
   </div>
   <h1>
-    À propos de moi
-   </h1>
-   <p>Je vais faire les présentations d'ici peu</p>
+    Info
+  </h1>
+  <h2>Contact</h2>
+  <p>You can send me an <a href="mailto:hi@sileo.dev">email</a> or connect via social media on <a href="https://twitter.com/0xsileo">X</a> and <a href="https://www.linkedin.com/in/rapha%C3%ABl-deknop-38aa01169/">Linkedin</a>.</p>
+  <h2>About this website</h2>
+    <p>The initial reason I made it is to be able to share things on my <a href="blog">blog</a>. This site has been written from scratch using HTML, CSS and JavaScript. I wrote <a href="../../blog/2021/02/24">a post</a> that is more centered on the <em>why</em> rather than the <em>how</em>. However, as I said in that post, I am likely going to detail some practical and technical aspects of it later on. But what I wrote is about the <a href="../../blog">blog</a> side of things. This website will surely serve other purposes, such as sharing my projects, but I have yet to come up with solid use cases (I already have some ideas though).</p>
+ 
 </body>
 
 <script type="text/javascript" src="/js/mobile.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
-<script type="text/javascript" src="/js/cleantheme.js"></script>
 </html>
