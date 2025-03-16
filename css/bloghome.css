@@ -1,93 +1,52 @@
-/* top -1px is for the javascript to work
- * display table is to have the header just as wide as the text
- * margin bottom -50px is for alignment purposes
- * height and height-line being the same help vertically center the element
- * */
-.blogyear, .blogmonth {
-	position: -webkit-sticky;
-	/*transition: 0.3s;*/
-	position:sticky;
-	top:-1px;
-	background-color: var(--background-color);
-	transition: transform 0.3s;
-}
-
-.blogyear {
-	display:table;
-	transform: rotate(-90deg);
-	cursor: pointer;
-	margin-bottom: -50px;
-	border-radius: 10px 0 0 10px;
-	font-family: 'Poppins', sans-serif;
-	font-weight: 600;
-}
-
-.blogyear:hover {
-	transform: rotate(0deg);
-	display: table;
-	transition: transform 0.3s;
-}
-
-.blogmonth {
-	background-color: var(--background-color);
-	margin-left: 40px;
-	padding: 8px;
-	margin-left: 55px;
-	font-family: 'Poppins', sans-serif;
-	font-weight: 500;
-	margin-block-start: 1.33em;
-  margin-block-end: 0em;
-}
-
-.blogyear.is-pinned {
-	background-color:var(--content-color);
-	transition: padding 0.3s, color 0.3s, transform 0.3s, margin-top 0.4s, border-radius 0.3s, background-color 0s;
-	padding: 8px;
-	/*z-index:3;*/
-	transform: rotate(0deg);
-	z-index:2;
-	color: var(--background-color);
-	height: 30px;
-	line-height:30px;
-}
-
-.blogmonth.is-pinned {
-	transition: margin 0.3s;
-	transform: rotate(0deg);
-	z-index:2;
-	background-color: var(--content-color);
-	color: var(--background-color);
-	height: 26px;
-	line-height: 26px;
-	padding: 10px;
-	text-decoration: none;
-	border-radius: 0 10px 10px 0;
-}
-
-/*for the lists of blog entries.*/
-
-.bloglist {
+#bloglist {
 	list-style-type: none;
 }
 
-.bloglist li {
-	margin: 10px 10%;
-}
-
-.bloglist li a{
-	color: var(--content-color);
+#bloglist li a {
+	display: block;
 	text-decoration: none;
-	/*font-weight: bold;*/
-	background: linear-gradient(to bottom, var(--accent-color) 0%,var(--accent-color) 100%);
-	background-position: 0 100%;
-	background-repeat: repeat-x;
-	background-size: 0 0;
-	transition: background-size .3s, color .3s;
-	padding:2px;
 }
 
-.bloglist li a:hover {
-	background-size: 2px 100%;
-	color: var(--background-color);
-	padding: 2px;
+.posttitle {
+    color: var(--content-color);
+    background: linear-gradient(var(--accent-color) 0%, var(--accent-color) 100%);
+    background-position: 0 100%;
+    background-repeat: repeat-x;
+    background-size: 0 0;
+    padding: 2px;
+    transition: none;
+}
+
+a:hover .posttitle {
+    background-size: 100% 100%;
+    color: var(--background-color);
+    transition: background-size 0.3s ease-in-out, color 0.3s; 
+}
+
+a:not(:hover) .posttitle {
+    transition: background-size 0.2s ease-in-out, color 0.2s;
+}
+
+.postdate  {
+	font-family: monospace;
+	transition: opacity 0.3s ease-in-out;
+}
+
+/* When hovering over any <a>, hide all postdates */
+#bloglist:hover .postdate {
+	opacity: 0.4;
+}
+
+/* Keep the postdate of the hovered link visible */
+#bloglist li:hover .postdate {
+	opacity: 1;
+}
+
+#bloglangs ul li { 
+    display: none;
+}
+
+#bloglangs:has(#en:checked) > ul .english,
+#bloglangs:has(#fr:checked) > ul .french {
+    display: block;
 }
