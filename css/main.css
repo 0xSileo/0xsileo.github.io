@@ -16,6 +16,10 @@ td {
   vertical-align:top;
 }
 
+ul {
+  padding: 5px;
+}
+
 p, ol, ul {
     font-family: 'newspaper', serif;
     font-weight: 400;
@@ -79,6 +83,8 @@ code.inline {
   background-color: var(--content-color);
   color: var(--background-color);
   font-size: calc(var(--textsize) - 2px);
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 #logo, #logo_fn, #logo_ln {
