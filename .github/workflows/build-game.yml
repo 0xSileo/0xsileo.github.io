@@ -1,0 +1,34 @@
+name: Build adaptive sudoku game
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'adaptive-sudoku-src/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install deps
+        working-directory: adaptive-sudoku-src
+        run: npm ci
+
+
+      - name: Build
+        working-directory: adaptive-sudoku-src
+        run: npm run build
+
+      - name: Commit build game
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Rebuild game"
+          file_pattern: adaptive-sudoku/**
+
+        
